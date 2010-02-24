@@ -1,5 +1,8 @@
 
 public class GUI {
 //TODO: Everything
-	String test;
+	public static void main(String[] args)
+	{
+		System.out.println("This is the main method.  Yay!!!");
+	}
 }
