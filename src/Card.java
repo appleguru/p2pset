@@ -1,8 +1,8 @@
 
 public class Card {
 	public static final int NUM_ATTRS = 4;
+	public static final int NUM_ATTR_TYPES = 3;
 	
-	int[] attributes = new int[NUM_ATTRS];
 	public static final int NUMBER = 0;
 	public static final int COLOR = 1;
 	public static final int TEXTURE = 2;
@@ -24,14 +24,16 @@ public class Card {
 	public static final int DIAMOND = 1;
 	public static final int SQUIGGLE = 2;
 	
-	/*
-	 * Current Attributes:
-	 *
-	 * 0 = number shapes
-	 * 1 = color of shapes
-	 * 2 = textures of shapes
-	 * 3 = shapes
-	 */
+	public int[] attributes;
+	
+	public Card (int num, int col, int tex, int sh){
+		attributes = new int[NUM_ATTRS];
+		
+		attributes[NUMBER] = num;
+		attributes[COLOR] = col;
+		attributes[TEXTURE] = tex;
+		attributes[SHAPE] = sh;
+	}
 	
 	
 }//class
