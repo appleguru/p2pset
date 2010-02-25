@@ -26,6 +26,9 @@ public class Card {
 	
 	public int[] attributes;
 	
+	/*
+	 * @param num the number of symbols on the card 
+	 */
 	public Card (int num, int col, int tex, int sh){
 		attributes = new int[NUM_ATTRS];
 		
