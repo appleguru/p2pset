@@ -4,6 +4,11 @@ import javax.swing.*;
 public class P2PSet {
 
 	private static final int numCards = 9;
+	private static final int defaultWindowWidth = 640;
+	private static final int defaultWindowHeight = 480;
+	private static final int iconScaleWidth = 128; //TODO: Get this from current window size on resize... 
+	
+	
 
 	private static void createAndShowGUI() {
 		//Create and set up the window.
@@ -20,18 +25,25 @@ public class P2PSet {
 		if (remainderCards != 0) numRows++; //if we're not a perfect square, add a row for the leftovers
 
 		JPanel cardPanel = new JPanel(new GridLayout(numRows,numCols));
+		
+		ImageIcon icon = new ImageIcon ("images/Green_Hatched_Diamond_3.png");
+		
+		int iconScaler = (icon.getIconWidth() / iconScaleWidth);
+		int iconScaleHeight = icon.getIconHeight() / iconScaler;
+		
+		icon = new ImageIcon(icon.getImage().getScaledInstance(iconScaleWidth,iconScaleHeight,Image.SCALE_SMOOTH));
 
 		//Add buttons to panel
 		for (JToggleButton i:cards)
 		{
-			i = new JToggleButton();
+			i = new JToggleButton(icon);
 			cardPanel.add(i);
 		}//for
 
 		frame.add(cardPanel);
 
 		//Display the window.
-		frame.pack();
+		frame.setSize(defaultWindowWidth,defaultWindowHeight);
 		frame.setVisible(true);
 	}
 
