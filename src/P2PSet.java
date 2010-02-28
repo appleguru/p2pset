@@ -1,16 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class GUI {
+public class P2PSet {
 
 	private static final int numCards = 9;
 
 	private static void createAndShowGUI() {
 		//Create and set up the window.
-		JFrame frame = new JFrame("P2PSet");
+		JFrame frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JButton[] cards = new JButton[numCards];
+		JToggleButton[] cards = new JToggleButton[numCards];
 		
 		//Add buttons to panel in as close to a square as we can
 		int numCols = (int)Math.sqrt(numCards); //cast result as an int to throw away decimal
@@ -22,9 +22,9 @@ public class GUI {
 		JPanel cardPanel = new JPanel(new GridLayout(numRows,numCols));
 
 		//Add buttons to panel
-		for (JButton i:cards)
+		for (JToggleButton i:cards)
 		{
-			i = new JButton();
+			i = new JToggleButton();
 			cardPanel.add(i);
 		}//for
 
@@ -41,4 +41,4 @@ public class GUI {
 		createAndShowGUI();
 
 	}//main
-}
+}//class
