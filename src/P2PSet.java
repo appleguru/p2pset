@@ -8,17 +8,18 @@ public class P2PSet {
 	private static int numCards = 9;
 	private static final int defaultWindowWidth = 640;
 	private static final int defaultWindowHeight = 480;
-	private static final int iconScaleWidth = 128; //TODO: Get this from current window size on resize... 
+	private static final int defaultIconScaleWidth = 128; //TODO: Get this from current window size on resize... 
+	private static final int defaultIconScaleHeight = 96;
 	protected static CardButton[] cards;
 	protected static LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
 	static GameData myGameData;
 	static JPanel cardPanel;
 	static JFrame frame;
-	
+
 	private static void createNewGameAndShowGUI() {
 		//Make a new Game
 		myGameData = new GameData();
-		
+
 		//Create and set up the window.
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,6 +34,7 @@ public class P2PSet {
 
 	private static void boardChanged()
 	{
+		numCards = myGameData.deck.boardCards.size();
 		//Add buttons to panel in as close to a square as we can
 		int numCols = (int)Math.sqrt(numCards); //cast result as an int to throw away decimal
 		int remainderCards = numCards % numCols;
@@ -43,7 +45,6 @@ public class P2PSet {
 		cardPanel = new JPanel(new GridLayout(numRows,numCols));
 		ButtonListener bl = new ButtonListener(myGameData);
 
-		numCards = myGameData.deck.boardCards.size();
 		cards = new CardButton[numCards];
 
 		//Add card buttons to panel
@@ -54,8 +55,21 @@ public class P2PSet {
 			myCardButton.card = myGameData.deck.boardCards.get(i);
 
 			ImageIcon icon = myCardButton.card.icon;
-			int iconScaler = (icon.getIconWidth() / iconScaleWidth);
-			int iconScaleHeight = icon.getIconHeight() / iconScaler;
+			int iconScaler, iconScaleHeight, iconScaleWidth;
+			if (icon.getIconWidth() > icon.getIconHeight())
+			{
+				iconScaler = (icon.getIconWidth() / defaultIconScaleWidth);
+				iconScaleHeight = icon.getIconHeight() / iconScaler;
+				iconScaleWidth = defaultIconScaleWidth;
+			}
+
+			else
+			{
+				iconScaler = (icon.getIconHeight() / defaultIconScaleHeight);
+				iconScaleWidth = icon.getIconWidth() / iconScaler;
+				iconScaleHeight = defaultIconScaleHeight;
+			}
+
 			//set button's icon to scaled version of card's icon
 			icon = new ImageIcon(icon.getImage().getScaledInstance(iconScaleWidth,iconScaleHeight,Image.SCALE_SMOOTH));
 			myCardButton.setIcon(icon);
@@ -64,7 +78,7 @@ public class P2PSet {
 		}//for
 		frame.add(cardPanel);
 	}//boardChanged
-	
+
 	public static void main(String[] args)
 	{
 

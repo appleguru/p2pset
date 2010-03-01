@@ -38,10 +38,6 @@ public class Deck {
 	public Card dealCard()
 	{
 		int size = unusedCards.size();	//Get the number of undealt cards
-		if (size == 0){
-			return null;
-		}
-		
 		int cardNum = generator.nextInt(size);	//Get a random integer from 0 to this number
 		Card dealtCard = unusedCards.get(cardNum);	//Get the card at this index
 		unusedCards.remove(cardNum);	//Remove this card from the unused cards list
@@ -106,14 +102,8 @@ public class Deck {
 		usedCards.add(boardCards.get(card1Index));	//Add each card to the list of used cards
 		usedCards.add(boardCards.get(card2Index));
 		usedCards.add(boardCards.get(card3Index));
-		boardCards.set(card1Index, dealCard());	//Remove each card from the list of cards on the board
-		boardCards.set(card2Index, dealCard());
-		boardCards.set(card3Index, dealCard());
-	}
-	
-	public boolean equals (Object o){
-		Deck other = (Deck)o;
-		
-		return (unusedCards.equals(other.unusedCards) && boardCards.equals(other.boardCards) && usedCards.equals(other.usedCards));
+		boardCards.remove(card1Index);	//Remove each card from the list of cards on the board
+		boardCards.remove(card2Index);
+		boardCards.remove(card3Index);
 	}
 }//class
