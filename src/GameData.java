@@ -9,6 +9,7 @@ public class GameData
 	public GameData()
 	{
 	deck = new Deck();
+	playerList.add(new Player());
 	}//Constructor
 	
 	public boolean equals(Object o)
