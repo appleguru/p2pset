@@ -12,15 +12,27 @@ public class P2PSet {
 	protected static CardButton[] cards;
 	protected static LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
 	static GameData myGameData;
+	static JPanel cardPanel;
+	static JFrame frame;
 	
 	private static void createNewGameAndShowGUI() {
 		//Make a new Game
 		myGameData = new GameData();
 		
 		//Create and set up the window.
-		JFrame frame = new JFrame("P2P Set");
+		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		//Add cards to the board
+		boardChanged();
+
+		//Display the window.
+		frame.setSize(defaultWindowWidth,defaultWindowHeight);
+		frame.setVisible(true);
+	}
+
+	private static void boardChanged()
+	{
 		//Add buttons to panel in as close to a square as we can
 		int numCols = (int)Math.sqrt(numCards); //cast result as an int to throw away decimal
 		int remainderCards = numCards % numCols;
@@ -28,7 +40,7 @@ public class P2PSet {
 		int numRows = numCols;
 		if (remainderCards != 0) numRows++; //if we're not a perfect square, add a row for the leftovers
 
-		JPanel cardPanel = new JPanel(new GridLayout(numRows,numCols));
+		cardPanel = new JPanel(new GridLayout(numRows,numCols));
 		ButtonListener bl = new ButtonListener(myGameData);
 
 		numCards = myGameData.deck.boardCards.size();
@@ -50,14 +62,9 @@ public class P2PSet {
 			myCardButton.addActionListener(bl);
 			cardPanel.add(myCardButton);
 		}//for
-
 		frame.add(cardPanel);
-
-		//Display the window.
-		frame.setSize(defaultWindowWidth,defaultWindowHeight);
-		frame.setVisible(true);
-	}
-
+	}//boardChanged
+	
 	public static void main(String[] args)
 	{
 
