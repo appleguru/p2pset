@@ -25,6 +25,7 @@ public class ConnectionHandler extends Thread
 			{
 				P2PSet.myGameData = (GameData) m.getObjects().get(0);
 				P2PSet.boardChanged();
+				System.out.println("Synch to me recieved");
 			}
 			else
 			{
