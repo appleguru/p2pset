@@ -35,14 +35,17 @@ public class Card implements Serializable{
 	public static final String COLOR_NAME_RED = "Red";
 	public static final String COLOR_NAME_GREEN = "Green";
 	public static final String COLOR_NAME_PURPLE = "Purple";
+	String colors[] = {COLOR_NAME_RED, COLOR_NAME_GREEN, COLOR_NAME_PURPLE};
 
 	public static final String TEXTURE_NAME_SOLID = "Solid";
 	public static final String TEXTURE_NAME_HOLLOW = "Hollow";
 	public static final String TEXTURE_NAME_HATCHED = "Hatched";
+	String textures[] = {TEXTURE_NAME_HOLLOW, TEXTURE_NAME_HATCHED, TEXTURE_NAME_SOLID};
 
 	public static final String SHAPE_NAME_DIAMOND = "Diamond";
 	public static final String SHAPE_NAME_SQUIGGLE = "Squiggly";
 	public static final String SHAPE_NAME_OBLONG = "Oval";
+	String shapes[] = {SHAPE_NAME_OBLONG, SHAPE_NAME_DIAMOND, SHAPE_NAME_SQUIGGLE};
 
 	public static final String NUMBER_NAME_1 = "1";
 	public static final String NUMBER_NAME_2 = "2";
@@ -109,7 +112,7 @@ public class Card implements Serializable{
 	}
 	
 	public String toString(){
-		return (attributes[SHAPE] + ", " + attributes[TEXTURE] + ", " + attributes[COLOR] + ", " + attributes[NUMBER]);
+		return ( "(" + shapes[attributes[COLOR]] + "/" + textures[attributes[TEXTURE]] + "/" + colors[attributes[COLOR]] + "/" + (attributes[NUMBER] + 1) + ")");
 	}
 
 }//class
