@@ -34,7 +34,38 @@ public class Deck {
 	 */
 	public boolean verifySet(Card card1, Card card2, Card card3)
 	{
-		return false;
+		Card[] claim = {card1, card2, card3};
+		
+		for (int i = 0; i < claim.length; i++){
+			if (!boardCards.contains(claim[i])){
+				return false;
+			}//return false if the card ain't there
+		}//verify that each card is actually on the board
+		
+		boolean[] allSame = new boolean[Card.NUM_ATTRS];
+		boolean[] allDiff = new boolean[Card.NUM_ATTRS];
+		
+		for (int i = 0; i < Card.NUM_ATTRS; i++){
+			allSame[i] = true; //assume true until finding a contradiction
+			allDiff[i] = true; //assume true until finding a contradiction
+			for (int j = 0; j < claim.length; j++){
+				for (int k = 1; k < claim.length; k++){
+					if (claim[j].attributes[i] == claim[(j + k) % claim.length].attributes[i]){
+						allDiff[i] = false; //then all Different must be false for this attribute
+					}//if the cards share the given attribute
+					
+					else {
+						allSame[i] = false; //otherwise, then allSame must be false for this attribute
+					}
+				}//for each card it can be compared to
+			}//for each card
+			
+			if (!allSame[i] && !allDiff[i]){
+				return false;
+			}//if, for this attribute, the cards are not all the same, and not all different
+		}//for each attribute check to see whether each card is the same, or all different
+		
+		return true; //if we never found any contradictions, return true
 	}
 	
 	/**
