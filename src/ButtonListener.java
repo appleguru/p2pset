@@ -19,7 +19,7 @@ public class ButtonListener implements ActionListener {
 					//todo claim the set
 				}//if the set is real
 				else {
-					//todo, check if we punish flase claims, punish if necessary
+					//todo, check if we punish false claims, punish if necessary
 					
 					//deselect all cards
 					for (int i = 0; i < P2PSet.selectedCards.size(); i++){
