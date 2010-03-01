@@ -25,7 +25,11 @@ public class Deck {
 				}
 			}
 		}
+		for (int i = 0; i < 12; i++){
+			dealCard();
+		}//deal out the initial 12 cards
 	}
+	
 	/**
 	 * Deals a random card from unusedCards, and moves that card into boardCards.
 	 * @return Returns a random card selected from unusedCards.

@@ -40,7 +40,8 @@ public class P2PSet {
 		//Add buttons to panel
 		for (CardButton i:cards)
 		{
-			i = new CardButton(icon);
+			i = new CardButton();
+			i.setIcon(icon);
 			i.addActionListener(bl);
 			cardPanel.add(i);
 		}//for
