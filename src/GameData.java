@@ -7,8 +7,9 @@ public class GameData
 	public LinkedList<Player> playerList = new LinkedList<Player>();
 
 	
-	public boolean equals(GameData gd)
+	public boolean equals(Object o)
 	{
-		return true;
+		GameData other = (GameData)o;
+		return (deck.equals(other.deck) && gameID == other.gameID && playerList.equals(other.playerList));
 	}
 }
