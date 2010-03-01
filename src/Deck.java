@@ -50,7 +50,7 @@ public class Deck implements Serializable{
 		int cardNum = generator.nextInt(size);	//Get a random integer from 0 to this number
 		Card dealtCard = unusedCards.get(cardNum);	//Get the card at this index
 		unusedCards.remove(cardNum);	//Remove this card from the unused cards list
-		boardCards.add(dealtCard);	//Add this card to the dealt cards list
+		//boardCards.add(dealtCard);	//Add this card to the dealt cards list
 		return dealtCard;	//Return the card that was dealt
 	}
 	
@@ -123,6 +123,6 @@ public class Deck implements Serializable{
 	}
 	
 	public String toString(){
-		return ("Unused Cards: " + unusedCards.toString() + ". Board Cards: " boardCards.toString() + ". Used Cards: " + usedCards.toString());
+		return ("Unused Cards: " + unusedCards.toString() + ". Board Cards: " + boardCards.toString() + ". Used Cards: " + usedCards.toString());
 	}
 }//class
