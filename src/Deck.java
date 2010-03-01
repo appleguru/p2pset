@@ -5,14 +5,24 @@ public class Deck {
 	LinkedList<Card> unusedCards = new LinkedList<Card>();
 	LinkedList<Card> boardCards = new LinkedList<Card>();
 	LinkedList<Card> usedCards = new LinkedList<Card>();
-
+	Random generator;
 	/**
 	 * Deals a random card from unusedCards, and moves that card into boardCards.
 	 * @return Returns a random card selected from unusedCards.
 	 */
+	public Deck()
+	{
+		generator = new Random();
+	}
+	
 	public Card dealCard()
 	{
-		return new Card();
+		int size = unusedCards.size();
+		int cardNum = generator.nextInt(size - 1);
+		Card dealtCard = unusedCards.get(cardNum);
+		unusedCards.remove(cardNum);
+		boardCards.add(dealtCard);
+		return dealtCard;
 	}
 	
 	/**
