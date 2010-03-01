@@ -4,12 +4,12 @@ public class GameData
 {
 	public Deck deck;
 	public int gameID;
-	public LinkedList<Player> playerList = new LinkedList<Player>();
+	public HashMap<String, Player> playerList = new HashMap<String, Player>();
 
 	public GameData()
 	{
 	deck = new Deck();
-	playerList.add(new Player());
+	playerList.put("Me!", new Player());
 	}//Constructor
 	
 	public boolean equals(Object o)
