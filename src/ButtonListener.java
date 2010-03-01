@@ -1,11 +1,11 @@
 import java.awt.event.*;
-import javax.swing.JToggleButton;
+import javax.swing.CardButton;
 
 public class ButtonListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		JToggleButton pressed = (JToggleButton)e.getSource();
+		CardButton pressed = (CardButton)e.getSource();
 
 		if (pressed.isSelected()){
 			P2PSet.selectedCards.add(pressed);
