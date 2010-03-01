@@ -123,6 +123,6 @@ public class Deck implements Serializable{
 	}
 	
 	public String toString(){
-		return ("Unused Cards: " + unusedCards.toString() + ". Board Cards: " + ". Used Cards: ");
+		return ("Unused Cards: " + unusedCards.toString() + ". Board Cards: " boardCards.toString() + ". Used Cards: " + usedCards.toString());
 	}
 }//class
