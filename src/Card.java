@@ -86,9 +86,9 @@ public class Card {
 		}//shape switch 
 
 		switch (attributes[NUMBER]) {
-		case 1:  filename[NUMBER] = NUMBER_NAME_1; break;
-		case 2:  filename[NUMBER] = NUMBER_NAME_2; break;
-		case 3:  filename[NUMBER] = NUMBER_NAME_3; break;
+		case 0:  filename[NUMBER] = NUMBER_NAME_1; break;
+		case 1:  filename[NUMBER] = NUMBER_NAME_2; break;
+		case 2:  filename[NUMBER] = NUMBER_NAME_3; break;
 		default: System.out.println("Invalid Number."); break;
 		}//number switch 
 
