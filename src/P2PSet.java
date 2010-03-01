@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -15,6 +17,8 @@ public class P2PSet {
 	static GameData myGameData;
 	static JPanel cardPanel;
 	static JFrame frame;
+	private static final String messageDestination = "localhost";
+	private static final int messagePort = 62626;
 
 	private static void createNewGameAndShowGUI() {
 		//Make a new Game
@@ -78,6 +82,23 @@ public class P2PSet {
 		}//for
 		frame.add(cardPanel);
 	}//boardChanged
+
+	public static void sendMessage(Message m, String recipient)
+	{
+		try
+		{
+			Socket sock = new Socket(recipient, messagePort);
+			ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());	//Create an object output stream to send messages to the server
+			oos.writeObject(m);	//Send a PUT message to the server with the given object
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
+	}
+
+
+
 
 	public static void main(String[] args)
 	{
