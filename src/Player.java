@@ -18,4 +18,10 @@ public class Player
 	isServer = false;
 	}//Constructor
 	
+	public boolean equals(Object o){
+		Player other = (Player)o;
+		
+		return (name.equals(other.name) && ip.equals(other.ip));
+	}
+	
 }
