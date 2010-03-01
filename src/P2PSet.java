@@ -13,7 +13,10 @@ public class P2PSet {
 	protected static LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
 	static GameData myGameData;
 	
-	private static void createAndShowGUI() {
+	private static void createNewGameAndShowGUI() {
+		//Make a new Game
+		myGameData = new GameData();
+		
 		//Create and set up the window.
 		JFrame frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,7 +61,7 @@ public class P2PSet {
 	public static void main(String[] args)
 	{
 
-		createAndShowGUI();
+		createNewGameAndShowGUI();
 
 	}//main
 
