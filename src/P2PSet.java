@@ -136,6 +136,8 @@ public class P2PSet {
 	{
 
 		createNewGameAndShowGUI();
+		//Make a new Peer Listener that will spawn off a connectionHandler thread
+		PeerListener myPeerListener = new PeerListener();
 
 	}//main
 
