@@ -12,10 +12,17 @@ public class SetServer {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		ServerListener sl = new ServerListener();
 		sl.start();
-	}
+	}*/
+	
+	public SetServer()
+	{
+		//gd = P2PSet.myGameData;
+		ServerListener sl = new ServerListener();
+		sl.start();
+	}//Constructor
 	
 	/**
 	 * Sets the server to the next player in the player list.
@@ -47,7 +54,7 @@ public class SetServer {
 	public static void checkSet(Card card1, Card card2, Card card3, Player claimant){
 		if (gd.deck.verifySet(card1, card2, card3)){
 			gd.deck.removeSet(card1, card2, card3);
-			gd.playerList.get(gd.playerList.get(claimant.name)).score++;
+			gd.playerList.get(claimant.name).score++;
 			ArrayList<Object> data = new ArrayList<Object>();
 			data.add(gd);
 			System.out.println("Set good, sending SYNCH_TO_ME to client...");

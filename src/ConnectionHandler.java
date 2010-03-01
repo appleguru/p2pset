@@ -1,5 +1,6 @@
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ConnectionHandler extends Thread
 {
@@ -19,7 +20,9 @@ public class ConnectionHandler extends Thread
 			String command = m.getCommand();	//Get the command from the message
 			if(command.equals("I_CLAIM_SET"))
 			{
+				ArrayList<Object> messageObjects = m.getObjects();
 				
+				SetServer.checkSet((Card)messageObjects.get(0), (Card)messageObjects.get(1), (Card)messageObjects.get(2), (Player)messageObjects.get(3));
 			}
 			else if(command.equals("SYNCH_TO_ME"))
 			{

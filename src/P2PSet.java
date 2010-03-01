@@ -45,6 +45,8 @@ public class P2PSet {
 
 	public static void boardChanged()
 	{
+		frame.getContentPane().removeAll();
+
 		numCards = myGameData.deck.boardCards.size();
 		//Add buttons to panel in as close to a square as we can
 		int numCols = (int)Math.sqrt(numCards); //cast result as an int to throw away decimal
@@ -95,7 +97,9 @@ public class P2PSet {
 		}//for
 		masterPanel.add(scorePanel);
 		masterPanel.add(cardPanel);
+
 		frame.add(masterPanel);
+		frame.validate();
 	}//boardChanged
 
 	public static void sendMessage(Message m, String recipient)
@@ -119,6 +123,7 @@ public class P2PSet {
 		set.add(c2);
 		set.add(c3);
 		set.add(myGameData.playerList.get("Me!"));
+		System.out.println("Sending I_CLAIM_SET to server...");
 		Message m = new Message("I_CLAIM_SET", set);
 		sendMessage(m, messageDestination);
 	}
@@ -138,6 +143,7 @@ public class P2PSet {
 		createNewGameAndShowGUI();
 		//Make a new Peer Listener that will spawn off a connectionHandler thread
 		PeerListener myPeerListener = new PeerListener();
+		myPeerListener.start();
 
 	}//main
 
