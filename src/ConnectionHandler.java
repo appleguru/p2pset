@@ -23,7 +23,8 @@ public class ConnectionHandler extends Thread
 			}
 			else if(command.equals("SYNCH_TO_ME"))
 			{
-				
+				P2PSet.myGameData = (GameData) m.getObjects().get(0);
+				P2PSet.boardChanged();
 			}
 			else
 			{
