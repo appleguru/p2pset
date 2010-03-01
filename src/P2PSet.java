@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import javax.swing.*;
 
 public class P2PSet {
@@ -7,7 +8,6 @@ public class P2PSet {
 	private static final int defaultWindowWidth = 640;
 	private static final int defaultWindowHeight = 480;
 	private static final int iconScaleWidth = 128; //TODO: Get this from current window size on resize... 
-	
 	
 
 	private static void createAndShowGUI() {
@@ -31,12 +31,15 @@ public class P2PSet {
 		int iconScaler = (icon.getIconWidth() / iconScaleWidth);
 		int iconScaleHeight = icon.getIconHeight() / iconScaler;
 		
+		ButtonListener bl = new ButtonListener();
+		
 		icon = new ImageIcon(icon.getImage().getScaledInstance(iconScaleWidth,iconScaleHeight,Image.SCALE_SMOOTH));
 
 		//Add buttons to panel
 		for (JToggleButton i:cards)
 		{
 			i = new JToggleButton(icon);
+			i.addActionListener(bl);
 			cardPanel.add(i);
 		}//for
 
@@ -53,4 +56,5 @@ public class P2PSet {
 		createAndShowGUI();
 
 	}//main
+
 }//class
