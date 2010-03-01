@@ -16,7 +16,7 @@ public class ButtonListener implements ActionListener {
 			P2PSet.selectedCards.add(pressed);
 			if (P2PSet.selectedCards.size() == Card.NUM_ATTR_TYPES){
 				if (gd.deck.verifySet(P2PSet.selectedCards.get(0).card, P2PSet.selectedCards.get(1).card, P2PSet.selectedCards.get(2).card)){
-					//todo claim the set
+					P2PSet.sendI_CLAIM_SET(P2PSet.selectedCards.get(0), P2PSet.selectedCards.get(1), P2PSet.selectedCards.get(2));
 				}//if the set is real
 				else {
 					//todo, check if we punish false claims, punish if necessary

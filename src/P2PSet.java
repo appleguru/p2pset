@@ -21,11 +21,16 @@ public class P2PSet {
 	static JLabel score;
 	private static final String messageDestination = "localhost";
 	private static final int messagePort = 62626;
-
+	static SetServer myServer;
+	
 	private static void createNewGameAndShowGUI() {
 		//Make a new Game
 		myGameData = new GameData();
 
+		myServer = new SetServer();
+		myServer.isServer = true;
+		myServer.gd = myGameData;
+		
 		//Create and set up the window.
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,6 +118,7 @@ public class P2PSet {
 		set.add(c1);
 		set.add(c2);
 		set.add(c3);
+		set.add(myGameData.playerList.get("Me!"));
 		Message m = new Message("I_CLAIM_SET", set);
 		sendMessage(m, messageDestination);
 	}

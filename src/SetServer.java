@@ -1,8 +1,8 @@
 public class SetServer {
 
-	private static boolean isServer;
-	private String myName;
-	private GameData gd;
+	static boolean isServer;
+	String myName;
+	GameData gd;
 	
 	/**
 	 * @param args
