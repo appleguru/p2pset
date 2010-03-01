@@ -8,6 +8,7 @@ public class P2PSet {
 	private static final int defaultWindowWidth = 640;
 	private static final int defaultWindowHeight = 480;
 	private static final int iconScaleWidth = 128; //TODO: Get this from current window size on resize... 
+	protected static JToggleButton[] cards;
 	
 
 	private static void createAndShowGUI() {
@@ -15,7 +16,7 @@ public class P2PSet {
 		JFrame frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JToggleButton[] cards = new JToggleButton[numCards];
+		cards = new JToggleButton[numCards];
 		
 		//Add buttons to panel in as close to a square as we can
 		int numCols = (int)Math.sqrt(numCards); //cast result as an int to throw away decimal
