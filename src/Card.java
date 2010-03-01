@@ -95,5 +95,11 @@ public class Card {
 		icon = new ImageIcon (IMAGE_PATH + filename[COLOR] + FILENAME_DELIMITER + filename[TEXTURE] + FILENAME_DELIMITER + filename[SHAPE] + FILENAME_DELIMITER + filename[NUMBER] + FILENAME_EXTENSION);
 
 	}//Constructor
+	
+	public boolean equals(Object o){
+		Card other = (Card)o;
+		
+		return (attributes[COLOR] == other.attributes[COLOR] && attributes[TEXTURE] == other.attributes[TEXTURE] && attributes[SHAPE] == other.attributes[SHAPE] && attributes[NUMBER] == other.attributes[NUMBER]);
+	}
 
 }//class
