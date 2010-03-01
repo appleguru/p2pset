@@ -31,7 +31,7 @@ public class Deck implements Serializable{
 			}
 		}
 		for (int i = 0; i < 12; i++){
-			dealCard();
+			boardCards.add(dealCard());
 		}//deal out the initial 12 cards
 	}
 	
