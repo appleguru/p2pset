@@ -6,6 +6,10 @@ public class GameData
 	public int gameID;
 	public LinkedList<Player> playerList = new LinkedList<Player>();
 
+	public GameData()
+	{
+	deck = new Deck();
+	}//Constructor
 	
 	public boolean equals(Object o)
 	{
