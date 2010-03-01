@@ -16,8 +16,9 @@ public class P2PSet {
 	protected static CardButton[] cards;
 	protected static LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
 	static GameData myGameData;
-	static JPanel cardPanel;
+	static JPanel cardPanel, scorePanel, masterPanel;
 	static JFrame frame;
+	static JLabel score;
 	private static final String messageDestination = "localhost";
 	private static final int messagePort = 62626;
 
@@ -47,14 +48,20 @@ public class P2PSet {
 		int numRows = numCols;
 		if (remainderCards != 0) numRows++; //if we're not a perfect square, add a row for the leftovers
 
+		masterPanel = new JPanel();
+		masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
 		cardPanel = new JPanel(new GridLayout(numRows,numCols));
+		scorePanel = new JPanel();
+		
+		//Add score to scorePanel
+		score = new JLabel("Score: " + myGameData.playerList.get("Me!").score); //Yay for hacks!
+		scorePanel.add(score);
+		
 		ButtonListener bl = new ButtonListener(myGameData);
-
 		cards = new CardButton[numCards];
 
-		//Add card buttons to panel
-		int i = 0;
-		for (i=0; i < numCards; i++)
+		//Add card buttons to boardPanel
+		for (int i = 0; i < numCards; i++)
 		{
 			CardButton myCardButton = new CardButton();
 			myCardButton.card = myGameData.deck.boardCards.get(i);
@@ -81,7 +88,9 @@ public class P2PSet {
 			myCardButton.addActionListener(bl);
 			cardPanel.add(myCardButton);
 		}//for
-		frame.add(cardPanel);
+		masterPanel.add(scorePanel);
+		masterPanel.add(cardPanel);
+		frame.add(masterPanel);
 	}//boardChanged
 
 	public static void sendMessage(Message m, String recipient)
