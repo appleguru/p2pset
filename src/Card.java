@@ -42,6 +42,7 @@ public class Card {
 	public static final String NUMBER_NAME_2 = "2";
 	public static final String NUMBER_NAME_3 = "3";
 
+	public static final String IMAGE_PATH = "images/";
 	public static final String FILENAME_DELIMITER = "_";
 	public static final String FILENAME_EXTENSION = ".png";
 
@@ -91,7 +92,7 @@ public class Card {
 		default: System.out.println("Invalid Number."); break;
 		}//number switch 
 
-		icon = new ImageIcon (filename[COLOR] + FILENAME_DELIMITER + filename[TEXTURE] + FILENAME_DELIMITER + filename[SHAPE] + FILENAME_DELIMITER + filename[NUMBER] + FILENAME_EXTENSION);
+		icon = new ImageIcon (IMAGE_PATH + filename[COLOR] + FILENAME_DELIMITER + filename[TEXTURE] + FILENAME_DELIMITER + filename[SHAPE] + FILENAME_DELIMITER + filename[NUMBER] + FILENAME_EXTENSION);
 
 	}//Constructor
 
