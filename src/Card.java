@@ -1,7 +1,13 @@
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
 
 
-public class Card {
+public class Card implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final int NUM_ATTRS = 4;
 	public static final int NUM_ATTR_TYPES = 3;
 

@@ -1,7 +1,12 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Deck {
+public class Deck implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	LinkedList<Card> unusedCards;
 	LinkedList<Card> boardCards;
 	LinkedList<Card> usedCards;

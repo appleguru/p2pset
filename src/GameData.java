@@ -1,7 +1,12 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class GameData
+public class GameData implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Deck deck;
 	public int gameID;
 	public HashMap<String, Player> playerList = new HashMap<String, Player>();
