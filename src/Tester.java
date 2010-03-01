@@ -5,7 +5,15 @@ public class Tester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Deck d = new Deck();
+		
+		for (int i = 11; i < 81; i++){
+			d.dealCard();
+		}
+		
+		for (int i = 0; i < d.boardCards.size(); i++){
+			System.out.println(d.boardCards.get(i).icon.getIconHeight() + d.boardCards.get(i));
+		}
 
 	}
 
