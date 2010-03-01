@@ -50,6 +50,7 @@ public class SetServer {
 			gd.playerList.get(gd.playerList.get(claimant.name)).score++;
 			ArrayList<Object> data = new ArrayList<Object>();
 			data.add(gd);
+			System.out.println("Set good, sending SYNCH_TO_ME to client...");
 			Message m = new Message("SYNCH_TO_ME", data);
 			sendMessage(m, "localhost");
 		}//if the set is good
