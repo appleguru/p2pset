@@ -110,4 +110,10 @@ public class Deck {
 		boardCards.set(card2Index, dealCard());
 		boardCards.set(card3Index, dealCard());
 	}
+	
+	public boolean equals (Object o){
+		Deck other = (Deck)o;
+		
+		return (unusedCards.equals(other.unusedCards) && boardCards.equals(other.boardCards) && usedCards.equals(other.usedCards));
+	}
 }//class
