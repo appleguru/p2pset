@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -97,7 +98,10 @@ public class P2PSet {
 		}
 	}
 
-
+	public static void sendI_CLAIM_SET(Card c1, Card c2, Card c3)
+	{
+		ArrayList<Card> set = new ArrayList<Card>();
+	}
 
 
 	public static void main(String[] args)
