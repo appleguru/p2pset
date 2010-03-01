@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.LinkedList;
 
 import javax.swing.*;
 
@@ -9,7 +10,7 @@ public class P2PSet {
 	private static final int defaultWindowHeight = 480;
 	private static final int iconScaleWidth = 128; //TODO: Get this from current window size on resize... 
 	protected static JToggleButton[] cards;
-	
+	protected static LinkedList<JToggleButton> selectedCards = new LinkedList<JToggleButton>();
 
 	private static void createAndShowGUI() {
 		//Create and set up the window.
