@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Deck {
 
-	LinkedList<Card> unusedCards = new LinkedList<Card>();
-	LinkedList<Card> boardCards = new LinkedList<Card>();
-	LinkedList<Card> usedCards = new LinkedList<Card>();
+	LinkedList<Card> unusedCards;
+	LinkedList<Card> boardCards;
+	LinkedList<Card> usedCards;
 	Random generator;
 	/**
 	 * Constructor; used to create a new random number generator for dealing cards
@@ -12,6 +12,19 @@ public class Deck {
 	public Deck()
 	{
 		generator = new Random();
+		unusedCards = new LinkedList<Card>();
+		boardCards = new LinkedList<Card>();
+		usedCards = new LinkedList<Card>();
+		
+		for (int i = 0; i < Card.NUM_ATTR_TYPES; i++){
+			for (int j = 0; j < Card.NUM_ATTR_TYPES; j++){
+				for (int k = 0; k < Card.NUM_ATTR_TYPES; k++){
+					for (int l = 0; l < Card.NUM_ATTR_TYPES; l++){
+						unusedCards.add(new Card(i, j, k, l));
+					}
+				}
+			}
+		}
 	}
 	/**
 	 * Deals a random card from unusedCards, and moves that card into boardCards.
