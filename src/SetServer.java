@@ -2,7 +2,7 @@ public class SetServer {
 
 	static boolean isServer;
 	String myName;
-	GameData gd;
+	static GameData gd;
 	
 	/**
 	 * @param args
@@ -36,11 +36,11 @@ public class SetServer {
 		
 	}
 	
-	public void checkSet(Card card1, Card card2, Card card3, Player claimant){
+	public static void checkSet(Card card1, Card card2, Card card3, Player claimant){
 		if (gd.deck.verifySet(card1, card2, card3)){
 			gd.deck.removeSet(card1, card2, card3);
 			gd.playerList.get(gd.playerList.get(claimant.name)).score++;
-			synchronizeSend();
+			P2PSet.sendSYNCH_TO_ME()
 		}//if the set is good
 	}
 

@@ -43,7 +43,7 @@ public class P2PSet {
 		frame.setVisible(true);
 	}
 
-	private static void boardChanged()
+	public static void boardChanged()
 	{
 		numCards = myGameData.deck.boardCards.size();
 		//Add buttons to panel in as close to a square as we can
