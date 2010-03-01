@@ -10,7 +10,8 @@ public class SetServer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		ServerListener sl = new ServerListener();
+		sl.start();
 	}
 	
 	/**
