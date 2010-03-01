@@ -101,5 +101,9 @@ public class Card {
 		
 		return (attributes[COLOR] == other.attributes[COLOR] && attributes[TEXTURE] == other.attributes[TEXTURE] && attributes[SHAPE] == other.attributes[SHAPE] && attributes[NUMBER] == other.attributes[NUMBER]);
 	}
+	
+	public String toString(){
+		return (attributes[SHAPE] + ", " + attributes[TEXTURE] + ", " + attributes[COLOR] + ", " + attributes[NUMBER]);
+	}
 
 }//class
