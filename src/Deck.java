@@ -18,7 +18,7 @@ public class Deck {
 	public Card dealCard()
 	{
 		int size = unusedCards.size();
-		int cardNum = generator.nextInt(size - 1);
+		int cardNum = generator.nextInt(size);
 		Card dealtCard = unusedCards.get(cardNum);
 		unusedCards.remove(cardNum);
 		boardCards.add(dealtCard);
