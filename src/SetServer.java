@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class SetServer {
 
 	static boolean isServer;
@@ -8,8 +10,7 @@ public class SetServer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-//		GUI myGUI = new GUI();
+		
 	}
 	
 	/**
@@ -23,9 +24,12 @@ public class SetServer {
 	/**
 	 * If this player is the server, this method can be called to broadcast its GameData object to all other players, forcing them to synchronize to it.
 	 */
-	private void synchronizeSend()
+	public static void sendSYNCH_TO_ME()
 	{
-		
+		ArrayList<Object> data = new ArrayList<Object>();
+		data.add(gd);
+		Message m = new Message("SYNCH_TO_ME", data);
+		P2PSet.sendMessage(m, "localhost");
 	}
 	/**
 	 * Synchronizes this player's GameData object to the incoming one.
@@ -40,7 +44,10 @@ public class SetServer {
 		if (gd.deck.verifySet(card1, card2, card3)){
 			gd.deck.removeSet(card1, card2, card3);
 			gd.playerList.get(gd.playerList.get(claimant.name)).score++;
-			P2PSet.sendSYNCH_TO_ME()
+			ArrayList<Object> data = new ArrayList<Object>();
+			data.add(gd);
+			Message m = new Message("SYNCH_TO_ME", data);
+			P2PSet.sendMessage(m, "localhost");
 		}//if the set is good
 	}
 
