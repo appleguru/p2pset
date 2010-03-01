@@ -121,4 +121,8 @@ public class Deck implements Serializable{
 		
 		return (unusedCards.equals(other.unusedCards) && boardCards.equals(other.boardCards) && usedCards.equals(other.usedCards));
 	}
+	
+	public String toString(){
+		return ("Unused Cards: " + unusedCards.toString() + ". Board Cards: " + ". Used Cards: ");
+	}
 }//class
