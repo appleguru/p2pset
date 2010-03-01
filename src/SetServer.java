@@ -39,7 +39,7 @@ public class SetServer {
 	public void checkSet(Card card1, Card card2, Card card3, Player claimant){
 		if (gd.deck.verifySet(card1, card2, card3)){
 			gd.deck.removeSet(card1, card2, card3);
-			gd.playerList.get(gd.playerList.indexOf(claimant)).score++;
+			gd.playerList.get(gd.playerList.get(claimant.name)).score++;
 			synchronizeSend();
 		}//if the set is good
 	}
