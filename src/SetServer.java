@@ -2,6 +2,8 @@ public class SetServer {
 
 	private static boolean isServer;
 	private String myName;
+	private GameData gd;
+	
 	/**
 	 * @param args
 	 */
@@ -32,6 +34,14 @@ public class SetServer {
 	private void synchronizeSelfTo(GameData gd)
 	{
 		
+	}
+	
+	public void checkSet(Card card1, Card card2, Card card3, Player claimant){
+		if (gd.deck.verifySet(card1, card2, card3)){
+			gd.deck.removeSet(card1, card2, card3);
+			gd.playerList.get(gd.playerList.indexOf(claimant)).score++;
+			synchronizeSend();
+		}//if the set is good
 	}
 
 }
