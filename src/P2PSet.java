@@ -11,7 +11,7 @@ public class P2PSet {
 	private static final int iconScaleWidth = 128; //TODO: Get this from current window size on resize... 
 	protected static CardButton[] cards;
 	protected static LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
-	GameData myGameData;
+	static GameData myGameData;
 	
 	private static void createAndShowGUI() {
 		//Create and set up the window.
