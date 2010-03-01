@@ -10,6 +10,7 @@ public class ButtonListener implements ActionListener {
 		if (pressed.isSelected()){
 			P2PSet.selectedCards.add(pressed);
 			if (P2PSet.selectedCards.size() == 3){
+				
 				//todo claim the set
 			}
 		}
