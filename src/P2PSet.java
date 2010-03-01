@@ -25,7 +25,7 @@ public class P2PSet {
 		if (remainderCards != 0) numRows++; //if we're not a perfect square, add a row for the leftovers
 
 		JPanel cardPanel = new JPanel(new GridLayout(numRows,numCols));
-		ButtonListener bl = new ButtonListener();
+		ButtonListener bl = new ButtonListener(myGameData);
 
 		numCards = myGameData.deck.boardCards.size();
 		cards = new CardButton[numCards];
