@@ -100,9 +100,22 @@ public class P2PSet {
 
 	public static void sendI_CLAIM_SET(Card c1, Card c2, Card c3)
 	{
-		ArrayList<Card> set = new ArrayList<Card>();
+		ArrayList<Object> set = new ArrayList<Object>();
+		set.add(c1);
+		set.add(c2);
+		set.add(c3);
+		Message m = new Message("I_CLAIM_SET", set);
+		sendMessage(m, messageDestination);
 	}
 
+	public static void sendSYNCH_TO_ME()
+	{
+		ArrayList<Object> data = new ArrayList<Object>();
+		data.add(myGameData);
+		Message m = new Message("SYNCH_TO_ME", data);
+		sendMessage(m, messageDestination);
+	}
+	
 
 	public static void main(String[] args)
 	{
