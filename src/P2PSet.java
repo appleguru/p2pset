@@ -20,7 +20,7 @@ public class P2PSet {
 	static JFrame frame;
 	static JLabel score;
 	private static final String messageDestination = "localhost";
-	private static final int messagePort = 62626;
+	private static final int messagePort = 6262;
 	static SetServer myServer;
 	
 	private static void createNewGameAndShowGUI() {

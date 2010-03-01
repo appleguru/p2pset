@@ -1,3 +1,5 @@
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class SetServer {
@@ -5,6 +7,7 @@ public class SetServer {
 	static boolean isServer;
 	String myName;
 	static GameData gd;
+	private static int messagePort = 62626;
 	
 	/**
 	 * @param args
@@ -30,7 +33,7 @@ public class SetServer {
 		ArrayList<Object> data = new ArrayList<Object>();
 		data.add(gd);
 		Message m = new Message("SYNCH_TO_ME", data);
-		P2PSet.sendMessage(m, "localhost");
+		sendMessage(m, "localhost");
 	}
 	/**
 	 * Synchronizes this player's GameData object to the incoming one.
@@ -48,8 +51,22 @@ public class SetServer {
 			ArrayList<Object> data = new ArrayList<Object>();
 			data.add(gd);
 			Message m = new Message("SYNCH_TO_ME", data);
-			P2PSet.sendMessage(m, "localhost");
+			sendMessage(m, "localhost");
 		}//if the set is good
 	}
+	
+	public static void sendMessage(Message m, String recipient)
+	{
+		try
+		{
+			Socket sock = new Socket(recipient, messagePort);
+			ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());	//Create an object output stream to send messages to the server
+			oos.writeObject(m);	//Send a PUT message to the server with the given object
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace(System.out);
+		}
+	}//sendMessage
 
 }
