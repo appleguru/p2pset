@@ -19,7 +19,7 @@ public class Card {
 	public static final int PURPLE = 2;
 
 	public static final int HOLLOW = 0;
-	public static final int HASHED = 1;
+	public static final int HATCHED = 1;
 	public static final int SOLID = 2;
 
 	public static final int OBLONG = 0;
@@ -32,7 +32,7 @@ public class Card {
 
 	public static final String TEXTURE_NAME_SOLID = "Solid";
 	public static final String TEXTURE_NAME_HOLLOW = "Hollow";
-	public static final String TEXTURE_NAME_HASHED = "Hatched";
+	public static final String TEXTURE_NAME_HATCHED = "Hatched";
 
 	public static final String SHAPE_NAME_DIAMOND = "Diamond";
 	public static final String SHAPE_NAME_SQUIGGLE = "Squiggly";
@@ -73,7 +73,7 @@ public class Card {
 
 		switch (attributes[TEXTURE]) {
 		case 0:  filename[TEXTURE] = TEXTURE_NAME_HOLLOW; break;
-		case 1:  filename[TEXTURE] = TEXTURE_NAME_HASHED; break;
+		case 1:  filename[TEXTURE] = TEXTURE_NAME_HATCHED; break;
 		case 2:  filename[TEXTURE] = TEXTURE_NAME_SOLID; break;
 		default: System.out.println("Invalid Texture."); break;
 		}//texture switch 
