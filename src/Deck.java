@@ -7,22 +7,25 @@ public class Deck {
 	LinkedList<Card> usedCards = new LinkedList<Card>();
 	Random generator;
 	/**
-	 * Deals a random card from unusedCards, and moves that card into boardCards.
-	 * @return Returns a random card selected from unusedCards.
+	 * Constructor; used to create a new random number generator for dealing cards
 	 */
 	public Deck()
 	{
 		generator = new Random();
 	}
+	/**
+	 * Deals a random card from unusedCards, and moves that card into boardCards.
+	 * @return Returns a random card selected from unusedCards.
+	 */
 	
 	public Card dealCard()
 	{
-		int size = unusedCards.size();
-		int cardNum = generator.nextInt(size);
-		Card dealtCard = unusedCards.get(cardNum);
-		unusedCards.remove(cardNum);
-		boardCards.add(dealtCard);
-		return dealtCard;
+		int size = unusedCards.size();	//Get the number of undealt cards
+		int cardNum = generator.nextInt(size);	//Get a random integer from 0 to this number
+		Card dealtCard = unusedCards.get(cardNum);	//Get the card at this index
+		unusedCards.remove(cardNum);	//Remove this card from the unused cards list
+		boardCards.add(dealtCard);	//Add this card to the dealt cards list
+		return dealtCard;	//Return the card that was dealt
 	}
 	
 	/**
@@ -76,6 +79,14 @@ public class Deck {
 	 */
 	public void removeSet(Card card1, Card card2, Card card3)
 	{
-		
+		int card1Index = boardCards.indexOf(card1);	//Get the index in the list of board cards of each card to be removed
+		int card2Index = boardCards.indexOf(card2);
+		int card3Index = boardCards.indexOf(card3);
+		usedCards.add(boardCards.get(card1Index));	//Add each card to the list of used cards
+		usedCards.add(boardCards.get(card2Index));
+		usedCards.add(boardCards.get(card3Index));
+		boardCards.remove(card1Index);	//Remove each card from the list of cards on the board
+		boardCards.remove(card2Index);
+		boardCards.remove(card3Index);
 	}
 }//class
