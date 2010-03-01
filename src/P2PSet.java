@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class P2PSet {
 
-	private static final int numCards = 9;
+	private static int numCards = 9;
 	private static final int defaultWindowWidth = 640;
 	private static final int defaultWindowHeight = 480;
 	private static final int iconScaleWidth = 128; //TODO: Get this from current window size on resize... 
@@ -17,8 +17,6 @@ public class P2PSet {
 		JFrame frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		cards = new CardButton[numCards];
-		
 		//Add buttons to panel in as close to a square as we can
 		int numCols = (int)Math.sqrt(numCards); //cast result as an int to throw away decimal
 		int remainderCards = numCards % numCols;
@@ -27,23 +25,26 @@ public class P2PSet {
 		if (remainderCards != 0) numRows++; //if we're not a perfect square, add a row for the leftovers
 
 		JPanel cardPanel = new JPanel(new GridLayout(numRows,numCols));
-		
-		ImageIcon icon = new ImageIcon ("images/Green_Hatched_Diamond_3.png");
-		
-		int iconScaler = (icon.getIconWidth() / iconScaleWidth);
-		int iconScaleHeight = icon.getIconHeight() / iconScaler;
-		
 		ButtonListener bl = new ButtonListener();
-		
-		icon = new ImageIcon(icon.getImage().getScaledInstance(iconScaleWidth,iconScaleHeight,Image.SCALE_SMOOTH));
 
-		//Add buttons to panel
-		for (CardButton i:cards)
+		numCards = myGameData.deck.boardCards.size();
+		cards = new CardButton[numCards];
+
+		//Add card buttons to panel
+		int i = 0;
+		for (i=0; i < numCards; i++)
 		{
-			i = new CardButton();
-			i.setIcon(icon);
-			i.addActionListener(bl);
-			cardPanel.add(i);
+			CardButton myCardButton = new CardButton();
+			myCardButton.card = myGameData.deck.boardCards.get(i);
+
+			ImageIcon icon = myCardButton.card.icon;
+			int iconScaler = (icon.getIconWidth() / iconScaleWidth);
+			int iconScaleHeight = icon.getIconHeight() / iconScaler;
+			//set button's icon to scaled version of card's icon
+			icon = new ImageIcon(icon.getImage().getScaledInstance(iconScaleWidth,iconScaleHeight,Image.SCALE_SMOOTH));
+			myCardButton.setIcon(icon);
+			myCardButton.addActionListener(bl);
+			cardPanel.add(myCardButton);
 		}//for
 
 		frame.add(cardPanel);
