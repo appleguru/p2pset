@@ -1,0 +1,6 @@
+Algorithms and Protocols *Incomplete*
+
+	Game creation and joining:  When a set client first starts up, the user is given an option of creating a new game, or querying a list of existing games.  If they choose to query a list of exiting games, then a mulitcast meesage goes out with the "Looking for games" message, and the client's return address and port.  Any client in a game, whether that game has started or not*, upon recieving this multicast (probably on a special multicast listener), will respond with the game's data, and their own address, to facilitate joining.  
+
+
+* We may later decide that new players can only join unstarted games, or introduce some kind of mechanism to support private games, or an optional 'maximum players' attribute to games.  For now, all games may be joined by anyone who knows about them.  
