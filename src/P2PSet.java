@@ -19,6 +19,7 @@ public class P2PSet {
 	static JPanel cardPanel, scorePanel, masterPanel;
 	static JFrame frame;
 	static JLabel score;
+	static JTextField username;
 	private static final String messageDestination = "localhost";
 	private static final int messagePort = 6262;
 	static SetServer myServer;
@@ -59,6 +60,12 @@ public class P2PSet {
 		masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
 		cardPanel = new JPanel(new GridLayout(numRows,numCols));
 		scorePanel = new JPanel();
+		
+		//Add Username to scorePanel
+		username = new JTextField(10); //TODO: Make size a constant var
+		scorePanel.add(username);
+		myGameData.playerList
+		
 		
 		//Add score to scorePanel
 		score = new JLabel("Score: " + myGameData.playerList.get("Me!").score); //Yay for hacks!

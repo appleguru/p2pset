@@ -12,7 +12,6 @@ public class GameData implements Serializable
 	public GameData()
 	{
 	deck = new Deck();
-	playerList.put("Me!", new Player());
 	}//Constructor
 	
 	public boolean equals(Object o)
@@ -20,4 +19,15 @@ public class GameData implements Serializable
 		GameData other = (GameData)o;
 		return (deck.equals(other.deck) && gameID == other.gameID && playerList.equals(other.playerList));
 	}
+		
+	public void addPlayer(String playerName)
+	{
+		playerList.put(playerName, new Player());		
+	}//addPlayer
+	
+	public void changePlayerName(String oldPlayerName, String newPlayerName)
+	{
+		Player tempPlayer = playerList.remove(oldPlayerName);
+		playerList.put(newPlayerName, tempPlayer);
+	}//addPlayer
 }
