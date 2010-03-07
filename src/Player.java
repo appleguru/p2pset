@@ -3,10 +3,9 @@ import java.net.InetAddress;
 
 public class Player implements Serializable
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 5419528483896313590L;
+	
 	public String name;
 	public InetAddress ip;
 	public int score;
