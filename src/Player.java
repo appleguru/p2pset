@@ -9,7 +9,6 @@ public class Player implements Serializable
 	public String name;
 	public InetAddress ip;
 	public int score;
-	public boolean isServer;
 	
 	public Player()
 	{
@@ -18,8 +17,6 @@ public class Player implements Serializable
 	
 	try { ip = InetAddress.getLocalHost(); }
 	catch (Exception e) { System.err.println("Error " + e + " getting local address."); }
-		
-	isServer = false;
 	}//Constructor
 	
 	public boolean equals(Object o){
