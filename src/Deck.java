@@ -6,7 +6,7 @@ public class Deck implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 4441183230181133146L;
 	LinkedList<Card> unusedCards;
 	LinkedList<Card> boardCards;
 	LinkedList<Card> usedCards;
