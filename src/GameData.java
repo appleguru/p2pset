@@ -3,10 +3,8 @@ import java.util.*;
 
 public class GameData implements Serializable
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2312439373810012826L;
+
 	public Deck deck;
 	public int gameID;
 	public HashMap<String, Player> playerList = new HashMap<String, Player>();
