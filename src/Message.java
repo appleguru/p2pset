@@ -7,9 +7,9 @@ public class Message implements Serializable
 	 * 
 	 */
 	private String command;
-	private ArrayList<Object> objects;
+	private ArrayList<Serializable> objects;
 	
-	public Message(String c, ArrayList<Object> o)
+	public Message(String c, ArrayList<Serializable> o)
 	{
 		command = c;
 		objects = o;
@@ -20,7 +20,7 @@ public class Message implements Serializable
 		return command;
 	}
 	
-	public ArrayList<Object> getObjects()
+	public ArrayList<Serializable> getObjects()
 	{
 		return objects;
 	}
