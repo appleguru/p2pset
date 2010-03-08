@@ -10,7 +10,7 @@ public class P2PSet {
 	protected GameData myGameData;
 
 	private int numCards;
-	private final int defaultWindowWidth = 850;
+	private final int defaultWindowWidth = 860;
 	private final int defaultWindowHeight = 600;
 	private final int defaultIconScaleWidth = 128; //TODO: Get this from current window size on resize... 
 	private final int defaultIconScaleHeight = 96;
@@ -30,8 +30,8 @@ public class P2PSet {
 	private JToggleButton reqMoreCards = new JToggleButton("Request More Cards");
 	private final JLabel userNameLabel = new JLabel("Username: ");
 	private final JLabel scoreLabel = new JLabel("<html><font size=\"+2\" color=\"000000\"><i>Scores:</i></font></html>");
-	private final String CARDS_LEFT_STR = "# of cards left in deck: ";
-	private final String REQ_CARDS_STR = "# of players that want more cards: ";
+	private final String CARDS_LEFT_STR = "Cards left in deck: ";
+	private final String REQ_CARDS_STR = "Players want more cards: ";
 	private final String HEX_RED = "ff0000";
 	private final String HEX_BLACK = "000000";
 
