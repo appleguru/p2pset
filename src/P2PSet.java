@@ -26,8 +26,8 @@ public class P2PSet {
 	private static ButtonListener bl;
 	private static UsernameListener ul;
 	public static final JLabel userNameLabel = new JLabel("Username: ");
-	
-	
+
+
 	private static void createNewGameAndShowGUI() {
 		//Make a new Game
 		myGameData = new GameData();
@@ -35,7 +35,7 @@ public class P2PSet {
 		myServer = new SetServer();
 		myServer.isServer = true;
 		myServer.gd = myGameData;
-		
+
 		//Create and set up the window.
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,7 +44,7 @@ public class P2PSet {
 		bl = new ButtonListener(myGameData);
 		username = new JTextField(10); //TODO: Make size a constant var
 		username.addActionListener(ul);
-		
+
 		//Add cards to the board
 		boardChanged();
 
@@ -70,7 +70,7 @@ public class P2PSet {
 		masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
 		cardPanel = new JPanel(new GridLayout(numRows,numCols));
 		scorePanel = new JPanel();
-		
+
 		//Add Username to scorePanel
 		scorePanel.add(userNameLabel);
 		scorePanel.add(username);
@@ -79,40 +79,41 @@ public class P2PSet {
 		//XXX: This if statement is a hack... need to force the user to enter a username or set some default to start
 		if (ul.getUsername() != null)
 		{
-		score = new JLabel("Score: " + myGameData.playerList.get(ul.getUsername()).score); //Yay for hacks!
-		scorePanel.add(score);
-		}
-		
-		cards = new CardButton[numCards];
+			score = new JLabel("Score: " + myGameData.playerList.get(ul.getUsername()).score); //Yay for hacks!
+			scorePanel.add(score);
 
-		//Add card buttons to boardPanel
-		for (int i = 0; i < numCards; i++)
-		{
-			CardButton myCardButton = new CardButton();
-			myCardButton.card = myGameData.deck.boardCards.get(i);
+			cards = new CardButton[numCards];
 
-			ImageIcon icon = myCardButton.card.icon;
-			int iconScaler, iconScaleHeight, iconScaleWidth;
-			if (icon.getIconWidth() > icon.getIconHeight())
+			//Add card buttons to boardPanel
+			for (int i = 0; i < numCards; i++)
 			{
-				iconScaler = (icon.getIconWidth() / defaultIconScaleWidth);
-				iconScaleHeight = icon.getIconHeight() / iconScaler;
-				iconScaleWidth = defaultIconScaleWidth;
-			}
+				CardButton myCardButton = new CardButton();
+				myCardButton.card = myGameData.deck.boardCards.get(i);
 
-			else
-			{
-				iconScaler = (icon.getIconHeight() / defaultIconScaleHeight);
-				iconScaleWidth = icon.getIconWidth() / iconScaler;
-				iconScaleHeight = defaultIconScaleHeight;
-			}
+				ImageIcon icon = myCardButton.card.icon;
+				int iconScaler, iconScaleHeight, iconScaleWidth;
+				if (icon.getIconWidth() > icon.getIconHeight())
+				{
+					iconScaler = (icon.getIconWidth() / defaultIconScaleWidth);
+					iconScaleHeight = icon.getIconHeight() / iconScaler;
+					iconScaleWidth = defaultIconScaleWidth;
+				}
 
-			//set button's icon to scaled version of card's icon
-			icon = new ImageIcon(icon.getImage().getScaledInstance(iconScaleWidth,iconScaleHeight,Image.SCALE_SMOOTH));
-			myCardButton.setIcon(icon);
-			myCardButton.addActionListener(bl);
-			cardPanel.add(myCardButton);
-		}//for
+				else
+				{
+					iconScaler = (icon.getIconHeight() / defaultIconScaleHeight);
+					iconScaleWidth = icon.getIconWidth() / iconScaler;
+					iconScaleHeight = defaultIconScaleHeight;
+				}
+
+				//set button's icon to scaled version of card's icon
+				icon = new ImageIcon(icon.getImage().getScaledInstance(iconScaleWidth,iconScaleHeight,Image.SCALE_SMOOTH));
+				myCardButton.setIcon(icon);
+				myCardButton.addActionListener(bl);
+				cardPanel.add(myCardButton);
+			}//for
+		}//if no username yet...
+
 		masterPanel.add(scorePanel);
 		masterPanel.add(cardPanel);
 
@@ -153,7 +154,7 @@ public class P2PSet {
 		Message m = new Message("SYNCH_TO_ME", data);
 		sendMessage(m, messageDestination);
 	}
-	
+
 
 	public static void main(String[] args)
 	{
