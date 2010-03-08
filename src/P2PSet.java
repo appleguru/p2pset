@@ -23,6 +23,9 @@ public class P2PSet {
 	private static final String messageDestination = "localhost";
 	private static final int messagePort = 6262;
 	static SetServer myServer;
+	private static ButtonListener bl;
+	private static UsernameListener ul;
+	
 	
 	private static void createNewGameAndShowGUI() {
 		//Make a new Game
@@ -42,6 +45,11 @@ public class P2PSet {
 		//Display the window.
 		frame.setSize(defaultWindowWidth,defaultWindowHeight);
 		frame.setVisible(true);
+		
+		ul = new UsernameListener(myGameData);
+		bl = new ButtonListener(myGameData);
+		username = new JTextField(10); //TODO: Make size a constant var
+		username.addActionListener(ul);
 	}
 
 	public static void boardChanged()
@@ -62,16 +70,12 @@ public class P2PSet {
 		scorePanel = new JPanel();
 		
 		//Add Username to scorePanel
-		username = new JTextField(10); //TODO: Make size a constant var
 		scorePanel.add(username);
-		myGameData.playerList
-		
-		
+
 		//Add score to scorePanel
-		score = new JLabel("Score: " + myGameData.playerList.get("Me!").score); //Yay for hacks!
+		score = new JLabel("Score: " + myGameData.playerList.get(ul.getUsername()).score); //Yay for hacks!
 		scorePanel.add(score);
 		
-		ButtonListener bl = new ButtonListener(myGameData);
 		cards = new CardButton[numCards];
 
 		//Add card buttons to boardPanel
