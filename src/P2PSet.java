@@ -88,40 +88,6 @@ public class P2PSet {
 		frame.validate();
 	}//boardChanged
 
-	public void sendMessage(Message m, String recipient)
-	{
-		try
-		{
-			Socket sock = new Socket(recipient, messagePort);
-			ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());	//Create an object output stream to send messages to the server
-			oos.writeObject(m);	//Send a PUT message to the server with the given object
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace(System.out);
-		}
-	}
-
-	public void sendI_CLAIM_SET(Card c1, Card c2, Card c3)
-	{
-		ArrayList<Object> set = new ArrayList<Object>();
-		set.add(c1);
-		set.add(c2);
-		set.add(c3);
-		set.add(myGameData.playerList.get(ul.getUsername()));
-		System.out.println("Sending I_CLAIM_SET to server...");
-		Message m = new Message("I_CLAIM_SET", set);
-		sendMessage(m, messageDestination);
-	}
-
-	public void sendSYNCH_TO_ME()
-	{
-		ArrayList<Object> data = new ArrayList<Object>();
-		data.add(myGameData);
-		Message m = new Message("SYNCH_TO_ME", data);
-		sendMessage(m, messageDestination);
-	}
-
 	public GameData getGameData()
 	{
 		return myGameData;
