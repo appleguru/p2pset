@@ -7,28 +7,29 @@ import java.util.LinkedList;
 import javax.swing.*;
 
 public class P2PSet {
+	protected GameData myGameData;
 
-	private static int numCards = 9;
-	private static final int defaultWindowWidth = 640;
-	private static final int defaultWindowHeight = 480;
-	private static final int defaultIconScaleWidth = 128; //TODO: Get this from current window size on resize... 
-	private static final int defaultIconScaleHeight = 96;
-	protected static CardButton[] cards;
-	protected static LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
-	static GameData myGameData;
-	static JPanel cardPanel, scorePanel, masterPanel;
-	static JFrame frame;
-	static JLabel score;
-	static JTextField username;
-	private static final String messageDestination = "localhost";
-	private static final int messagePort = 6262;
-	static SetServer myServer;
-	private static ButtonListener bl;
-	private static UsernameListener ul;
-	public static final JLabel userNameLabel = new JLabel("Username: ");
+	private int numCards = 9;
+	private final int defaultWindowWidth = 640;
+	private final int defaultWindowHeight = 480;
+	private final int defaultIconScaleWidth = 128; //TODO: Get this from current window size on resize... 
+	private final int defaultIconScaleHeight = 96;
 
+	private JPanel cardPanel, scorePanel, masterPanel;
+	private JFrame frame;
+	private JLabel score;
+	private JTextField username;
+	private ButtonListener bl;
+	private UsernameListener ul;
+	private CardButton[] cards;
+	protected LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
+	private final JLabel userNameLabel = new JLabel("Username: ");
 
-	private static void createNewGameAndShowGUI() {
+	private final String messageDestination = "localhost";
+	private final int messagePort = 6262;
+	private SetServer myServer;
+
+	private void createNewGameAndShowGUI() {
 		//Make a new Game
 		myGameData = new GameData();
 
@@ -40,8 +41,8 @@ public class P2PSet {
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		ul = new UsernameListener(myGameData);
-		bl = new ButtonListener(myGameData);
+		ul = new UsernameListener(this);
+		bl = new ButtonListener(this);
 		username = new JTextField(10); //TODO: Make size a constant var
 		username.addActionListener(ul);
 
@@ -54,7 +55,7 @@ public class P2PSet {
 
 	}
 
-	public static void boardChanged()
+	public void boardChanged()
 	{
 		frame.getContentPane().removeAll();
 
@@ -121,7 +122,7 @@ public class P2PSet {
 		frame.validate();
 	}//boardChanged
 
-	public static void sendMessage(Message m, String recipient)
+	public void sendMessage(Message m, String recipient)
 	{
 		try
 		{
@@ -135,7 +136,7 @@ public class P2PSet {
 		}
 	}
 
-	public static void sendI_CLAIM_SET(Card c1, Card c2, Card c3)
+	public void sendI_CLAIM_SET(Card c1, Card c2, Card c3)
 	{
 		ArrayList<Object> set = new ArrayList<Object>();
 		set.add(c1);
@@ -147,7 +148,7 @@ public class P2PSet {
 		sendMessage(m, messageDestination);
 	}
 
-	public static void sendSYNCH_TO_ME()
+	public void sendSYNCH_TO_ME()
 	{
 		ArrayList<Object> data = new ArrayList<Object>();
 		data.add(myGameData);
@@ -155,11 +156,15 @@ public class P2PSet {
 		sendMessage(m, messageDestination);
 	}
 
+	public GameData getGameData()
+	{
+		return myGameData;
+	}
 
 	public static void main(String[] args)
 	{
-
-		createNewGameAndShowGUI();
+		P2PSet myP2PSet = new P2PSet();
+		myP2PSet.createNewGameAndShowGUI();
 		//Make a new Peer Listener that will spawn off a connectionHandler thread
 		PeerListener myPeerListener = new PeerListener();
 		myPeerListener.start();

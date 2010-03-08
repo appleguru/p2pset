@@ -5,13 +5,15 @@ import javax.swing.JTextField;
 
 public class UsernameListener implements ActionListener {
 
+	P2PSet p;
 	GameData gd;
 	String lastUsername;
-
-	public UsernameListener(GameData gada){
-		gd = gada;
+	
+	public UsernameListener(P2PSet _p){
+		p = _p;
+		gd = p.getGameData();
 		lastUsername = null;
-	}
+	}//constructor
 
 	public void actionPerformed(ActionEvent e) {
 		JTextField myUserNameField = (JTextField) e.getSource();
@@ -21,7 +23,7 @@ public class UsernameListener implements ActionListener {
 		{
 			gd.addPlayer(myUserName);
 			lastUsername = myUserName;
-			P2PSet.boardChanged(); //Redraw board so we see score now
+			p.boardChanged(); //Redraw board so we see score now
 		}//if we're a new player
 		
 		else

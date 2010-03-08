@@ -4,9 +4,7 @@ import javax.swing.ImageIcon;
 
 
 public class Card implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -5724460739589821927L;
 
 	public static final int NUM_ATTRS = 4;

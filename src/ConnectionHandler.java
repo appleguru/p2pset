@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class ConnectionHandler extends Thread
 {
+	P2PSet p;
 	Socket sock;
-	public ConnectionHandler(Socket s)
+	public ConnectionHandler(P2PSet _p, Socket s)
 	{
+		p = _p;
 		sock = s;
 	}
 	public void run()
@@ -26,8 +28,8 @@ public class ConnectionHandler extends Thread
 			}
 			else if(command.equals("SYNCH_TO_ME"))
 			{
-				P2PSet.myGameData = (GameData) m.getObjects().get(0);
-				P2PSet.boardChanged();
+				p.myGameData = (GameData) m.getObjects().get(0);
+				p.boardChanged();
 				System.out.println("Synch to me recieved");
 			}
 			else

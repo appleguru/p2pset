@@ -3,9 +3,11 @@ import java.awt.event.*;
 public class ButtonListener implements ActionListener {
 
 	GameData gd;
+	P2PSet p;
 	
-	public ButtonListener(GameData gada){
-		gd = gada;
+	public ButtonListener(P2PSet _p){
+		p = _p;
+		gd = p.getGameData();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -13,27 +15,27 @@ public class ButtonListener implements ActionListener {
 		CardButton pressed = (CardButton)e.getSource();
 
 		if (pressed.isSelected()){
-			P2PSet.selectedCards.add(pressed);
-			if (P2PSet.selectedCards.size() == Card.NUM_ATTR_TYPES){
-				if (gd.deck.verifySet(P2PSet.selectedCards.get(0).card, P2PSet.selectedCards.get(1).card, P2PSet.selectedCards.get(2).card)){
-					P2PSet.sendI_CLAIM_SET(P2PSet.selectedCards.get(0).card, P2PSet.selectedCards.get(1).card, P2PSet.selectedCards.get(2).card);
+			p.selectedCards.add(pressed);
+			if (p.selectedCards.size() == Card.NUM_ATTR_TYPES){
+				if (gd.deck.verifySet(p.selectedCards.get(0).card, p.selectedCards.get(1).card, p.selectedCards.get(2).card)){
+					p.sendI_CLAIM_SET(p.selectedCards.get(0).card, p.selectedCards.get(1).card, p.selectedCards.get(2).card);
 				}//if the set is real
 				else {
-					//todo, check if we punish false claims, punish if necessary
+					//TODO: check if we punish false claims, punish if necessary
 										
 					//deselect all cards
-					for (int i = 0; i < P2PSet.selectedCards.size(); i++){
-						P2PSet.selectedCards.get(i).setSelected(false);
+					for (int i = 0; i < p.selectedCards.size(); i++){
+						p.selectedCards.get(i).setSelected(false);
 					}//deselect cards
 				}//else
 				
-				P2PSet.selectedCards.clear();
+				p.selectedCards.clear();
 
 			}//if 3 cards selected
 		}
 		
 		else {
-			P2PSet.selectedCards.remove(pressed);
+			p.selectedCards.remove(pressed);
 		}
 		
 	}
