@@ -169,7 +169,7 @@ public class Communicator
 					mcs.receive(dp);
 					String commandString = new String(dp.getData());
 					String senderIP = dp.getAddress().getHostAddress();
-					ArrayList<Object> objArray = new ArrayList<Object>();
+					ArrayList<Serializable> objArray = new ArrayList<Serializable>();
 					objArray.add(senderIP);
 					Message m = new Message(commandString, objArray);
 					msgQueue.add(m);
