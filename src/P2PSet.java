@@ -31,7 +31,7 @@ public class P2PSet {
 	private final JLabel userNameLabel = new JLabel("Username: ");
 	private final JLabel scoreLabel = new JLabel("<html><font size=\"+2\" color=\"000000\"><i>Scores:</i></font></html>");
 	private final String CARDS_LEFT_STR = "# of cards left in deck: ";
-	private final String REQ_CARDS_STR = "# of cards left in deck: ";
+	private final String REQ_CARDS_STR = "# of players that want more cards: ";
 	private final String HEX_RED = "ff0000";
 	private final String HEX_BLACK = "000000";
 
@@ -115,8 +115,8 @@ public class P2PSet {
 
 			rightPanel.add(reqMoreCards);
 
-			//moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards);
-			//rightPanel.add(moreCardReqs);
+			moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards);
+			rightPanel.add(moreCardReqs);
 			
 			gameLog = new JTextArea("Some Event Log!", 10, 60); //TODO: Use constants for width/height, get actual events...
 			chatPanel.add(gameLog);
