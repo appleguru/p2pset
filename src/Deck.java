@@ -54,6 +54,11 @@ public class Deck implements Serializable{
 		return dealtCard;	//Return the card that was dealt
 	}
 	
+	public void dealCard(Card c, int i){
+		unusedCards.remove(c);
+		boardCards.add(i, c);
+	}
+	
 	/**
 	 * Verifies whether the specified group of cards is a set.
 	 * @param card1 First card
