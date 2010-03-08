@@ -10,10 +10,11 @@ public class GameData implements Serializable
 	public int numPlayersWantCards;
 	public ArrayList<Player> playerList;
 
-	public GameData()
+	public GameData(Player creator)
 	{
 		deck = new Deck();
 		playerList = new ArrayList<Player>();
+		playerList.add(creator);
 	}//Constructor
 	
 	public boolean equals(Object o)

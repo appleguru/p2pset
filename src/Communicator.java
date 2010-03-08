@@ -14,7 +14,7 @@ public class Communicator
 	private static final String MULTICAST_ADDRESS = "225.6.6.6";
 	private static final int MULTICAST_PORT = 6262;
 	private static final int TCP_PORT = 2626;
-	private ArrayList<Serializable> players;
+	public ArrayList<Player> players;
 	private ConcurrentLinkedQueue<Message> msgQueue;
 	private msgListener ml;
 	private multicastListener mcl;
@@ -85,9 +85,11 @@ public class Communicator
 		sendMulticastMessage(m);
 	}
 	
-	public void sendHERE_IS_A_GAME(Player p)
+	public void sendHERE_IS_A_GAME(Player p, GameData gd)
 	{
-		Message m = new Message("HERE_IS_A_GAME", players);
+		ArrayList<Serializable> data = new ArrayList<Serializable>();
+		data.add(gd);
+		Message m = new Message("HERE_IS_A_GAME", data);
 		sendTCPMessage(m, p.ip.getHostAddress());
 	}
 	

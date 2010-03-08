@@ -13,23 +13,36 @@ public class SetPeer {
 	public boolean token;
 	public boolean wantCS;
 	
-	public SetPeer(P2PSet _gui){
+	public SetPeer(P2PSet _gui, String playerName){
 		gui = _gui;
+		me = new Player(playerName);
+		com = new Communicator();
 		//TODO finish this
 	}
 	
-	public void createNewGame(){
-		//TODO
+	public GameData createNewGame(){
+		myGameData = new GameData(me);
+		return myGameData;
+		//tell the gui to display the new game
+		
 	}
 	
-	public void joinGame(int gameID){
-		//TODO
+	public void joinGame(){
+		com.sendLOOKING_FOR_GAMES();
 	}
 	
 	public void receiveLooking(Message m){
 		requestCS();
 		
 		releaseCS();
+	}
+	
+	public GameData receiveGameToJoin(Message m){
+		myGameData = (GameData)m.getObjects().get(0);
+		com.players = myGameData.playerList;
+		com.sendNEW_PLAYER(me);
+		myGameData.playerList.add(me);
+		return myGameData;
 	}
 	
 	public void claimSet(Card c1, Card c2, Card c3){
@@ -50,11 +63,23 @@ public class SetPeer {
 		releaseCS();
 	}
 	
+	public void receiveMoreCardsRequest(Message m){
+		
+	}
+	
 	public void Quit(){
 		requestCS();
 		
 		//TODO
 		releaseCS();
+	}
+	
+	public void recieveQuit(Message m){
+		
+	}
+	
+	public void receiveNewPlayer(Message m){
+		myGameData.playerList.add((Player)m.getObjects().get(0));
 	}
 	
 	public void readMessage(){
