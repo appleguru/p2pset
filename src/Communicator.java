@@ -14,7 +14,7 @@ public class Communicator
 	private static final String MULTICAST_ADDRESS = "225.6.6.6";
 	private static final int MULTICAST_PORT = 6262;
 	private static final int TCP_PORT = 2626;
-	private ArrayList<Player> players;
+	private ArrayList<Serializable> players;
 	private ConcurrentLinkedQueue<Message> msgQueue;
 	private msgListener ml;
 	private multicastListener mcl;
@@ -72,45 +72,51 @@ public class Communicator
 		//System.out.println("Sending I_CLAIM_SET to server...");
 		Message m = new Message("I_CLAIM_SET", set);
 		String destination = "";
-		for(Player p: players)
+		for(Serializable p: players)
 		{
-			destination = p.ip.getHostAddress();
+			destination = ((Player)p).ip.getHostAddress();
 			sendTCPMessage(m, destination);
 		}
 	}
 	
 	public void sendLOOKING_FOR_GAMES()
 	{
-		
+		String m = "LOOKING!";
+		sendMulticastMessage(m);
 	}
 	
-	public void sendHERE_IS_A_GAME()
+	public void sendHERE_IS_A_GAME(Player p)
 	{
+		Message m = new Message("HERE_IS_A_GAME", players);
 		
 	}
 	
 	public void sendNEW_PLAYER()
 	{
-		
+		Message m = new Message("NEW_PLAYER", null);
 	}
 	
 	public void sendSYNCHRONIZE_TO_ME()
 	{
-		
+		Message m = new Message("SYNCHRONIZE_TO_ME", null);
+		String destination = "";
+		for(Serializable p: players)
+		{
+			destination = ((Player)p).ip.getHostAddress();
+			sendTCPMessage(m, destination);
+		}
 	}
 	
-	public void sendPASS_TOKEN()
+	public void sendPASS_TOKEN(Player p)
 	{
-		
+		Message m = new Message("PASS_TOKEN", null);
+		sendTCPMessage(m, p.ip.getHostAddress());
 	}
 	
 	public Message receiveMsg()
 	{
 		return msgQueue.poll();
 	}
-	
-	
-	
 	
 	
 	public class msgListener extends Thread
