@@ -9,11 +9,13 @@ public class Player implements Serializable
 	public String name;
 	public InetAddress ip;
 	public int score;
+	public boolean wantsMoreCards;
 	
 	public Player(String userName)
 	{
 	score = 0;
 	name = userName;
+	wantsMoreCards = false;
 	
 	try { ip = InetAddress.getLocalHost(); }
 	catch (Exception e) { System.err.println("Error " + e + " getting local address."); }

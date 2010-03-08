@@ -7,6 +7,7 @@ public class GameData implements Serializable
 
 	public Deck deck;
 	public int gameID;
+	public int numPlayersWantCards;
 	public ArrayList<Player> playerList = new ArrayList<Player>();
 
 	public GameData()
