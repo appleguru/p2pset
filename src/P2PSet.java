@@ -35,11 +35,6 @@ public class P2PSet {
 	private final String HEX_RED = "ff0000";
 	private final String HEX_BLACK = "000000";
 
-
-	private final String messageDestination = "localhost";
-	private final int messagePort = 6262;
-	private SetServer myServer;
-
 	private void createNewGameAndShowGUI() {
 		//Make a new Game
 		myGameData = new GameData();
