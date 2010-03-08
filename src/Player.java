@@ -10,10 +10,10 @@ public class Player implements Serializable
 	public InetAddress ip;
 	public int score;
 	
-	public Player()
+	public Player(String userName)
 	{
 	score = 0;
-	name = "Me!"; //TODO: Get this from text field in GUI
+	name = userName;
 	
 	try { ip = InetAddress.getLocalHost(); }
 	catch (Exception e) { System.err.println("Error " + e + " getting local address."); }
@@ -24,5 +24,10 @@ public class Player implements Serializable
 		
 		return (name.equals(other.name) && ip.equals(other.ip));
 	}
+	
+	public void setPlayerName (String playerName)
+	{
+	name = playerName;
+	}//setPlayerName
 	
 }

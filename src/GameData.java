@@ -22,12 +22,13 @@ public class GameData implements Serializable
 		
 	public void addPlayer(String playerName)
 	{
-		playerList.put(playerName, new Player());		
+		playerList.put(playerName, new Player(playerName));		
 	}//addPlayer
 	
 	public void changePlayerName(String oldPlayerName, String newPlayerName)
 	{
 		Player tempPlayer = playerList.remove(oldPlayerName);
+		tempPlayer.setPlayerName(newPlayerName);
 		playerList.put(newPlayerName, tempPlayer);
 	}//addPlayer
 }
