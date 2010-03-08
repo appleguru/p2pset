@@ -141,7 +141,7 @@ public class P2PSet {
 		set.add(c1);
 		set.add(c2);
 		set.add(c3);
-		set.add(myGameData.playerList.get("Me!"));
+		set.add(myGameData.playerList.get(ul.getUsername()));
 		System.out.println("Sending I_CLAIM_SET to server...");
 		Message m = new Message("I_CLAIM_SET", set);
 		sendMessage(m, messageDestination);
