@@ -88,12 +88,20 @@ public class Communicator
 	public void sendHERE_IS_A_GAME(Player p)
 	{
 		Message m = new Message("HERE_IS_A_GAME", players);
-		
+		sendTCPMessage(m, p.ip.getHostAddress());
 	}
 	
-	public void sendNEW_PLAYER()
+	public void sendNEW_PLAYER(Player p)
 	{
-		Message m = new Message("NEW_PLAYER", null);
+		ArrayList<Serializable> data = new ArrayList<Serializable>();
+		data.add(p);
+		Message m = new Message("NEW_PLAYER", data);
+		String destination = "";
+		for(Serializable player: players)
+		{
+			destination = ((Player)player).ip.getHostAddress();
+			sendTCPMessage(m, destination);
+		}
 	}
 	
 	public void sendSYNCHRONIZE_TO_ME()
