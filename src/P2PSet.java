@@ -6,8 +6,6 @@ import java.util.LinkedList;
 
 import javax.swing.*;
 
-//Test change from netbeans...
-
 public class P2PSet {
 	protected GameData myGameData;
 
@@ -75,10 +73,16 @@ public class P2PSet {
 			score = new JLabel("Score: " + myGameData.playerList.get(ul.getUsername()).score);
 			scorePanel.add(score);
 			cardPanel = getCardPanel();
+                        masterPanel.add(scorePanel);
+                        masterPanel.add(cardPanel);
 		}//if username
 
-		masterPanel.add(scorePanel);
-		masterPanel.add(cardPanel);
+                else
+                {
+                     masterPanel.add(scorePanel);
+                }//else we have no username, get it.
+
+
 
 		frame.add(masterPanel);
 		frame.validate();
