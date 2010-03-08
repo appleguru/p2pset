@@ -20,11 +20,14 @@ public class UsernameListener implements ActionListener {
 		if (lastUsername == null)
 		{
 			gd.addPlayer(myUserName);
+			lastUsername = myUserName;
+			P2PSet.boardChanged(); //Redraw board so we see score now
 		}//if we're a new player
 		
 		else
 		{
 			gd.changePlayerName(lastUsername, myUserName);
+			lastUsername = myUserName;
 		}//else we're changing names
 	}//actionPerformed
 	

@@ -25,6 +25,7 @@ public class P2PSet {
 	static SetServer myServer;
 	private static ButtonListener bl;
 	private static UsernameListener ul;
+	public static final JLabel userNameLabel = new JLabel("Username: ");
 	
 	
 	private static void createNewGameAndShowGUI() {
@@ -71,6 +72,7 @@ public class P2PSet {
 		scorePanel = new JPanel();
 		
 		//Add Username to scorePanel
+		scorePanel.add(userNameLabel);
 		scorePanel.add(username);
 
 		//Add score to scorePanel
