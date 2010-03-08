@@ -15,12 +15,14 @@ public class P2PSet {
 	private final int defaultIconScaleWidth = 128; //TODO: Get this from current window size on resize... 
 	private final int defaultIconScaleHeight = 96;
 
+	protected SetPeer sp;
 	private JPanel cardPanel, rightPanel, chatPanel, scorePanel, masterPanel;
 	private JScrollPane rightScrollPane; 
 	private JFrame frame;
 	private JLabel cardsLeft, moreCardReqs;
 	private JLabel[] scores;
-	private JTextField username;
+	protected JButton startNewGame, joinExistingGame;
+	protected JTextField username;
 	private JTextArea gameLog;
 	//private JTextArea scores;
 	private ButtonListener bl;
@@ -35,13 +37,9 @@ public class P2PSet {
 	private final String HEX_RED = "ff0000";
 	private final String HEX_BLACK = "000000";
 
-	private void createNewGameAndShowGUI() {
+	private void createAndShowGUI() {
 		//Make a new Game
-		myGameData = new GameData();
-
-		//myServer = new SetServer();
-		//myServer.isServer = true;
-		//myServer.gd = myGameData;
+		//myGameData = new GameData();
 
 		//Create and set up the window.
 		frame = new JFrame("P2P Set");
@@ -50,11 +48,20 @@ public class P2PSet {
 		ul = new UsernameListener(this);
 		bl = new ButtonListener(this);
 		username = new JTextField(10); //TODO: Make size a constant var
-		username.addActionListener(ul);		
-		
-		//Add cards to the board
-		boardChanged();
+		//username.addActionListener(ul);
 
+		startNewGame = new JButton("Start New Game"); //TODO: Get these from a constant var
+		joinExistingGame = new JButton ("Join Exisiting Game");
+		startNewGame.addActionListener(bl);
+		joinExistingGame.addActionListener(bl);
+
+		masterPanel = new JPanel();
+		masterPanel.add(userNameLabel);
+		masterPanel.add(username);
+		masterPanel.add(startNewGame);
+		masterPanel.add(joinExistingGame);
+		frame.add(masterPanel);
+		
 		//Display the window.
 		frame.setSize(defaultWindowWidth,defaultWindowHeight);
 		frame.setVisible(true);
@@ -70,11 +77,11 @@ public class P2PSet {
 		rightPanel = new JPanel();
 		scorePanel = new JPanel();
 		chatPanel = new JPanel();
-		
+
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.Y_AXIS));
 
-		if (ul.getUsername() != null)
+		if (ul.getUsername() != null) //Shouldn't need this anymore...
 		{
 			//score = new JLabel("Score: " + myGameData.playerList.get(ul.getUsername()).score);
 			//rightPanel.add(score);
@@ -100,7 +107,7 @@ public class P2PSet {
 
 			for (JLabel i : scores)
 			{ scorePanel.add(i); }
-			
+
 			//TODO: Need to set the viewPort of the rightScrollPane...
 			rightScrollPane = new JScrollPane(scorePanel);
 			rightPanel.add(rightScrollPane);
@@ -112,27 +119,19 @@ public class P2PSet {
 
 			moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards);
 			rightPanel.add(moreCardReqs);
-			
+
 			gameLog = new JTextArea("Some Event Log!", 10, 60); //TODO: Use constants for width/height, get actual events...
 			chatPanel.add(gameLog);
-			
+
 			cardPanel = getCardPanel();
 			masterPanel.add(cardPanel, BorderLayout.CENTER);
 			masterPanel.add(rightPanel, BorderLayout.LINE_END);
 			masterPanel.add(chatPanel, BorderLayout.PAGE_END);
 
-		}//if username
+			frame.add(masterPanel);
+			frame.validate();
 
-		else
-		{
-			//Add Username to rightPanel
-			rightPanel.add(userNameLabel);
-			rightPanel.add(username);
-			masterPanel.add(rightPanel, BorderLayout.CENTER);
-		}//else we have no username, get it.
-
-		frame.add(masterPanel);
-		frame.validate();
+		}//if userName
 	}//boardChanged
 
 	public GameData getGameData()
@@ -187,7 +186,7 @@ public class P2PSet {
 	public static void main(String[] args)
 	{
 		P2PSet myP2PSet = new P2PSet();
-		myP2PSet.createNewGameAndShowGUI();
+		myP2PSet.createAndShowGUI();
 		//Make a new Peer Listener that will spawn off a connectionHandler thread
 		//PeerListener myPeerListener = new PeerListener();
 		//myPeerListener.start();
