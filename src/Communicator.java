@@ -1,5 +1,6 @@
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -41,7 +42,7 @@ public class Communicator
 	}
 	
 	public void sendMulticastMessage(String m)
-	{
+	{	
 		try
 		{
 			MulticastSocket mcs = new MulticastSocket(MULTICAST_PORT);
@@ -60,9 +61,21 @@ public class Communicator
 		
 	}
 	
-	public void sendI_CLAIM_SET()
+	public void sendI_CLAIM_SET(Card c1, Card c2, Card c3, Player claimant)
 	{
-		
+		ArrayList<Serializable> set = new ArrayList<Serializable>();
+		set.add(c1);
+		set.add(c2);
+		set.add(c3);
+		set.add(claimant);
+		//System.out.println("Sending I_CLAIM_SET to server...");
+		Message m = new Message("I_CLAIM_SET", set);
+		String destination = "";
+		for (Player p: players){
+			
+			destination = p.ip.getHostAddress();
+			sendTCPMessage(m, destination);
+		}
 	}
 	
 	public void sendLOOKING_FOR_GAMES()
@@ -94,6 +107,8 @@ public class Communicator
 	{
 		return msgQueue.poll();
 	}
+	
+	
 	
 	
 	
