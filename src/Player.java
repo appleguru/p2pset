@@ -24,7 +24,7 @@ public class Player implements Serializable
 	public boolean equals(Object o){
 		Player other = (Player)o;
 		
-		return (name.equals(other.name) && ip.equals(other.ip));
+		return (ip.equals(other.ip));
 	}
 	
 	public void setPlayerName (String playerName)
