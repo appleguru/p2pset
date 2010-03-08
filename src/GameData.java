@@ -7,7 +7,7 @@ public class GameData implements Serializable
 
 	public Deck deck;
 	public int gameID;
-	public HashMap<String, Player> playerList = new HashMap<String, Player>();
+	public ArrayList<Player> playerList = new ArrayList<Player>();
 
 	public GameData()
 	{
@@ -22,13 +22,6 @@ public class GameData implements Serializable
 		
 	public void addPlayer(String playerName)
 	{
-		playerList.put(playerName, new Player(playerName));		
+		playerList.add(new Player(playerName));
 	}//addPlayer
-	
-	public void changePlayerName(String oldPlayerName, String newPlayerName)
-	{
-		Player tempPlayer = playerList.remove(oldPlayerName);
-		tempPlayer.setPlayerName(newPlayerName);
-		playerList.put(newPlayerName, tempPlayer);
-	}//addPlayer
-}
+}//class
