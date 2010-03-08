@@ -54,9 +54,10 @@ public class Deck implements Serializable{
 		return dealtCard;	//Return the card that was dealt
 	}
 	
-	public void dealCard(Card c, int i){
+	public void replaceCard(Card c, int i){
+		usedCards.add(boardCards.get(i));
 		unusedCards.remove(c);
-		boardCards.add(i, c);
+		boardCards.set(i, c);
 	}
 	
 	/**
