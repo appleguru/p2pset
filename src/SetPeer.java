@@ -27,8 +27,9 @@ public class SetPeer {
 		
 	}
 	
-	public void joinGame(){
+	public GameData joinGame(){
 		com.sendLOOKING_FOR_GAMES();
+		return receiveGameToJoin(readMessage());
 	}
 	
 	public void receiveLooking(Message m){
@@ -82,8 +83,8 @@ public class SetPeer {
 		myGameData.playerList.add((Player)m.getObjects().get(0));
 	}
 	
-	public void readMessage(){
-		Message m = com.receiveMsg();
+	public Message readMessage(){
+		return com.receiveMsg();
 	}
 	
 	public void requestCS(){
