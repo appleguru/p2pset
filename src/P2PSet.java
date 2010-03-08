@@ -39,17 +39,18 @@ public class P2PSet {
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		ul = new UsernameListener(myGameData);
+		bl = new ButtonListener(myGameData);
+		username = new JTextField(10); //TODO: Make size a constant var
+		username.addActionListener(ul);
+		
 		//Add cards to the board
 		boardChanged();
 
 		//Display the window.
 		frame.setSize(defaultWindowWidth,defaultWindowHeight);
 		frame.setVisible(true);
-		
-		ul = new UsernameListener(myGameData);
-		bl = new ButtonListener(myGameData);
-		username = new JTextField(10); //TODO: Make size a constant var
-		username.addActionListener(ul);
+
 	}
 
 	public static void boardChanged()
@@ -73,8 +74,12 @@ public class P2PSet {
 		scorePanel.add(username);
 
 		//Add score to scorePanel
+		//XXX: This if statement is a hack... need to force the user to enter a username or set some default to start
+		if (ul.getUsername() != null)
+		{
 		score = new JLabel("Score: " + myGameData.playerList.get(ul.getUsername()).score); //Yay for hacks!
 		scorePanel.add(score);
+		}
 		
 		cards = new CardButton[numCards];
 
