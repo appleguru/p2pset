@@ -13,6 +13,14 @@ public class SetPeer {
 	public boolean token;
 	public boolean wantCS;
 	
+	public SetPeer(P2PSet _gui){
+		gui = _gui;
+		//TODO finish this
+	}
+	
+	public void createNewGame(){
+		
+	}
 	
 	public void requestCS(){
 		wantCS=true;

@@ -8,11 +8,12 @@ public class GameData implements Serializable
 	public Deck deck;
 	public int gameID;
 	public int numPlayersWantCards;
-	public ArrayList<Player> playerList = new ArrayList<Player>();
+	public ArrayList<Player> playerList;
 
 	public GameData()
 	{
-	deck = new Deck();
+		deck = new Deck();
+		playerList = new ArrayList<Player>();
 	}//Constructor
 	
 	public boolean equals(Object o)
