@@ -19,7 +19,46 @@ public class SetPeer {
 	}
 	
 	public void createNewGame(){
+		//TODO
+	}
+	
+	public void joinGame(int gameID){
+		//TODO
+	}
+	
+	public void receiveLooking(Message m){
+		requestCS();
 		
+		releaseCS();
+	}
+	
+	public void claimSet(Card c1, Card c2, Card c3){
+		requestCS();
+		
+		//TODO
+		releaseCS();
+	}
+	
+	public void receiveClaimSet(Message m){
+		
+	}
+	
+	public void askMoreCards(){
+		requestCS();
+		
+		//TODO
+		releaseCS();
+	}
+	
+	public void Quit(){
+		requestCS();
+		
+		//TODO
+		releaseCS();
+	}
+	
+	public void readMessage(){
+		Message m = com.receiveMsg();
 	}
 	
 	public void requestCS(){
