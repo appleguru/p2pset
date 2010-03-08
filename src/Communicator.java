@@ -40,7 +40,6 @@ public class Communicator
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void sendMulticastMessage(String m)
 	{
 		try
