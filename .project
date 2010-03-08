@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Other Documents/Protocol.txt</name>
+			<type>1</type>
+			<location>C:/Users/Ari/Documents/Class Resources/CP342/Final Project/Protocol.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>

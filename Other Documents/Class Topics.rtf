@@ -1,43 +1,49 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf250
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww11160\viewh10700\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
-
-\f0\fs24 \cf0 Class Topics to be utilized:\
-\
-
-\i\b \ul Distributed Mutual Exclusion / Message Ordering
-\i0\b0 \ulnone \
-For determining who calls set first and keeping the board synchronized between clients)\
-\
-
-\i\b \ul UDP Announce Multicast\
-
-\i0\b0 \ulnone  To announce intention to play and discover server(s) / Other Clients\
-\
-
-\i\b \ul TCP sockets
-\i0\b0 \ulnone \
-For actual communication between known clients/servers\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
-
-\i\b \cf0 \ul \ulc0 Threads\
-
-\i0\b0 \ulnone Multiple threads when acting as server to handle communication (one thread/socket per client), as well as for sending/receiving messages on client side for board synchronization (UI will have its own threads too of course!)\
-\
-
-\i\b \ul Object Passing\
-
-\i0\b0 \ulnone Objects (or at least some basic data) must be passed around between clients and the server to keep the boards synchronized and to maintain game information in the event of server failure (for fault tolerance/new leader election).\
-\
-
-\i\b \ul Serialization\
-
-\i0\b0 \ulnone Objects and/or methods to be passed around between clients must be serialized to use over sockets\'85\
-\
-
-\b \ul Fault Tolerance / Leader (Server) Election\
-
-\b0 \ulnone In the event the current server becomes disconnected, a new one will be randomly chosen amongst the clients. They will check game state data; consensus amongst remaining clients takes precedence (Choose randomly in the event of a tie).}
+{\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff0\deff0\stshfdbch13\stshfloch0\stshfhich0\stshfbi0\deflang1033\deflangfe2052{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f4\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Helvetica;}
+{\f13\fnil\fcharset134\fprq2{\*\panose 02010600030101010101}SimSun{\*\falt \'cb\'ce\'cc\'e5};}{\f36\fnil\fcharset134\fprq2{\*\panose 02010600030101010101}@SimSun;}{\f37\froman\fcharset238\fprq2 Times New Roman CE;}
+{\f38\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f40\froman\fcharset161\fprq2 Times New Roman Greek;}{\f41\froman\fcharset162\fprq2 Times New Roman Tur;}{\f42\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew);}
+{\f43\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic);}{\f44\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f45\froman\fcharset163\fprq2 Times New Roman (Vietnamese);}{\f77\fswiss\fcharset238\fprq2 Helvetica CE;}
+{\f78\fswiss\fcharset204\fprq2 Helvetica Cyr;}{\f80\fswiss\fcharset161\fprq2 Helvetica Greek;}{\f81\fswiss\fcharset162\fprq2 Helvetica Tur;}{\f82\fbidi \fswiss\fcharset177\fprq2 Helvetica (Hebrew);}
+{\f83\fbidi \fswiss\fcharset178\fprq2 Helvetica (Arabic);}{\f84\fswiss\fcharset186\fprq2 Helvetica Baltic;}{\f85\fswiss\fcharset163\fprq2 Helvetica (Vietnamese);}{\f169\fnil\fcharset0\fprq2 SimSun Western{\*\falt \'cb\'ce\'cc\'e5};}
+{\f399\fnil\fcharset0\fprq2 @SimSun Western;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;
+\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 
+\rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \fs24\lang1033\langfe2052\loch\f0\hich\af0\dbch\af13\cgrid\langnp1033\langfenp2052 \snext0 Normal;}{\*\cs10 \additive \ssemihidden Default Paragraph Font;}{\*
+\ts11\tsrowd\trftsWidthB3\trpaddl108\trpaddr108\trpaddfl3\trpaddft3\trpaddfb3\trpaddfr3\trcbpat1\trcfpat1\tscellwidthfts0\tsvertalt\tsbrdrt\tsbrdrl\tsbrdrb\tsbrdrr\tsbrdrdgl\tsbrdrdgr\tsbrdrh\tsbrdrv 
+\ql \li0\ri0\widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \fs20\lang1024\langfe1024\loch\f0\hich\af0\dbch\af13\cgrid\langnp1024\langfenp1024 \snext11 \ssemihidden Normal Table;}}{\*\rsidtbl \rsid12260592}
+{\*\generator Microsoft Word 10.0.2627;}{\info{\author Ari Sapon-White}{\operator Ari Sapon-White}{\creatim\yr2010\mo3\dy6\hr16\min12}{\revtim\yr2010\mo3\dy6\hr16\min13}{\version2}{\edmins1}{\nofpages1}{\nofwords179}{\nofchars1021}
+{\*\company Dramilian Federation}{\nofcharsws1198}{\vern16437}}\margl1440\margr1440\ltrsect \widowctrl\ftnbj\aenddoc\noxlattoyen\expshrtn\noultrlspc\dntblnsbdb\nospaceforul\hyphcaps0\horzdoc\dghspace120\dgvspace120\dghorigin1701\dgvorigin1984\dghshow0
+\dgvshow3\jcompress\viewkind1\viewscale100\nolnhtadjtbl\rsidroot12260592 \fet0\ltrpar \sectd \ltrsect\linex0\sectdefaultcl\sftnbj {\*\pnseclvl1\pnucrm\pnqc\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl2\pnucltr\pnqc\pnstart1\pnindent720\pnhang 
+{\pntxta .}}{\*\pnseclvl3\pndec\pnqc\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl4\pnlcltr\pnqc\pnstart1\pnindent720\pnhang {\pntxta )}}{\*\pnseclvl5\pndec\pnqc\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl6
+\pnlcltr\pnqc\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnqc\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnqc\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl9
+\pnlcrm\pnqc\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 
+\ltrch\fcs0 \fs24\lang1033\langfe2052\loch\af0\hich\af0\dbch\af13\cgrid\langnp1033\langfenp2052 {\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Class Topics to be utilized\hich\af4\dbch\af13\loch\f4 :
+\par 
+\par }{\rtlch\fcs1 \ab\ai\af4 \ltrch\fcs0 \b\i\f4\ul\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Distributed Mutual Exclusion \hich\af4\dbch\af13\loch\f4 / \hich\af4\dbch\af13\loch\f4 Message Ordering}{\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 
+\par \hich\af4\dbch\af13\loch\f4 For determining who calls set first and keeping the board synchronized between clients
+\par 
+\par }{\rtlch\fcs1 \ab\ai\af4 \ltrch\fcs0 \b\i\f4\ul\insrsid12260592 \hich\af4\dbch\af13\loch\f4 UDP Announce Multicast
+\par }{\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 \hich\af4\dbch\af13\loch\f4  To announce intention to play and discover server\hich\af4\dbch\af13\loch\f4 (\hich\af4\dbch\af13\loch\f4 s\hich\af4\dbch\af13\loch\f4 ) / \hich\af4\dbch\af13\loch\f4 
+Other Clients
+\par 
+\par }{\rtlch\fcs1 \ab\ai\af4 \ltrch\fcs0 \b\i\f4\ul\insrsid12260592 \hich\af4\dbch\af13\loch\f4 TCP sockets}{\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 
+\par \hich\af4\dbch\af13\loch\f4 For actual communication between known clients\hich\af4\dbch\af13\loch\f4 /\hich\af4\dbch\af13\loch\f4 servers
+\par 
+\par }{\rtlch\fcs1 \ab\ai\af4 \ltrch\fcs0 \b\i\f4\ul\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Threads
+\par }{\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Multiple threads when acting as server to handle communication \hich\af4\dbch\af13\loch\f4 (\hich\af4\dbch\af13\loch\f4 one thread\hich\af4\dbch\af13\loch\f4 /
+\hich\af4\dbch\af13\loch\f4 socket per client\hich\af4\dbch\af13\loch\f4 )\hich\af4\dbch\af13\loch\f4 , as well as for\hich\af4\dbch\af13\loch\f4  sending\hich\af4\dbch\af13\loch\f4 /\hich\af4\dbch\af13\loch\f4 
+receiving messages on client side for board synchronization \hich\af4\dbch\af13\loch\f4 (\hich\af4\dbch\af13\loch\f4 UI will have its own threads too of course\hich\af4\dbch\af13\loch\f4 !)
+\par 
+\par }{\rtlch\fcs1 \ab\ai\af4 \ltrch\fcs0 \b\i\f4\ul\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Object Passing
+\par }{\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Objects \hich\af4\dbch\af13\loch\f4 (\hich\af4\dbch\af13\loch\f4 or at least some basic data\hich\af4\dbch\af13\loch\f4 ) \hich\af4\dbch\af13\loch\f4 
+must be passed around between clients and the server to keep the boards synchronized an\hich\af4\dbch\af13\loch\f4 d to maintain game information in the event of server failure \hich\af4\dbch\af13\loch\f4 (\hich\af4\dbch\af13\loch\f4 for fault tolerance
+\hich\af4\dbch\af13\loch\f4 /\hich\af4\dbch\af13\loch\f4 new leader election\hich\af4\dbch\af13\loch\f4 ).
+\par 
+\par }{\rtlch\fcs1 \ab\ai\af4 \ltrch\fcs0 \b\i\f4\ul\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Serialization
+\par }{\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Objects and\hich\af4\dbch\af13\loch\f4 /\hich\af4\dbch\af13\loch\f4 or methods to be passed around between clients must be serialized to use over sockets
+\loch\af4\dbch\af13\hich\f4 \'85
+\par 
+\par }{\rtlch\fcs1 \ab\af4 \ltrch\fcs0 \b\f4\ul\insrsid12260592 \hich\af4\dbch\af13\loch\f4 Fault Tolerance \hich\af4\dbch\af13\loch\f4 / \hich\af4\dbch\af13\loch\f4 Leader \hich\af4\dbch\af13\loch\f4 (\hich\af4\dbch\af13\loch\f4 Server
+\hich\af4\dbch\af13\loch\f4 ) \hich\af4\dbch\af13\loch\f4 El\hich\af4\dbch\af13\loch\f4 ection
+\par }\pard \ltrpar\ql \li0\ri0\nowidctlpar\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af4 \ltrch\fcs0 \f4\insrsid12260592 \hich\af4\dbch\af13\loch\f4 
+In the event the current server becomes disconnected, a new one will be randomly chosen amongst the clients\hich\af4\dbch\af13\loch\f4 . \hich\af4\dbch\af13\loch\f4 They will check game state data; consensus amongst remaining clients takes precedence 
+\hich\af4\dbch\af13\loch\f4 (\hich\af4\dbch\af13\loch\f4 Choose randomly in the event of a tie\hich\af4\dbch\af13\loch\f4 ).}{\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid12260592 
+\par }}
