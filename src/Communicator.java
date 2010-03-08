@@ -7,7 +7,7 @@ import java.net.MulticastSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Communicator
 {
@@ -15,12 +15,13 @@ public class Communicator
 	private static final int MULTICAST_PORT = 6262;
 	private static final int TCP_PORT = 2626;
 	private ArrayList<Player> players;
-	private Queue<Message> msgQueue;
+	private ConcurrentLinkedQueue<Message> msgQueue;
 	private msgListener ml;
 	private multicastListener mcl;
 	
 	public Communicator()
 	{
+		msgQueue = new ConcurrentLinkedQueue<Message>();
 		mcl = new multicastListener(MULTICAST_PORT, MULTICAST_ADDRESS);
 		mcl.start();
 		ml = new msgListener(TCP_PORT);
@@ -58,7 +59,7 @@ public class Communicator
 	
 	public void sendTEST_MESSAGE()
 	{
-		
+		sendTCPMessage(new Message("Hello", null), "localhost");
 	}
 	
 	public void sendI_CLAIM_SET(Card c1, Card c2, Card c3, Player claimant)
@@ -71,8 +72,8 @@ public class Communicator
 		//System.out.println("Sending I_CLAIM_SET to server...");
 		Message m = new Message("I_CLAIM_SET", set);
 		String destination = "";
-		for (Player p: players){
-			
+		for(Player p: players)
+		{
 			destination = p.ip.getHostAddress();
 			sendTCPMessage(m, destination);
 		}
@@ -132,7 +133,8 @@ public class Communicator
 				{
 					Socket cs = ss.accept();	//Wait for a connection
 					ObjectInputStream ois = new ObjectInputStream(cs.getInputStream());
-					Message m = (Message)ois.readObject();
+					Message m = null;
+					while((m = (Message)ois.readObject()) == null);
 					cs.close();
 					msgQueue.add(m);
 				}
