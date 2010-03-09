@@ -128,6 +128,7 @@ public class Communicator
 		Message m = new Message("ADDED_MORE_CARDS", data);
 		String dest = "";
 		for (Player p : players){
+			dest = p.ip.getHostAddress();
 			sendTCPMessage(m, dest);
 		}
 	}
