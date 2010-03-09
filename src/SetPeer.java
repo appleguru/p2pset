@@ -19,16 +19,13 @@ public class SetPeer {
 		gui = _gui;
 		me = new Player(playerName);
 		com = new Communicator(this);
-		//TODO finish this
 	}
 	
 	public GameData createNewGame(){
 		myGameData = new GameData(me);
 		com.players = myGameData.playerList;
 		token = true;
-		return myGameData;
-		//tell the gui to display the new game
-		
+		return myGameData;		
 	}
 	
 	public void joinGame(){
@@ -150,24 +147,20 @@ public class SetPeer {
 	}
 	
 	public void requestCS(){
-		/*
 		wantCS=true;
 		if(!token)
 			myWait(this);
 		wantCS=false;
 		releaseCS();
-		*/
 	}
 	
 	public void releaseCS(){
-		/*
 		if(myGameData.playerList.size()>1){
 			token = false;
 			int idx = myGameData.playerList.indexOf(me);
 			int i = (idx+1)%myGameData.playerList.size();
 			com.sendPASS_TOKEN(myGameData.playerList.get(i));
 			}
-			*/
 	}
 	
 	public synchronized void myWait(Object o){
