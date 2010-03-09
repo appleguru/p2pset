@@ -16,7 +16,7 @@ public class P2PSet {
 	private final int defaultIconScaleHeight = 96;
 
 	protected SetPeer sp;
-	private JPanel cardPanel, rightPanel, chatPanel, scorePanel, masterPanel;
+	private JPanel cardPanel, rightPanel, rightBottomPanel, chatPanel, scorePanel, masterPanel;
 	private JScrollPane rightScrollPane, chatScrollPane; 
 	private JFrame frame;
 	private JLabel cardsLeft, moreCardReqs;
@@ -77,17 +77,18 @@ public class P2PSet {
 		frame.getContentPane().removeAll();
 
 		masterPanel = new JPanel();
-		//masterPanel.setLayout(new BorderLayout()); //Defaults to BorderLayout..
+		masterPanel.setLayout(new BorderLayout());
 		rightPanel = new JPanel();
+		rightPanel.setLayout (new BorderLayout());
 		scorePanel = new JPanel();
-		chatPanel = new JPanel();
-
-		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.Y_AXIS));
+		chatPanel = new JPanel();
+		rightBottomPanel = new JPanel();
+		rightBottomPanel.setLayout(new BoxLayout(rightBottomPanel, BoxLayout.Y_AXIS));
+
 
 		JLabel[] scores;
-
-		rightPanel.add(scoreLabel);
+		rightPanel.add(scoreLabel, BorderLayout.PAGE_START);
 
 		int numPlayers = myGameData.playerList.size();
 		scores = new JLabel[numPlayers];
@@ -109,15 +110,17 @@ public class P2PSet {
 
 		//TODO: Need to set the viewPort of the rightScrollPane...
 		rightScrollPane = new JScrollPane(scorePanel);
-		rightPanel.add(rightScrollPane);
+		rightPanel.add(rightScrollPane, BorderLayout.CENTER);
 
 		cardsLeft = new JLabel(CARDS_LEFT_STR + myGameData.deck.unusedCards.size());
-		rightPanel.add(cardsLeft);
+		rightBottomPanel.add(cardsLeft);
 
-		rightPanel.add(reqMoreCards);
+		rightBottomPanel.add(reqMoreCards);
 
 		moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards + "/" + myGameData.playerList.size());
-		rightPanel.add(moreCardReqs);
+		rightBottomPanel.add(moreCardReqs);
+		
+		rightPanel.add(rightBottomPanel, BorderLayout.PAGE_END);
 
 		gameLog = myGameData.gameLog;
 		gameLog.setEditable(false);
