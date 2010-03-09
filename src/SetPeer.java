@@ -14,6 +14,7 @@ public class SetPeer {
 	public Communicator com;
 	public boolean token;
 	public boolean wantCS;
+	private boolean tokenPassingStarted;
 	
 	public SetPeer(P2PSet _gui, String playerName){
 		gui = _gui;
@@ -25,10 +26,12 @@ public class SetPeer {
 		myGameData = new GameData(me);
 		com.players = myGameData.playerList;
 		token = true;
+		tokenPassingStarted = false;
 		return myGameData;		
 	}
 	
 	public void joinGame(){
+		tokenPassingStarted = true;
 		com.sendLOOKING_FOR_GAMES();
 	}
 	
@@ -139,6 +142,10 @@ public class SetPeer {
 	
 	public void receiveNewPlayer(Message m){
 		myGameData.playerList.add((Player)m.getObjects().get(0));
+		if (!tokenPassingStarted) {
+			tokenPassingStarted = true;
+			releaseCS();
+		}
 		gui.boardChanged();
 	}
 	
