@@ -31,16 +31,23 @@ public class SetPeer {
 		
 	}
 	
-	public GameData joinGame(){
+	public void joinGame(){
 		com.sendLOOKING_FOR_GAMES();
-		return receiveGameToJoin(readMessage());
 	}
 	
 	public void receiveLooking(Message m){
 		requestCS();
-		
+		com.sendHERE_IS_A_GAME((String)m.getObjects().get(0), myGameData);
 		releaseCS();
 	}
+	
+	public void receiveHereIsAGame(Message m){
+		myGameData = (GameData) m.getObjects().get(0);
+		com.players = myGameData.playerList;
+		com.sendNEW_PLAYER(me);
+		myGameData.playerList.add(me);
+	}//Here is a game!
+
 	
 	public GameData receiveGameToJoin(Message m){
 		myGameData = (GameData)m.getObjects().get(0);

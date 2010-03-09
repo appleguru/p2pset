@@ -204,7 +204,9 @@ public class Communicator
 					ArrayList<Serializable> objArray = new ArrayList<Serializable>();
 					objArray.add(senderIP);
 					Message m = new Message(commandString, objArray);
-					msgQueue.add(m);
+					//msgQueue.add(m);
+					Thread mh = new Thread(new MessageHandler(m, sp));
+					mh.start();
 				}
 			}
 			catch(Exception e)

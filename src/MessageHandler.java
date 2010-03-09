@@ -26,5 +26,13 @@ public class MessageHandler implements Runnable {
 			sp.receiveMoreCardsAdded(msg);
 		}
 		
+		else if (msg.getCommand().equals("LOOKING!")){
+			sp.receiveLooking(msg);
+		}
+		
+		else if (msg.getCommand().equals("HERE_IS_A_GAME")){
+			sp.receiveLooking(msg);
+		}
+		
 	}//run
 }//class
