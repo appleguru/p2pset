@@ -106,6 +106,18 @@ public class SetPeer {
 		}
 		if (myGameData.deck.gameFinished()){
 			//TODO
+			String winner = "";
+			int win = -1;
+			for (Player p : myGameData.playerList){
+				if (p.score > win){
+					win = p.score;
+					winner = p.name;
+				}
+				else if (p.score == win){
+					winner = (winner + " ties with " + p.name);
+				}
+			}
+			debug ("Game Over.  Winner(s): " + winner + " with score: " + win);
 		}//if there are no more sets to find
 		gui.boardChanged();
 	}
