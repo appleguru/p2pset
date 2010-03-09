@@ -22,6 +22,7 @@ public class Communicator
 	public Communicator()
 	{
 		msgQueue = new ConcurrentLinkedQueue<Message>();
+		players = new ArrayList<Player>();
 		mcl = new multicastListener(MULTICAST_PORT, MULTICAST_ADDRESS);
 		mcl.start();
 		ml = new msgListener(TCP_PORT);

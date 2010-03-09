@@ -22,6 +22,7 @@ public class SetPeer {
 	
 	public GameData createNewGame(){
 		myGameData = new GameData(me);
+		com.players.add(me);
 		token = true;
 		return myGameData;
 		//tell the gui to display the new game
@@ -83,8 +84,10 @@ public class SetPeer {
 	
 	public void askMoreCards(){
 		requestCS();
-		
-		//TODO
+		myGameData.numPlayersWantCards ++;
+		if (myGameData.numPlayersWantCards >= myGameData.playerList.size() / 2){
+			
+		}//if at least half of players now want more cards
 		releaseCS();
 	}
 	
