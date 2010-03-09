@@ -16,7 +16,7 @@ public class SetPeer {
 	public SetPeer(P2PSet _gui, String playerName){
 		gui = _gui;
 		me = new Player(playerName);
-		com = new Communicator();
+		com = new Communicator(this);
 		//TODO finish this
 	}
 	
