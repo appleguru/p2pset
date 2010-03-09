@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Communicator
 {
+	private boolean debug = true;
 	private static final String MULTICAST_ADDRESS = "225.6.6.6";
 	private static final int MULTICAST_PORT = 6262;
 	private static final int TCP_PORT = 2626;
@@ -35,6 +36,7 @@ public class Communicator
 	{
 		try
 		{
+			debug ("sending a " + m.getCommand() + " message");
 			Socket sock = new Socket(recipient, TCP_PORT);
 			ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 			oos.writeObject(m);
@@ -140,6 +142,9 @@ public class Communicator
 		return msgQueue.poll();
 	}
 	
+	public void debug(String s){
+		if (debug) System.out.println(s);
+	}
 	
 	public class msgListener extends Thread
 	{
