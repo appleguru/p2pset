@@ -109,7 +109,6 @@ public class P2PSet {
 		for (JLabel i : scores)
 		{ scorePanel.add(i); }
 
-		//TODO: Need to set the viewPort of the rightScrollPane...
 		rightScrollPane = new JScrollPane(scorePanel);
 		rightPanel.add(rightScrollPane, BorderLayout.CENTER);
 
@@ -130,6 +129,14 @@ public class P2PSet {
 
 
 		cardPanel = getCardPanel();
+		
+		
+		//Disable the reqMoreCards button if we already have more cards
+		if (numCards == 15)
+		{ reqMoreCards.setEnabled(false); }
+		else
+		{ reqMoreCards.setEnabled(true); }
+		
 		masterPanel.add(cardPanel, BorderLayout.CENTER);
 		masterPanel.add(rightPanel, BorderLayout.LINE_END);
 		masterPanel.add(chatScrollPane, BorderLayout.PAGE_END);
