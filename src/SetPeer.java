@@ -24,7 +24,7 @@ public class SetPeer {
 	
 	public GameData createNewGame(){
 		myGameData = new GameData(me);
-		com.players.add(me);
+		com.players = myGameData.playerList;
 		token = true;
 		return myGameData;
 		//tell the gui to display the new game
