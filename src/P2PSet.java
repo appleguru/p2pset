@@ -33,7 +33,7 @@ public class P2PSet {
 	private final JLabel userNameLabel = new JLabel("Username: ");
 	private final JLabel scoreLabel = new JLabel("<html><font size=\"+2\" color=\"000000\"><i>Scores:</i></font></html>");
 	private final String CARDS_LEFT_STR = "Cards left in deck: ";
-	private final String REQ_CARDS_STR = "Players want more cards: ";
+	private final String REQ_CARDS_STR = "Players desiring more cards: ";
 	private final String HEX_RED = "ff0000";
 	private final String HEX_BLACK = "000000";
 
@@ -116,7 +116,7 @@ public class P2PSet {
 
 		rightPanel.add(reqMoreCards);
 
-		moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards);
+		moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards + "/" + myGameData.playerList.size());
 		rightPanel.add(moreCardReqs);
 
 		gameLog = myGameData.gameLog;
