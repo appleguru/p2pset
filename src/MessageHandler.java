@@ -1,6 +1,7 @@
 
 public class MessageHandler implements Runnable {
 
+	boolean debug = true;
 	private Message msg;
 	private SetPeer sp;
 	
@@ -12,6 +13,8 @@ public class MessageHandler implements Runnable {
 	
 	public void run() {
 
+		debug ("processing a " + msg.getCommand() + " message");
+		
 		if (msg.getCommand().equals("PASS_TOKEN"))
 		{
 			sp.receiveToken();
@@ -35,4 +38,8 @@ public class MessageHandler implements Runnable {
 		}
 		
 	}//run
+	
+	public void debug (String s){
+		if (debug) System.out.println(s);
+	}
 }//class
