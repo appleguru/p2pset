@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class SetPeer {
-
+	private boolean debug = true;
 	private final int messagePort = 6262;
 	public GameData myGameData;
 	public Player me;
@@ -43,7 +43,7 @@ public class SetPeer {
 	
 	public void receiveHereIsAGame(Message m){
 		myGameData = (GameData) m.getObjects().get(0);
-		while (myGameData == null);
+		while (myGameData == null) debug ("busy waiting while game data loads");
 		com.players = myGameData.playerList;
 		com.sendNEW_PLAYER(me);
 		myGameData.playerList.add(me);
@@ -52,6 +52,11 @@ public class SetPeer {
 	}//Here is a game!
 
 	
+	private void debug(String string) {
+		if (debug) System.out.println(string);
+		
+	}
+
 	public GameData receiveGameToJoin(Message m){
 		myGameData = (GameData)m.getObjects().get(0);
 		com.players = myGameData.playerList;
