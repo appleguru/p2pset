@@ -164,6 +164,27 @@ public class Deck implements Serializable{
 		}//otherwise remove the cards without replacing them
 	}
 	
+	public boolean gameFinished(){
+		if (unusedCards.size() > 0){
+			return false;
+		}
+		else if (boardCards.size() == 15){
+			return false;
+		}
+		else{
+			for (int i = 0; i < boardCards.size(); i++){
+				for (int j = i + 1; j < boardCards.size(); j++){
+					for (int k = j + 1; k < boardCards.size(); k++){
+						if (verifySet(boardCards.get(i), boardCards.get(j), boardCards.get(k))){
+							return false;
+						}
+					}
+				}
+			}//for each possible combination of cards
+			return true;
+		}
+	}
+	
 	public void removeNulls(){
 		for (int i = boardCards.size(); i >= 0; i--){
 			if (boardCards.get(i) == null){
