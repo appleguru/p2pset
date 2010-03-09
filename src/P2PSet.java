@@ -75,6 +75,7 @@ public class P2PSet {
 
 	public void boardChanged()
 	{
+		selectedCards.clear();
 		frame.getContentPane().removeAll();
 
 		masterPanel = new JPanel();
