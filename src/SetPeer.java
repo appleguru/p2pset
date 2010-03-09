@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 
 
 public class SetPeer {
@@ -66,6 +68,8 @@ public class SetPeer {
 	public void receiveClaimSet(Message m){
 		Player scorer = myGameData.playerList.get(myGameData.playerList.indexOf(m.getObjects().get(4)));
 		scorer.score ++;
+		myGameData.numPlayersWantCards = 0;
+		gui.reqMoreCards.setSelected(false);
 		myGameData.gameLog.append(scorer.name + " scores with Set: " + m.getObjects().get(0).toString() + " "  + m.getObjects().get(1).toString() +" " + m.getObjects().get(2).toString() + "\n");
 		int[] indicesToReplace = (int[])m.getObjects().get(3);
 		for (int i = 0; i < 3; i ++){
@@ -87,13 +91,23 @@ public class SetPeer {
 		requestCS();
 		myGameData.numPlayersWantCards ++;
 		if (myGameData.numPlayersWantCards >= myGameData.playerList.size() / 2){
-			
+			ArrayList<Serializable> data = new ArrayList<Serializable>();
+			for (int i = 0; i < 3; i++){
+				data.add(myGameData.deck.dealCardNoRemove());
+			}
+			com.sendADDED_MORE_CARDS(data);
 		}//if at least half of players now want more cards
 		releaseCS();
 	}
 	
 	public void receiveMoreCardsRequest(Message m){
 		
+	}
+	
+	public void receiveMoreCardsAdded(Message m){
+		for (Serializable s : m.getObjects()){
+			myGameData.deck.dealCard((Card)s);
+		}
 	}
 	
 	public void Quit(){

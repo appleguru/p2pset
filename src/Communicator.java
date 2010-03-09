@@ -121,6 +121,14 @@ public class Communicator
 		}
 	}
 	
+	public void sendADDED_MORE_CARDS(ArrayList<Serializable> data){
+		Message m = new Message("ADDED_MORE_CARDS", data);
+		String dest = "";
+		for (Player p : players){
+			sendTCPMessage(m, dest);
+		}
+	}
+	
 	public void sendPASS_TOKEN(Player p)
 	{
 		Message m = new Message("PASS_TOKEN", null);

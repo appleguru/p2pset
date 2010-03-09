@@ -22,5 +22,9 @@ public class MessageHandler implements Runnable {
 			sp.receiveClaimSet(msg);
 		}//else if I calim set
 		
+		else if (msg.getCommand().equals("ADDED_MORE_CARDS")){
+			sp.receiveMoreCardsAdded(msg);
+		}
+		
 	}//run
 }//class

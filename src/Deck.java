@@ -53,6 +53,22 @@ public class Deck implements Serializable{
 		//boardCards.add(dealtCard);	//Add this card to the dealt cards list
 		return dealtCard;	//Return the card that was dealt
 	}
+	public Card dealCardNoRemove(){
+		int size = unusedCards.size();
+		if (size == 0){
+			return null;
+		}
+		
+		int cardNum = generator.nextInt(size);
+		return unusedCards.get(cardNum);
+	}
+	
+	public void dealCard(Card c){
+		if (unusedCards.contains(c)){
+			unusedCards.remove(c);
+			boardCards.add(c);
+		}
+	}
 	
 	public void replaceCard(Card c, int i){
 		usedCards.add(boardCards.get(i));
@@ -121,6 +137,14 @@ public class Deck implements Serializable{
 		boardCards.set(card2Index, dealCard());
 		boardCards.set(card3Index, dealCard());
 	}
+	
+	public void removeNulls(){
+		for (int i = boardCards.size(); i >= 0; i--){
+			if (boardCards.get(i) == null){
+				boardCards.remove();
+			}
+		}
+	}//removes all the null Cards from the board
 	
 	public boolean equals (Object o){
 		Deck other = (Deck)o;
