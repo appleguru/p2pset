@@ -17,7 +17,7 @@ public class P2PSet {
 
 	protected SetPeer sp;
 	private JPanel cardPanel, rightPanel, chatPanel, scorePanel, masterPanel;
-	private JScrollPane rightScrollPane; 
+	private JScrollPane rightScrollPane, chatScrollPane; 
 	private JFrame frame;
 	private JLabel cardsLeft, moreCardReqs;
 	private JLabel[] scores;
@@ -120,12 +120,15 @@ public class P2PSet {
 		rightPanel.add(moreCardReqs);
 
 		gameLog = myGameData.gameLog;
+		gameLog.setEditable(false);
 		chatPanel.add(gameLog);
+		chatScrollPane = new JScrollPane(chatPanel);
+
 
 		cardPanel = getCardPanel();
 		masterPanel.add(cardPanel, BorderLayout.CENTER);
 		masterPanel.add(rightPanel, BorderLayout.LINE_END);
-		masterPanel.add(chatPanel, BorderLayout.PAGE_END);
+		masterPanel.add(chatScrollPane, BorderLayout.PAGE_END);
 
 		frame.add(masterPanel);
 		frame.validate();
