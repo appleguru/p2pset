@@ -104,6 +104,9 @@ public class SetPeer {
 				gui.gameLog.append("Adding Card: " + cards[i + 3] + "\n");
 			}
 		}
+		if (myGameData.deck.gameFinished()){
+			//TODO
+		}//if there are no more sets to find
 		gui.boardChanged();
 	}
 	
