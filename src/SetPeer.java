@@ -86,8 +86,8 @@ public class SetPeer {
 		scorer.score ++;
 		myGameData.numPlayersWantCards = 0;
 		gui.reqMoreCards.setSelected(false);
-		myGameData.gameLog.append(scorer.name + " scores with Set: " + m.getObjects().get(0).toString() + " "  + m.getObjects().get(1).toString() +" " + m.getObjects().get(2).toString() + "\n");
 		int[] indicesToReplace = (int[])m.getObjects().get(3);
+		myGameData.gameLog.append(scorer.name + " scores with Set: " + myGameData.deck.boardCards.get(indicesToReplace[0]).toString() + " "  + myGameData.deck.boardCards.get(indicesToReplace[1]).toString() +" " + myGameData.deck.boardCards.get(indicesToReplace[2]).toString() + "\n");
 		for (int i = 0; i < 3; i ++){
 			myGameData.deck.replaceCard((Card)m.getObjects().get(i), indicesToReplace[i]);
 			myGameData.gameLog.append("Adding Card: " + m.getObjects().get(i) + "\n");
