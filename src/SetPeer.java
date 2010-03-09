@@ -50,17 +50,27 @@ public class SetPeer {
 	public void claimSet(Card c1, Card c2, Card c3){
 		requestCS();
 		if (myGameData.deck.verifySet(c1, c2, c3)){
-			com.sendI_CLAIM_SET(c1, c2, c3, me);
+			int[] indicesToReplace = {myGameData.deck.boardCards.indexOf(c1), myGameData.deck.boardCards.indexOf(c2), myGameData.deck.boardCards.indexOf(c3)};
+			myGameData.deck.removeSet(c1, c2, c3);
+			Card[] newCards = new Card[3];
+			for (int i = 0; i < 3; i++){
+				newCards[i] = myGameData.deck.boardCards.get(indicesToReplace[i]);
+			}
+			com.sendI_CLAIM_SET(newCards[0], newCards[1], newCards[2], indicesToReplace, me);
 			
 		}
 		releaseCS();
 	}
 	
 	public void receiveClaimSet(Message m){
-		Player scorer = myGameData.playerList.get(myGameData.playerList.indexOf(m.getObjects().get(3)));
+		Player scorer = myGameData.playerList.get(myGameData.playerList.indexOf(m.getObjects().get(4)));
 		scorer.score ++;
 		myGameData.gameLog.append(scorer.name + " scores with Set " + m.getObjects().get(0).toString() + " "  + m.getObjects().get(1).toString() +" " + m.getObjects().get(2).toString());
-		myGameData.deck.replaceCard(c, i);
+		int[] indicesToReplace = (int[])m.getObjects().get(3);
+		for (int i = 0; i < 3; i ++){
+			myGameData.deck.replaceCard((Card)m.getObjects().get(i), indicesToReplace[i]);
+			myGameData.gameLog.append("Adding Card: " + m.getObjects().get(i));
+		}
 	}
 	
 	public void sendDeductMe(){
