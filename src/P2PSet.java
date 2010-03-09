@@ -36,6 +36,7 @@ public class P2PSet {
 	private final String REQ_CARDS_STR = "Players desiring more cards: ";
 	private final String HEX_RED = "ff0000";
 	private final String HEX_BLACK = "000000";
+	protected String myUsername;
 
 	private void createAndShowGUI() {
 		//Make a new Game
@@ -95,14 +96,14 @@ public class P2PSet {
 		for (int i = 0; i < numPlayers; i++)
 		{
 			String myColor;
-			String myName = myGameData.playerList.get(i).name;
-			String myScore = myGameData.playerList.get(i).score + "";
+			String tempName = myGameData.playerList.get(i).name;
+			String tempScore = myGameData.playerList.get(i).score + "";
 
-			if (myName == ul.getUsername())
+			if (tempName.equals(myUsername))
 			{ myColor = HEX_RED; }
 			else
 			{ myColor = HEX_BLACK; }
-			scores[i] = new JLabel("<html><font size=\"+1\" color=\"" + myColor + "\">" + myName + ":     " + myScore + "</font></html>");
+			scores[i] = new JLabel("<html><font size=\"+1\" color=\"" + myColor + "\">" + tempName + ":     " + tempScore + "</font></html>");
 		}//for
 
 		for (JLabel i : scores)
