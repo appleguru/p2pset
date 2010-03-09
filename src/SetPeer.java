@@ -66,11 +66,11 @@ public class SetPeer {
 	public void receiveClaimSet(Message m){
 		Player scorer = myGameData.playerList.get(myGameData.playerList.indexOf(m.getObjects().get(4)));
 		scorer.score ++;
-		myGameData.gameLog.append(scorer.name + " scores with Set " + m.getObjects().get(0).toString() + " "  + m.getObjects().get(1).toString() +" " + m.getObjects().get(2).toString() + "\n");
+		myGameData.gameLog.append(scorer.name + " scores with Set: " + m.getObjects().get(0).toString() + " "  + m.getObjects().get(1).toString() +" " + m.getObjects().get(2).toString() + "\n");
 		int[] indicesToReplace = (int[])m.getObjects().get(3);
 		for (int i = 0; i < 3; i ++){
 			myGameData.deck.replaceCard((Card)m.getObjects().get(i), indicesToReplace[i]);
-			myGameData.gameLog.append("Adding Card: " + m.getObjects().get(i));
+			myGameData.gameLog.append("Adding Card: " + m.getObjects().get(i) + "\n");
 		}
 		gui.boardChanged();
 	}
