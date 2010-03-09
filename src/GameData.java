@@ -18,7 +18,7 @@ public class GameData implements Serializable
 		deck = new Deck();
 		playerList = new ArrayList<Player>();
 		playerList.add(creator);
-		gameLog = new JTextArea(10, 60);
+		gameLog = new JTextArea(7, 60);
 	}//Constructor
 	
 	public boolean equals(Object o)

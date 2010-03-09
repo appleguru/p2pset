@@ -85,6 +85,7 @@ public class P2PSet {
 		scorePanel = new JPanel();
 		scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.Y_AXIS));
 		chatPanel = new JPanel();
+		//chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
 		rightBottomPanel = new JPanel();
 		rightBottomPanel.setLayout(new BoxLayout(rightBottomPanel, BoxLayout.Y_AXIS));
 
@@ -126,7 +127,9 @@ public class P2PSet {
 		gameLog = myGameData.gameLog;
 		gameLog.setEditable(false);
 		chatPanel.add(gameLog);
+		
 		chatScrollPane = new JScrollPane(chatPanel);
+		chatScrollPane.setPreferredSize(new Dimension(600,150));
 		
 		cardPanel = getCardPanel();
 		
