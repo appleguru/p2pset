@@ -143,21 +143,24 @@ public class SetPeer {
 	}
 	
 	public void requestCS(){
+		/*
 		wantCS=true;
 		if(!token)
 			myWait(this);
 		wantCS=false;
 		releaseCS();
-
+		*/
 	}
 	
 	public void releaseCS(){
+		/*
 		if(myGameData.playerList.size()>1){
 			token = false;
 			int idx = myGameData.playerList.indexOf(me);
 			int i = (idx+1)%myGameData.playerList.size();
 			com.sendPASS_TOKEN(myGameData.playerList.get(i));
 			}
+			*/
 	}
 	
 	public synchronized void myWait(Object o){
