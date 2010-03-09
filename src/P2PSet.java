@@ -154,9 +154,9 @@ public class P2PSet {
 		
 		cardPanel = getCardPanel();
 		
-		//Disable the reqMoreCards button if we already have more cards
+		//Disable the reqMoreCards button if we already have more cards, or if there are no more cards to deal
 		//Note numCards gets set in getCardPanel, so make sure this is after it
-		if (numCards == 15)
+		if (numCards == 15 || myGameData.deck.unusedCards.size() == 0)
 		{ reqMoreCards.setEnabled(false); }
 		else
 		{ reqMoreCards.setEnabled(true); }
