@@ -123,11 +123,17 @@ public class SetPeer {
 	}
 	
 	public void sendDeductMe(){
-		
+		requestCS();
+		com.sendDEDUCTION(me);
+		releaseCS();
 	}
 	
 	public void receiveDeduction(Message m){
-		
+		Player dunce = (Player)m.getObjects().get(0);
+		dunce = myGameData.playerList.get(myGameData.playerList.indexOf(dunce));
+		gui.log(dunce.name + " was deducted a point for making an invalid claim.");
+		dunce.score --;
+		gui.boardChanged();
 	}
 	
 	public void askMoreCards(){

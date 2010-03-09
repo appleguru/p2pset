@@ -141,6 +141,17 @@ public class Communicator
 		}
 	}
 	
+	public void sendDEDUCTION(Player dunce){
+		ArrayList<Serializable> data = new ArrayList<Serializable>();
+		data.add(dunce);
+		Message m = new Message("DEDUCTION", data);
+		String dest = "";
+		for (Player p : players){
+			dest = p.ip.getHostAddress();
+			sendTCPMessage(m, dest);
+		}
+	}
+	
 	public void sendPASS_TOKEN(Player p)
 	{
 		Message m = new Message("PASS_TOKEN", null);

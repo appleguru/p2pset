@@ -23,7 +23,7 @@ public class MessageHandler implements Runnable {
 		else if (msg.getCommand().equals("I_CLAIM_SET"))
 		{
 			sp.receiveClaimSet(msg);
-		}//else if I calim set
+		}//else if I claim set
 		
 		else if (msg.getCommand().equals("ADDED_MORE_CARDS")){
 			sp.receiveMoreCardsAdded(msg);
@@ -39,6 +39,9 @@ public class MessageHandler implements Runnable {
 		
 		else if (msg.getCommand().equals("NEW_PLAYER")){
 			sp.receiveNewPlayer(msg);
+		}
+		else if (msg.getCommand().equals("DEDUCTION")){
+			sp.receiveDeduction(msg);
 		}
 		
 	}//run
