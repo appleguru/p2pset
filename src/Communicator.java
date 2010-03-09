@@ -158,6 +158,7 @@ public class Communicator
 					cs.close();
 					//msgQueue.add(m);
 					Thread mh = new Thread(new MessageHandler(m, sp));
+					mh.start();
 				}
 			}
 			catch(Exception e)
