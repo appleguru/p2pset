@@ -114,5 +114,9 @@ public class Card implements Serializable{
 	public String toString(){
 		return ( "(" + shapes[attributes[COLOR]] + "/" + textures[attributes[TEXTURE]] + "/" + colors[attributes[COLOR]] + "/" + (attributes[NUMBER] + 1) + ")");
 	}
+	
+	public ImageIcon getIcon (){
+		return new ImageIcon (iconPath);
+	}
 
 }//class
