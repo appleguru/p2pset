@@ -172,7 +172,7 @@ public class P2PSet {
 			CardButton myCardButton = new CardButton();
 			myCardButton.card = myGameData.deck.boardCards.get(i);
 
-			ImageIcon icon = myCardButton.card.icon;
+			ImageIcon icon = myCardButton.card.getIcon();
 			int iconScaler, iconScaleHeight, iconScaleWidth;
 			if (icon.getIconWidth() > icon.getIconHeight())
 			{
