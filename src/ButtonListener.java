@@ -1,5 +1,7 @@
 import java.awt.event.*;
 
+import javax.swing.JToggleButton;
+
 public class ButtonListener implements ActionListener {
 
 	GameData gd;
@@ -11,7 +13,20 @@ public class ButtonListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource().equals(p.startNewGame)){
+		if (e.getSource().equals(p.reqMoreCards)){
+			JToggleButton moreCardsButton = (JToggleButton) e.getSource();
+			if (moreCardsButton.isSelected())
+			{ p.sp.askMoreCards(); }
+			/*if the button is already selected, keep it selected.
+			 * We don't allow users to withdraw their requests for more cards
+			 * Once they get more cards, it will get set to deselected
+			 */
+			else
+			{ p.reqMoreCards.setSelected(true); }
+
+		}//if
+		
+		else if (e.getSource().equals(p.startNewGame)){
 			p.sp = new SetPeer(p, p.username.getText());
 			p.myGameData = p.sp.createNewGame();
 			p.boardChanged();

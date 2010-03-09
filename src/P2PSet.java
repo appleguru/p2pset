@@ -29,7 +29,7 @@ public class P2PSet {
 	private UsernameListener ul;
 	private CardButton[] cards;
 	protected LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
-	private JToggleButton reqMoreCards = new JToggleButton("Request More Cards");
+	protected JToggleButton reqMoreCards;
 	private final JLabel userNameLabel = new JLabel("Username: ");
 	private final JLabel scoreLabel = new JLabel("<html><font size=\"+2\" color=\"000000\"><i>Scores:</i></font></html>");
 	private final String CARDS_LEFT_STR = "Cards left in deck: ";
@@ -54,6 +54,10 @@ public class P2PSet {
 		joinExistingGame = new JButton ("Join Exisiting Game");
 		startNewGame.addActionListener(bl);
 		joinExistingGame.addActionListener(bl);
+		
+		reqMoreCards = new JToggleButton("Request More Cards");
+		reqMoreCards.addActionListener(bl);
+		
 
 		masterPanel = new JPanel();
 		masterPanel.add(userNameLabel);
