@@ -89,12 +89,12 @@ public class Communicator
 		sendMulticastMessage(m);
 	}
 	
-	public void sendHERE_IS_A_GAME(Player p, GameData gd)
+	public void sendHERE_IS_A_GAME(String ip, GameData gd)
 	{
 		ArrayList<Serializable> data = new ArrayList<Serializable>();
 		data.add(gd);
 		Message m = new Message("HERE_IS_A_GAME", data);
-		sendTCPMessage(m, p.ip.getHostAddress());
+		sendTCPMessage(m, ip);
 	}
 	
 	public void sendNEW_PLAYER(Player p)
