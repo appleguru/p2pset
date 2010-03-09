@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -9,11 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
+import javax.swing.text.BadLocationException;
 
 
 
@@ -140,6 +143,14 @@ public class P2PSet {
 		
 		chatScrollPane = new JScrollPane(chatPanel);
 		chatScrollPane.setPreferredSize(new Dimension(600,150));
+		
+		//Keep us scrolled to the bottom of the log
+		//getMaximum always 100? huh..
+		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
+		int currentScrollMax = mySB.getMaximum();
+		mySB.setValue(currentScrollMax);
+
+		//chatScrollPane.scrollRectToVisible(new Rectangle(0, gameLog.getHeight()-2, 1, 1));
 		
 		cardPanel = getCardPanel();
 		
