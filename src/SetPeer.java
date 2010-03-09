@@ -117,7 +117,7 @@ public class SetPeer {
 					winner = (winner + " ties with " + p.name);
 				}
 			}
-			debug ("Game Over.  Winner(s): " + winner + " with score: " + win);
+			gui.gameLog.append("Game Over.  Winner(s): " + winner + " with score: " + win);
 		}//if there are no more sets to find
 		gui.boardChanged();
 	}
