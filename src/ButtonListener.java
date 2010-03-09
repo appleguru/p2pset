@@ -39,7 +39,6 @@ public class ButtonListener implements ActionListener {
 			p.myUsername = username;
 			p.sp = new SetPeer(p, username);
 			p.sp.joinGame();
-			p.boardChanged();
 		}//Join Existing Game
 
 		else
