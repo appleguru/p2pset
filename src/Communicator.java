@@ -53,7 +53,7 @@ public class Communicator
 		{
 			debug ("sending a Multicast");
 			MulticastSocket mcs = new MulticastSocket(MULTICAST_PORT);
-			byte[] buffer = m.substring(0, 7).getBytes();
+			byte[] buffer = m.substring(0, 8).getBytes();
 			DatagramPacket dp = new DatagramPacket(buffer, buffer.length, InetAddress.getByName(MULTICAST_ADDRESS), MULTICAST_PORT);
 			mcs.send(dp);
 		}
