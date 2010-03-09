@@ -31,7 +31,7 @@ public class ButtonListener implements ActionListener {
 				p.selectedCards.add(pressed);
 				if (p.selectedCards.size() == Card.NUM_ATTR_TYPES){
 					if (gd.deck.verifySet(p.selectedCards.get(0).card, p.selectedCards.get(1).card, p.selectedCards.get(2).card)){
-						p.sendI_CLAIM_SET(p.selectedCards.get(0).card, p.selectedCards.get(1).card, p.selectedCards.get(2).card);
+						p.sp.claimSet(p.selectedCards.get(0).card, p.selectedCards.get(1).card, p.selectedCards.get(2).card);
 					}//if the set is real
 					else {
 						//TODO: check if we punish false claims, punish if necessary
