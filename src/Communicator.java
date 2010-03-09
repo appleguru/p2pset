@@ -18,16 +18,18 @@ public class Communicator
 	private ConcurrentLinkedQueue<Message> msgQueue;
 	private msgListener ml;
 	private multicastListener mcl;
+	private SetPeer sp;
 	
-	public Communicator()
+	public Communicator(SetPeer _sp)
 	{
+		sp = _sp;
 		msgQueue = new ConcurrentLinkedQueue<Message>();
 		players = new ArrayList<Player>();
 		mcl = new multicastListener(MULTICAST_PORT, MULTICAST_ADDRESS);
 		mcl.start();
 		ml = new msgListener(TCP_PORT);
 		ml.start();
-	}
+	}//Constructor
 	
 	public void sendTCPMessage(Message m, String recipient)
 	{
@@ -154,7 +156,8 @@ public class Communicator
 					Message m = null;
 					while((m = (Message)ois.readObject()) == null);
 					cs.close();
-					msgQueue.add(m);
+					//msgQueue.add(m);
+					Thread mh = new Thread(new MessageHandler(m, sp));
 				}
 			}
 			catch(Exception e)
