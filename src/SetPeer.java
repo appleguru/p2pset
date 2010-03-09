@@ -65,15 +65,17 @@ public class SetPeer {
 	public void claimSet(Card c1, Card c2, Card c3){
 		requestCS();
 		if (myGameData.deck.verifySet(c1, c2, c3)){
-			int[] indicesToReplace = {myGameData.deck.boardCards.indexOf(c1), myGameData.deck.boardCards.indexOf(c2), myGameData.deck.boardCards.indexOf(c3)};
-			myGameData.deck.removeSet(c1, c2, c3);
-			Card[] newCards = new Card[3];
-			for (int i = 0; i < 3; i++){
-				newCards[i] = myGameData.deck.boardCards.get(indicesToReplace[i]);
-			}
-			com.sendI_CLAIM_SET(newCards[0], newCards[1], newCards[2], indicesToReplace, me);
-			
-		}
+			boolean shouldDealMore = (myGameData.deck.boardCards.size() != 15 && myGameData.deck.unusedCards.size() > 0);
+			//myGameData.deck.removeSet(c1, c2, c3);
+			if (shouldDealMore){
+				int[] indicesToReplace = {myGameData.deck.boardCards.indexOf(c1), myGameData.deck.boardCards.indexOf(c2), myGameData.deck.boardCards.indexOf(c3)};
+				Card[] newCards = new Card[3];
+				for (int i = 0; i < 3; i++){
+					newCards[i] = myGameData.deck.boardCards.get(indicesToReplace[i]);
+				}
+				com.sendI_CLAIM_SET(newCards[0], newCards[1], newCards[2], indicesToReplace, me);
+			}//if we should deal more cards
+		}//reverify the set
 		releaseCS();
 	}
 	
@@ -101,19 +103,24 @@ public class SetPeer {
 	
 	public void askMoreCards(){
 		requestCS();
-		myGameData.numPlayersWantCards ++;
-		if (myGameData.numPlayersWantCards >= myGameData.playerList.size() / 2){
-			ArrayList<Serializable> data = new ArrayList<Serializable>();
-			for (int i = 0; i < 3; i++){
-				data.add(myGameData.deck.dealCardNoRemove());
+		if (myGameData.deck.boardCards.size() == 12 && myGameData.deck.unusedCards.size() > 0){
+			myGameData.numPlayersWantCards ++;
+			if (myGameData.numPlayersWantCards >= (myGameData.playerList.size() / 2)){
+				ArrayList<Serializable> data = new ArrayList<Serializable>();
+				for (int i = 0; i < 3; i++){
+					data.add(myGameData.deck.dealCardNoRemove());
+				}
+				com.sendADDED_MORE_CARDS(data);
+			}//if at least half of players (rounded down) now want more cards
+			else {
+				com.sendWANT_MORE_CARDS(myGameData.numPlayersWantCards);
 			}
-			com.sendADDED_MORE_CARDS(data);
-		}//if at least half of players now want more cards
+		} //if nothing happened since the request to make it invalid
 		releaseCS();
 	}
 	
 	public void receiveMoreCardsRequest(Message m){
-		
+		myGameData.numPlayersWantCards = (Integer)m.getObjects().get(0);
 	}
 	
 	public void receiveMoreCardsAdded(Message m){

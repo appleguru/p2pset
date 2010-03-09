@@ -1,7 +1,7 @@
 
 public class MessageHandler implements Runnable {
 
-	boolean debug = true;
+	boolean debug = false;
 	private Message msg;
 	private SetPeer sp;
 	

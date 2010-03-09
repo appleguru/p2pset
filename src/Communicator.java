@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Communicator
 {
-	private boolean debug = true;
+	private boolean debug = false;
 	private static final String MULTICAST_ADDRESS = "225.6.6.6";
 	private static final int MULTICAST_PORT = 6262;
 	private static final int TCP_PORT = 2626;
@@ -121,6 +121,17 @@ public class Communicator
 		{
 			destination = ((Player)p).ip.getHostAddress();
 			sendTCPMessage(m, destination);
+		}
+	}
+	
+	public void sendWANT_MORE_CARDS(int numPlayersWant){
+		ArrayList<Serializable> data = new ArrayList<Serializable>();
+		data.add(new Integer(numPlayersWant));
+		Message m = new Message ("WANT_MORE_CARDS", data);
+		String dest = "";
+		for (Player p : players){
+			dest = p.ip.getHostAddress();
+			sendTCPMessage(m, dest);
 		}
 	}
 	

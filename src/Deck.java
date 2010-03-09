@@ -133,9 +133,18 @@ public class Deck implements Serializable{
 		usedCards.add(boardCards.get(card1Index));	//Add each card to the list of used cards
 		usedCards.add(boardCards.get(card2Index));
 		usedCards.add(boardCards.get(card3Index));
-		boardCards.set(card1Index, dealCard());	//Remove each card from the list of cards on the board
-		boardCards.set(card2Index, dealCard());
-		boardCards.set(card3Index, dealCard());
+		
+		if (boardCards.size() == 12 && unusedCards.size() > 0){
+			boardCards.set(card1Index, dealCard());	//Remove each card from the list of cards on the board
+			boardCards.set(card2Index, dealCard());
+			boardCards.set(card3Index, dealCard());
+		}//if we can deal more cards
+		else {
+			assert (boardCards.size() == 15 || unusedCards.size() == 0);
+			boardCards.remove(card1);
+			boardCards.remove(card2);
+			boardCards.remove(card3);
+		}//otherwise remove the cards without replacing them
 	}
 	
 	public void removeNulls(){
