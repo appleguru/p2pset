@@ -135,6 +135,7 @@ public class SetPeer {
 	
 	public void receiveNewPlayer(Message m){
 		myGameData.playerList.add((Player)m.getObjects().get(0));
+		gui.boardChanged();
 	}
 	
 	public Message readMessage(){
