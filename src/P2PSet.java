@@ -196,8 +196,16 @@ public class P2PSet {
 
 	public static void main(String[] args)
 	{
-		P2PSet myP2PSet = new P2PSet();
-		myP2PSet.createAndShowGUI();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+            	P2PSet myP2PSet = new P2PSet();
+                
+            	myP2PSet.createAndShowGUI();
+            }
+        });
+		
+		//
+		//myP2PSet.();
 		//Make a new Peer Listener that will spawn off a connectionHandler thread
 		//PeerListener myPeerListener = new PeerListener();
 		//myPeerListener.start();
