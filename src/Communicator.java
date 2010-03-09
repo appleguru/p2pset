@@ -207,12 +207,17 @@ public class Communicator
 					mcs.receive(dp);
 					String commandString = new String(dp.getData());
 					String senderIP = dp.getAddress().getHostAddress();
+					InetAddress myAddress = InetAddress.getLocalHost();
+					String strAddr = myAddress.getHostAddress();
+					if (!(senderIP.equals(strAddr)))
+					{
 					ArrayList<Serializable> objArray = new ArrayList<Serializable>();
 					objArray.add(senderIP);
 					Message m = new Message(commandString, objArray);
 					//msgQueue.add(m);
 					Thread mh = new Thread(new MessageHandler(m, sp));
 					mh.start();
+					}//if the message isn't from us
 				}
 			}
 			catch(Exception e)
