@@ -34,7 +34,7 @@ public class MessageHandler implements Runnable {
 		}
 		
 		else if (msg.getCommand().equals("HERE_IS_A_GAME")){
-			sp.receiveLooking(msg);
+			sp.receiveHereIsAGame(msg);
 		}
 		
 	}//run
