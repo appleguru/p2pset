@@ -34,7 +34,7 @@ public class P2PSet {
 	private JLabel[] scores;
 	protected JButton startNewGame, joinExistingGame;
 	protected JTextField username;
-	private JTextArea gameLog;
+	protected JTextArea gameLog;
 	//private JTextArea scores;
 	private ButtonListener bl;
 	private CardButton[] cards;
@@ -68,6 +68,8 @@ public class P2PSet {
 		reqMoreCards = new JToggleButton("Request More Cards");
 		reqMoreCards.addActionListener(bl);
 		
+		//Moving This here from GameData to fix a mac java bug
+		gameLog = new JTextArea(7, 60);
 
 		masterPanel = new JPanel();
 		masterPanel.add(userNameLabel);
@@ -133,15 +135,11 @@ public class P2PSet {
 		
 		rightPanel.add(rightBottomPanel, BorderLayout.PAGE_END);
 
-		/*
-		 * TESTING FOR WIN/MAC INTERACTION
-		gameLog = myGameData.gameLog;
 		gameLog.setEditable(false);
 		chatPanel.add(gameLog);
 		
 		chatScrollPane = new JScrollPane(chatPanel);
 		chatScrollPane.setPreferredSize(new Dimension(600,150));
-		*/
 		
 		cardPanel = getCardPanel();
 		
@@ -154,7 +152,7 @@ public class P2PSet {
 		
 		masterPanel.add(cardPanel, BorderLayout.CENTER);
 		masterPanel.add(rightPanel, BorderLayout.LINE_END);
-		//masterPanel.add(chatScrollPane, BorderLayout.PAGE_END);
+		masterPanel.add(chatScrollPane, BorderLayout.PAGE_END);
 
 		frame.add(masterPanel);
 		frame.validate();
@@ -218,12 +216,6 @@ public class P2PSet {
             	myP2PSet.createAndShowGUI();
             }
         });
-		
-		//
-		//myP2PSet.();
-		//Make a new Peer Listener that will spawn off a connectionHandler thread
-		//PeerListener myPeerListener = new PeerListener();
-		//myPeerListener.start();
 
 	}//main
 
