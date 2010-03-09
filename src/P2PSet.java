@@ -61,7 +61,7 @@ public class P2PSet {
 		masterPanel.add(startNewGame);
 		masterPanel.add(joinExistingGame);
 		frame.add(masterPanel);
-		
+
 		//Display the window.
 		frame.setSize(defaultWindowWidth,defaultWindowHeight);
 		frame.setVisible(true);
@@ -81,57 +81,50 @@ public class P2PSet {
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.Y_AXIS));
 
-		if (ul.getUsername() != null) //Shouldn't need this anymore...
+		JLabel[] scores;
+
+		rightPanel.add(scoreLabel);
+
+		int numPlayers = myGameData.playerList.size();
+		scores = new JLabel[numPlayers];
+		for (int i = 0; i < numPlayers; i++)
 		{
-			//score = new JLabel("Score: " + myGameData.playerList.get(ul.getUsername()).score);
-			//rightPanel.add(score);
+			String myColor;
+			String myName = myGameData.playerList.get(i).name;
+			String myScore = myGameData.playerList.get(i).score + "";
 
-			JLabel[] scores;
+			if (myName == ul.getUsername())
+			{ myColor = HEX_RED; }
+			else
+			{ myColor = HEX_BLACK; }
+			scores[i] = new JLabel("<html><font size=\"+1\" color=\"" + myColor + "\">" + myName + ":     " + myScore + "</font></html>");
+		}//for
 
-			rightPanel.add(scoreLabel);
+		for (JLabel i : scores)
+		{ scorePanel.add(i); }
 
-			int numPlayers = myGameData.playerList.size();
-			scores = new JLabel[numPlayers];
-			for (int i = 0; i < numPlayers; i++)
-			{
-				String myColor;
-				String myName = myGameData.playerList.get(i).name;
-				String myScore = myGameData.playerList.get(i).score + "";
+		//TODO: Need to set the viewPort of the rightScrollPane...
+		rightScrollPane = new JScrollPane(scorePanel);
+		rightPanel.add(rightScrollPane);
 
-				if (myName == ul.getUsername())
-				{ myColor = HEX_RED; }
-				else
-				{ myColor = HEX_BLACK; }
-				scores[i] = new JLabel("<html><font size=\"+1\" color=\"" + myColor + "\">" + myName + ":     " + myScore + "</font></html>");
-			}//for
+		cardsLeft = new JLabel(CARDS_LEFT_STR + myGameData.deck.unusedCards.size());
+		rightPanel.add(cardsLeft);
 
-			for (JLabel i : scores)
-			{ scorePanel.add(i); }
+		rightPanel.add(reqMoreCards);
 
-			//TODO: Need to set the viewPort of the rightScrollPane...
-			rightScrollPane = new JScrollPane(scorePanel);
-			rightPanel.add(rightScrollPane);
+		moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards);
+		rightPanel.add(moreCardReqs);
 
-			cardsLeft = new JLabel(CARDS_LEFT_STR + myGameData.deck.unusedCards.size());
-			rightPanel.add(cardsLeft);
+		gameLog = new JTextArea("Some Event Log!", 10, 60); //TODO: Use constants for width/height, get actual events...
+		chatPanel.add(gameLog);
 
-			rightPanel.add(reqMoreCards);
+		cardPanel = getCardPanel();
+		masterPanel.add(cardPanel, BorderLayout.CENTER);
+		masterPanel.add(rightPanel, BorderLayout.LINE_END);
+		masterPanel.add(chatPanel, BorderLayout.PAGE_END);
 
-			moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards);
-			rightPanel.add(moreCardReqs);
-
-			gameLog = new JTextArea("Some Event Log!", 10, 60); //TODO: Use constants for width/height, get actual events...
-			chatPanel.add(gameLog);
-
-			cardPanel = getCardPanel();
-			masterPanel.add(cardPanel, BorderLayout.CENTER);
-			masterPanel.add(rightPanel, BorderLayout.LINE_END);
-			masterPanel.add(chatPanel, BorderLayout.PAGE_END);
-
-			frame.add(masterPanel);
-			frame.validate();
-
-		}//if userName
+		frame.add(masterPanel);
+		frame.validate();
 	}//boardChanged
 
 	public GameData getGameData()
