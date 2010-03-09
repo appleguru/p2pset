@@ -108,6 +108,9 @@ public class SetPeer {
 		for (Serializable s : m.getObjects()){
 			myGameData.deck.dealCard((Card)s);
 		}
+		gui.reqMoreCards.setSelected(false);
+		myGameData.numPlayersWantCards = 0;
+		gui.boardChanged();
 	}
 	
 	public void Quit(){
