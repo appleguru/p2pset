@@ -43,6 +43,7 @@ public class SetPeer {
 	
 	public void receiveHereIsAGame(Message m){
 		myGameData = (GameData) m.getObjects().get(0);
+		while (myGameData == null);
 		com.players = myGameData.playerList;
 		com.sendNEW_PLAYER(me);
 		myGameData.playerList.add(me);
