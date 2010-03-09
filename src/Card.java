@@ -58,6 +58,7 @@ public class Card implements Serializable{
 	public int[] attributes;
 
 	public ImageIcon icon;
+	public String iconPath;
 
 	/*
 	 * @param num the number of symbols on the card 
@@ -100,7 +101,7 @@ public class Card implements Serializable{
 		default: System.out.println("Invalid Number."); break;
 		}//number switch 
 
-		icon = new ImageIcon (IMAGE_PATH + filename[COLOR] + FILENAME_DELIMITER + filename[TEXTURE] + FILENAME_DELIMITER + filename[SHAPE] + FILENAME_DELIMITER + filename[NUMBER] + FILENAME_EXTENSION);
+		iconPath = IMAGE_PATH + filename[COLOR] + FILENAME_DELIMITER + filename[TEXTURE] + FILENAME_DELIMITER + filename[SHAPE] + FILENAME_DELIMITER + filename[NUMBER] + FILENAME_EXTENSION;
 
 	}//Constructor
 	
