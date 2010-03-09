@@ -22,6 +22,7 @@ public class SetPeer {
 	
 	public GameData createNewGame(){
 		myGameData = new GameData(me);
+		token = true;
 		return myGameData;
 		//tell the gui to display the new game
 		
@@ -48,14 +49,25 @@ public class SetPeer {
 	
 	public void claimSet(Card c1, Card c2, Card c3){
 		requestCS();
-		
-		com.sendI_CLAIM_SET(c1, c2, c3, me);
-		
-		
+		if (myGameData.deck.verifySet(c1, c2, c3)){
+			com.sendI_CLAIM_SET(c1, c2, c3, me);
+			
+		}
 		releaseCS();
 	}
 	
 	public void receiveClaimSet(Message m){
+		Player scorer = myGameData.playerList.get(myGameData.playerList.indexOf(m.getObjects().get(3)));
+		scorer.score ++;
+		myGameData.gameLog.append(scorer.name + " scores with Set " + m.getObjects().get(0).toString() + " "  + m.getObjects().get(1).toString() +" " + m.getObjects().get(2).toString());
+		myGameData.deck.replaceCard(c, i);
+	}
+	
+	public void sendDeductMe(){
+		
+	}
+	
+	public void receiveDeduction(Message m){
 		
 	}
 	
