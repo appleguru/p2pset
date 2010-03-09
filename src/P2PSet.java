@@ -133,12 +133,15 @@ public class P2PSet {
 		
 		rightPanel.add(rightBottomPanel, BorderLayout.PAGE_END);
 
+		/*
+		 * TESTING FOR WIN/MAC INTERACTION
 		gameLog = myGameData.gameLog;
 		gameLog.setEditable(false);
 		chatPanel.add(gameLog);
 		
 		chatScrollPane = new JScrollPane(chatPanel);
 		chatScrollPane.setPreferredSize(new Dimension(600,150));
+		*/
 		
 		cardPanel = getCardPanel();
 		

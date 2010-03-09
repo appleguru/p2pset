@@ -7,7 +7,7 @@ public class GameData implements Serializable
 {
 	private static final long serialVersionUID = -2312439373810012826L;
 
-	public JTextArea gameLog;
+	//public JTextArea gameLog;
 	public Deck deck;
 	public int gameID;
 	public int numPlayersWantCards;
@@ -18,7 +18,7 @@ public class GameData implements Serializable
 		deck = new Deck();
 		playerList = new ArrayList<Player>();
 		playerList.add(creator);
-		gameLog = new JTextArea(7, 60);
+		//gameLog = new JTextArea(7, 60);
 	}//Constructor
 	
 	public boolean equals(Object o)
