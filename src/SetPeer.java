@@ -49,7 +49,9 @@ public class SetPeer {
 	public void claimSet(Card c1, Card c2, Card c3){
 		requestCS();
 		
-		//TODO
+		com.sendI_CLAIM_SET(c1, c2, c3, me);
+		
+		
 		releaseCS();
 	}
 	
