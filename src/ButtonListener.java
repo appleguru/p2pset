@@ -14,11 +14,13 @@ public class ButtonListener implements ActionListener {
 		if (e.getSource().equals(p.startNewGame)){
 			p.sp = new SetPeer(p, p.username.getText());
 			p.myGameData = p.sp.createNewGame();
+			p.boardChanged();
 		}//start new Game
 
 		else if (e.getSource().equals(p.joinExistingGame)){
 			p.sp = new SetPeer(p, p.username.getText());
 			p.myGameData = p.sp.joinGame();
+			p.boardChanged();
 		}//Join Existing Game
 
 		else
