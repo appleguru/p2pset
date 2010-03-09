@@ -100,7 +100,7 @@ public class SetPeer {
 		}
 		else {
 			for (int i = 0; i < 3; i ++){
-				myGameData.deck.replaceCard(cards[i = 3], cards[i]);
+				myGameData.deck.replaceCard(cards[i + 3], cards[i]);
 				gui.gameLog.append("Adding Card: " + cards[i + 3] + "\n");
 			}
 		}
