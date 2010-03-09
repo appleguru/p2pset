@@ -63,6 +63,17 @@ public class Deck implements Serializable{
 		return unusedCards.get(cardNum);
 	}
 	
+	public Card[] dealThreeCardsNoRemove(){
+		Card[] result = new Card[3];
+		for (int i = 0 ; i < 3; i++){
+			result[i] = dealCard();
+		}
+		for (int i = 0; i < 3; i++){
+			unusedCards.add(result[i]);
+		}
+		return result;
+	}
+	
 	public void dealCard(Card c){
 		if (unusedCards.contains(c)){
 			unusedCards.remove(c);
@@ -74,6 +85,12 @@ public class Deck implements Serializable{
 		usedCards.add(boardCards.get(i));
 		unusedCards.remove(c);
 		boardCards.set(i, c);
+	}
+	
+	public void replaceCard(Card newCard, Card oldCard){
+		usedCards.add(oldCard);
+		unusedCards.remove(newCard);
+		boardCards.set(boardCards.indexOf(oldCard), newCard);
 	}
 	
 	/**

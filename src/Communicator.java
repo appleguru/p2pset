@@ -68,13 +68,10 @@ public class Communicator
 		sendTCPMessage(new Message("Hello", null), "localhost");
 	}
 	
-	public void sendI_CLAIM_SET(Card c1, Card c2, Card c3, int[] indicesToReplace, Player claimant)
+	public void sendI_CLAIM_SET(Card[] cards, Player claimant)
 	{
 		ArrayList<Serializable> set = new ArrayList<Serializable>();
-		set.add(c1);
-		set.add(c2);
-		set.add(c3);
-		set.add(indicesToReplace);
+		set.add(cards);
 		set.add(claimant);
 		//System.out.println("Sending I_CLAIM_SET to server...");
 		Message m = new Message("I_CLAIM_SET", set);

@@ -67,28 +67,42 @@ public class SetPeer {
 		if (myGameData.deck.verifySet(c1, c2, c3)){
 			boolean shouldDealMore = (myGameData.deck.boardCards.size() != 15 && myGameData.deck.unusedCards.size() > 0);
 			//myGameData.deck.removeSet(c1, c2, c3);
+			Card[] cards;
 			if (shouldDealMore){
-				int[] indicesToReplace = {myGameData.deck.boardCards.indexOf(c1), myGameData.deck.boardCards.indexOf(c2), myGameData.deck.boardCards.indexOf(c3)};
-				Card[] newCards = new Card[3];
+				//int[] indicesToReplace = {myGameData.deck.boardCards.indexOf(c1), myGameData.deck.boardCards.indexOf(c2), myGameData.deck.boardCards.indexOf(c3)};
+				cards = new Card[6];
+				Card[] newCards = myGameData.deck.dealThreeCardsNoRemove();
 				for (int i = 0; i < 3; i++){
-					newCards[i] = myGameData.deck.boardCards.get(indicesToReplace[i]);
+					cards[3 + i] = newCards[i];
 				}
-				com.sendI_CLAIM_SET(newCards[0], newCards[1], newCards[2], indicesToReplace, me);
 			}//if we should deal more cards
+			else{
+				cards = new Card[3];
+			}
+			cards[0] = c1;
+			cards[1] = c2;
+			cards[2] = c3;
+			com.sendI_CLAIM_SET(cards, me);
 		}//reverify the set
 		releaseCS();
 	}
 	
 	public void receiveClaimSet(Message m){
-		Player scorer = myGameData.playerList.get(myGameData.playerList.indexOf(m.getObjects().get(4)));
+		Player scorer = myGameData.playerList.get(myGameData.playerList.indexOf(m.getObjects().get(1)));
 		scorer.score ++;
 		myGameData.numPlayersWantCards = 0;
 		gui.reqMoreCards.setSelected(false);
-		int[] indicesToReplace = (int[])m.getObjects().get(3);
-		gui.gameLog.append(scorer.name + " scores with Set: " + myGameData.deck.boardCards.get(indicesToReplace[0]).toString() + " "  + myGameData.deck.boardCards.get(indicesToReplace[1]).toString() +" " + myGameData.deck.boardCards.get(indicesToReplace[2]).toString() + "\n");
-		for (int i = 0; i < 3; i ++){
-			myGameData.deck.replaceCard((Card)m.getObjects().get(i), indicesToReplace[i]);
-			gui.gameLog.append("Adding Card: " + m.getObjects().get(i) + "\n");
+		Card[] cards =  (Card[])m.getObjects().get(0);
+		gui.gameLog.append(scorer.name + " scores with Set: " + cards[0].toString() + " " + cards[1].toString() + " " + cards[2].toString() + "\n");
+		if (myGameData.deck.boardCards.size() == 15 || myGameData.deck.unusedCards.size() == 0){
+			myGameData.deck.removeSet(cards[0], cards[1], cards[2]);
+			gui.gameLog.append("No new cards added \n" );
+		}
+		else {
+			for (int i = 0; i < 3; i ++){
+				myGameData.deck.replaceCard(cards[i = 3], cards[i]);
+				gui.gameLog.append("Adding Card: " + cards[i + 3] + "\n");
+			}
 		}
 		gui.boardChanged();
 	}
@@ -107,9 +121,11 @@ public class SetPeer {
 			myGameData.numPlayersWantCards ++;
 			if (myGameData.numPlayersWantCards >= (myGameData.playerList.size() / 2)){
 				ArrayList<Serializable> data = new ArrayList<Serializable>();
+				Card[] cards = new Card[3];
 				for (int i = 0; i < 3; i++){
-					data.add(myGameData.deck.dealCardNoRemove());
+					cards = myGameData.deck.dealThreeCardsNoRemove();
 				}
+				data.add(cards);
 				com.sendADDED_MORE_CARDS(data);
 			}//if at least half of players (rounded down) now want more cards
 			else {
@@ -124,8 +140,9 @@ public class SetPeer {
 	}
 	
 	public void receiveMoreCardsAdded(Message m){
-		for (Serializable s : m.getObjects()){
-			myGameData.deck.dealCard((Card)s);
+		Card[] cards = (Card[])m.getObjects().get(0);
+		for (int i = 0; i < cards.length; i++){
+			myGameData.deck.dealCard((cards[i]));
 		}
 		gui.reqMoreCards.setSelected(false);
 		myGameData.numPlayersWantCards = 0;
