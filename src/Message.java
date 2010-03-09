@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class Message implements Serializable
 {
-	/**
-	 * 
-	 */
+
+	private static final long serialVersionUID = -275193729503169230L;
+
 	private String command;
 	private ArrayList<Serializable> objects;
 	
