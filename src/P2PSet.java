@@ -154,7 +154,7 @@ public class P2PSet {
 		
 		masterPanel.add(cardPanel, BorderLayout.CENTER);
 		masterPanel.add(rightPanel, BorderLayout.LINE_END);
-		masterPanel.add(chatScrollPane, BorderLayout.PAGE_END);
+		//masterPanel.add(chatScrollPane, BorderLayout.PAGE_END);
 
 		frame.add(masterPanel);
 		frame.validate();
