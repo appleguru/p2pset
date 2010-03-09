@@ -218,6 +218,13 @@ public class P2PSet {
 		return myCardPanel;
 	}//getCardPanel
 
+	public void log(String s){
+		this.gameLog.append(s + "\n");
+		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
+		int currentScrollMax = mySB.getMaximum();
+		mySB.setValue(currentScrollMax);
+	}
+	
 	public static void main(String[] args)
 	{
         SwingUtilities.invokeLater(new Runnable() {

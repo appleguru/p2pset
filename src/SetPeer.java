@@ -93,15 +93,15 @@ public class SetPeer {
 		myGameData.numPlayersWantCards = 0;
 		gui.reqMoreCards.setSelected(false);
 		Card[] cards =  (Card[])m.getObjects().get(0);
-		gui.gameLog.append(scorer.name + " scores with Set: " + cards[0].toString() + " " + cards[1].toString() + " " + cards[2].toString() + "\n");
+		gui.log(scorer.name + " scores with Set: " + cards[0].toString() + " " + cards[1].toString() + " " + cards[2].toString());
 		if (myGameData.deck.boardCards.size() == 15 || myGameData.deck.unusedCards.size() == 0){
 			myGameData.deck.removeSet(cards[0], cards[1], cards[2]);
-			gui.gameLog.append("No new cards added \n" );
+			gui.log("No new cards added" );
 		}
 		else {
 			for (int i = 0; i < 3; i ++){
 				myGameData.deck.replaceCard(cards[i + 3], cards[i]);
-				gui.gameLog.append("Adding Card: " + cards[i + 3] + "\n");
+				gui.log("Adding Card: " + cards[i + 3]);
 			}
 		}
 		if (myGameData.deck.gameFinished()){
@@ -117,7 +117,7 @@ public class SetPeer {
 					winner = (winner + " ties with " + p.name);
 				}
 			}
-			gui.gameLog.append("Game Over.  Winner(s): " + winner + " with score: " + win);
+			gui.log("Game Over.  Winner(s): " + winner + " with score: " + win);
 		}//if there are no more sets to find
 		gui.boardChanged();
 	}
@@ -152,12 +152,14 @@ public class SetPeer {
 	
 	public void receiveMoreCardsRequest(Message m){
 		myGameData.numPlayersWantCards = (Integer)m.getObjects().get(0);
+		gui.log(myGameData.numPlayersWantCards + " players now want to add more cards.");
 	}
 	
 	public void receiveMoreCardsAdded(Message m){
 		Card[] cards = (Card[])m.getObjects().get(0);
 		for (int i = 0; i < cards.length; i++){
 			myGameData.deck.dealCard((cards[i]));
+			gui.log("Adding card " + cards[i].toString());
 		}
 		gui.reqMoreCards.setSelected(false);
 		myGameData.numPlayersWantCards = 0;
@@ -176,11 +178,13 @@ public class SetPeer {
 	}
 	
 	public void receiveNewPlayer(Message m){
-		myGameData.playerList.add((Player)m.getObjects().get(0));
+		Player noob = (Player)m.getObjects().get(0);
+		myGameData.playerList.add(noob);
 		if (!tokenPassingStarted) {
 			tokenPassingStarted = true;
 			releaseCS();
 		}
+		gui.log(noob.name + " has joined the game.");
 		gui.boardChanged();
 	}
 	
