@@ -115,7 +115,7 @@ public class P2PSet {
 		moreCardReqs = new JLabel(REQ_CARDS_STR + myGameData.numPlayersWantCards);
 		rightPanel.add(moreCardReqs);
 
-		gameLog = new JTextArea("Some Event Log!", 10, 60); //TODO: Use constants for width/height, get actual events...
+		gameLog = myGameData.gameLog;
 		chatPanel.add(gameLog);
 
 		cardPanel = getCardPanel();
