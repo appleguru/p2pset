@@ -37,7 +37,8 @@ public class SetPeer {
 	
 	public void receiveLooking(Message m){
 		requestCS();
-		com.sendHERE_IS_A_GAME((String)m.getObjects().get(0), myGameData);
+		if (myGameData.playerList.indexOf(me) == 0)
+			com.sendHERE_IS_A_GAME((String)m.getObjects().get(0), myGameData);
 		releaseCS();
 	}
 	
