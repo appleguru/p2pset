@@ -1,7 +1,10 @@
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.ArrayList;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.LinkedList;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
 
 
 
@@ -33,7 +37,6 @@ public class P2PSet {
 	private JTextArea gameLog;
 	//private JTextArea scores;
 	private ButtonListener bl;
-	private UsernameListener ul;
 	private CardButton[] cards;
 	protected LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
 	protected JToggleButton reqMoreCards;
@@ -53,7 +56,6 @@ public class P2PSet {
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		ul = new UsernameListener(this);
 		bl = new ButtonListener(this);
 		username = new JTextField(10); //TODO: Make size a constant var
 		//username.addActionListener(ul);
