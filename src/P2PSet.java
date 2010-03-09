@@ -126,12 +126,11 @@ public class P2PSet {
 		gameLog.setEditable(false);
 		chatPanel.add(gameLog);
 		chatScrollPane = new JScrollPane(chatPanel);
-
-
+		
 		cardPanel = getCardPanel();
 		
-		
 		//Disable the reqMoreCards button if we already have more cards
+		//Note numCards gets set in getCardPanel, so make sure this is after it
 		if (numCards == 15)
 		{ reqMoreCards.setEnabled(false); }
 		else
