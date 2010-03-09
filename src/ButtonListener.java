@@ -54,9 +54,7 @@ public class ButtonListener implements ActionListener {
 						p.sp.claimSet(p.selectedCards.get(0).card, p.selectedCards.get(1).card, p.selectedCards.get(2).card);
 					}//if the set is real
 					else {
-						//TODO: check if we punish false claims, punish if necessary
-
-						//deselect all cards
+						p.sp.sendDeductMe();
 						for (int i = 0; i < p.selectedCards.size(); i++){
 							p.selectedCards.get(i).setSelected(false);
 						}//deselect cards
