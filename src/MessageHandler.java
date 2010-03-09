@@ -37,6 +37,10 @@ public class MessageHandler implements Runnable {
 			sp.receiveHereIsAGame(msg);
 		}
 		
+		else if (msg.getCommand().equals("NEW_PLAYER")){
+			sp.receiveNewPlayer(msg);
+		}
+		
 	}//run
 	
 	public void debug (String s){
