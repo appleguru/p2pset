@@ -30,8 +30,7 @@ public class ButtonListener implements ActionListener {
 		}//if
 
 		else if (e.getSource().equals(p.joinExistingGame)){
-			JButton myB = (JButton) e.getSource();
-			myB.setEnabled(false);
+			p.joinExistingGame.setEnabled(false);
 			String username = p.username.getText();
 			p.sp = new SetPeer(p, username);
 			p.sp.joinGame();
