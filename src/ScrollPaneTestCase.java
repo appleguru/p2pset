@@ -22,7 +22,7 @@ public class ScrollPaneTestCase {
 		appendMoreTextButton.addActionListener(bl);
 		mainPanel.add(appendMoreTextButton);
 
-		testCaseTextArea = new JTextArea();
+		testCaseTextArea = new JTextArea(7, 60);
 		testCaseScrollPane = new JScrollPane(testCaseTextArea);
 		
 		mainPanel.add(testCaseScrollPane);

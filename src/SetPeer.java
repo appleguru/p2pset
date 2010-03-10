@@ -65,6 +65,7 @@ public class SetPeer {
 	}
 	
 	public void claimSet(Card c1, Card c2, Card c3){
+		debug(new Boolean(token).toString());
 		requestCS();
 		try {
 			Thread.sleep(4000);
@@ -73,7 +74,6 @@ public class SetPeer {
 			e.printStackTrace();
 		}
 		if (myGameData.deck.verifySet(c1, c2, c3)){
-			debug(new Boolean(token).toString());
 			boolean shouldDealMore = (myGameData.deck.boardCards.size() != 15 && myGameData.deck.unusedCards.size() > 0);
 			//myGameData.deck.removeSet(c1, c2, c3);
 			Card[] cards;
@@ -242,6 +242,8 @@ public class SetPeer {
 	
 	public synchronized void receiveToken(){
 		//this.notify();
+		debug("token was " + Boolean.toString(token) + " at the beginning of recieve token");
+		
 		token = true;
 		if(!wantCS){
 			releaseCS();
