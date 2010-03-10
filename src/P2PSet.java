@@ -212,7 +212,7 @@ public class P2PSet {
 	}//getCardPanel
 
 	public void log(String s){
-		this.gameLog.append(s + "\n");
+		this.gameLog.append( "\n" + s);
 
 		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
 		int currentScrollMax = mySB.getMaximum();
