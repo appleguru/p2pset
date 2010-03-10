@@ -28,7 +28,6 @@ public class ButtonListener implements ActionListener {
 		
 		else if (e.getSource().equals(p.startNewGame)){
 			String username = p.username.getText();
-			p.myUsername = username;
 			p.sp = new SetPeer(p, username);
 			p.myGameData = p.sp.createNewGame();
 			p.boardChanged();
@@ -36,7 +35,6 @@ public class ButtonListener implements ActionListener {
 
 		else if (e.getSource().equals(p.joinExistingGame)){
 			String username = p.username.getText();
-			p.myUsername = username;
 			p.sp = new SetPeer(p, username);
 			p.sp.joinGame();
 		}//Join Existing Game
