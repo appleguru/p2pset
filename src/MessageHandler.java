@@ -33,6 +33,14 @@ public class MessageHandler implements Runnable {
 			sp.receiveLooking(msg);
 		}
 		
+		else if (msg.getCommand().equals("WHO_ARE_YOU")){
+			sp.receiveWhoAreYou(msg);
+		}
+		
+		else if (msg.getCommand().equals("I_AM_ME")){
+			sp.receiveIAmMe(msg);
+		}
+		
 		else if (msg.getCommand().equals("HERE_IS_A_GAME")){
 			sp.receiveHereIsAGame(msg);
 		}

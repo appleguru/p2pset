@@ -32,18 +32,29 @@ public class SetPeer {
 	}
 	
 	public void receiveLooking(Message m){
-		requestCS();
-		if (myGameData.playerList.indexOf(me) == 0)
-			com.sendHERE_IS_A_GAME((String)m.getObjects().get(0), myGameData);
+		if (myGameData.playerList.indexOf(me) == 0){
+			requestCS();
+			String noob = (String)m.getObjects().get(0);
+			com.sendWHO_ARE_YOU(noob, me);
+		}
+	}
+	
+	public void receiveWhoAreYou(Message m){
+		Player liason = (Player)m.getObjects().get(0);
+		com.sendI_AM_ME(liason, me);
+	}
+	
+	public void receiveIAmMe(Message m){
+		Player noob = (Player )m.getObjects().get(0);
+		com.sendNEW_PLAYER(noob, me);
+		myGameData.playerList.add(noob);
+		com.sendHERE_IS_A_GAME(noob.ip.getHostAddress(), myGameData);
 		releaseCS();
 	}
 	
 	public void receiveHereIsAGame(Message m){
 		myGameData = (GameData) m.getObjects().get(0);
-		while (myGameData == null) debug ("busy waiting while game data loads");
 		com.players = myGameData.playerList;
-		com.sendNEW_PLAYER(me);
-		myGameData.playerList.add(me);
 		gui.myGameData = myGameData;
 		gui.boardChanged();
 	}//Here is a game!
@@ -52,16 +63,6 @@ public class SetPeer {
 	private void debug(String string) {
 		if (debug) System.out.println(string);
 		
-	}
-
-	public GameData receiveGameToJoin(Message m){
-		if (myGameData == null){
-			myGameData = (GameData)m.getObjects().get(0);
-			com.players = myGameData.playerList;
-			com.sendNEW_PLAYER(me);
-			myGameData.playerList.add(me);
-		}
-		return myGameData;
 	}
 	
 	public void claimSet(Card c1, Card c2, Card c3){

@@ -89,6 +89,20 @@ public class Communicator
 		sendMulticastMessage(m);
 	}
 	
+	public void sendWHO_ARE_YOU( String ip, Player peteTownsend){
+		ArrayList<Serializable> data = new ArrayList<Serializable>();
+		data.add(peteTownsend);
+		Message m = new Message ("WHO_ARE_YOU", data);
+		sendTCPMessage(m, ip);
+	}
+	
+	public void sendI_AM_ME(Player peteTownsend, Player me){
+		ArrayList<Serializable> data = new ArrayList<Serializable>();
+		data.add(me);
+		Message m = new Message("I_AM_ME", data);
+		this.sendTCPMessage(m, peteTownsend.ip.getHostAddress());
+	}
+	
 	public void sendHERE_IS_A_GAME(String ip, GameData gd)
 	{
 		ArrayList<Serializable> data = new ArrayList<Serializable>();
@@ -97,16 +111,18 @@ public class Communicator
 		sendTCPMessage(m, ip);
 	}
 	
-	public void sendNEW_PLAYER(Player p)
+	public void sendNEW_PLAYER(Player p, Player sender)
 	{
 		ArrayList<Serializable> data = new ArrayList<Serializable>();
 		data.add(p);
 		Message m = new Message("NEW_PLAYER", data);
 		String destination = "";
-		for(Serializable player: players)
+		for(Player player: players)
 		{
-			destination = ((Player)player).ip.getHostAddress();
-			sendTCPMessage(m, destination);
+			if (!player.equals(sender)){
+				destination = player.ip.getHostAddress();
+				sendTCPMessage(m, destination);
+			}
 		}
 	}
 	
