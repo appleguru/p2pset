@@ -18,17 +18,25 @@ public class SetPeer {
 		com = new Communicator(this);
 	}
 	
-	public GameData createNewGame(){
+	public void createNewGame(){
 		myGameData = new GameData(me);
 		com.players = myGameData.playerList;
 		token = true;
 		tokenPassingStarted = false;
-		return myGameData;		
+		gui.boardChanged();		
 	}
 	
 	public void joinGame(){
-		tokenPassingStarted = true;
 		com.sendLOOKING_FOR_GAMES();
+		try {
+			Thread.sleep(6000);
+		}
+		catch (InterruptedException ie){
+			ie.printStackTrace();
+		}
+		if (myGameData == null){
+			createNewGame();
+		}
 	}
 	
 	public void receiveLooking(Message m){
@@ -40,6 +48,7 @@ public class SetPeer {
 	}
 	
 	public void receiveWhoAreYou(Message m){
+		tokenPassingStarted = true;
 		Player liason = (Player)m.getObjects().get(0);
 		com.sendI_AM_ME(liason, me);
 	}
