@@ -229,6 +229,7 @@ public class SetPeer {
 			token = false;
 			int idx = myGameData.playerList.indexOf(me);
 			int i = (idx+1)%myGameData.playerList.size();
+			debug ("passing the token to " + myGameData.playerList.get(i).name);
 			com.sendPASS_TOKEN(myGameData.playerList.get(i));
 			}
 	}
