@@ -6,17 +6,19 @@ public class ScrollPaneTestCase {
 
 	JTextArea testCaseTextArea;
 	JScrollPane testCaseScrollPane;
+	JFrame mainWindow;
+	JButton appendMoreTextButton;
 	
 	public void createGUI ()
 	{
-		JFrame mainWindow = new JFrame("Test Case");
+		mainWindow = new JFrame("Test Case");
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel mainPanel = new JPanel();
 		TestButtonListener bl = new TestButtonListener(this);
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-		JButton appendMoreTextButton = new JButton ("Append More Text!");
+		appendMoreTextButton = new JButton ("Append More Text!");
 		appendMoreTextButton.addActionListener(bl);
 		mainPanel.add(appendMoreTextButton);
 
@@ -45,10 +47,14 @@ public class ScrollPaneTestCase {
 	}//Constructor
 		
 		public void actionPerformed(ActionEvent e)
-		{
-			
+		{			
 			String textToAppend = "Lorem ipsum dolor sit amet, consectetur adipisicing elit,\n sed do eiusmod tempor incididunt ut labore et dolore magna\n aliqua. Ut enim ad minim veniam, quis nostrud exercitation \nullamco laboris nisi ut aliquip ex ea commodo consequat. \nDuis aute irure dolor in reprehenderit in voluptate velit esse \ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat \ncupidatat non proident, sunt in culpa qui officia deserunt mollit anim\n id est laborum.\n";
 			sp.testCaseTextArea.append(textToAppend);
+			
+			//Do this to simulate what my app is doing on refresh...
+			sp.mainWindow.getContentPane().removeAll();
+			sp.mainWindow.add(sp.testCaseScrollPane);
+			sp.mainWindow.add(sp.appendMoreTextButton);
 			
 			//sp.testCaseScrollPane.getVerticalScrollBar().setValue(sp.testCaseScrollPane.getVerticalScrollBar().getMaximum());
 
