@@ -219,9 +219,8 @@ public class SetPeer {
 	
 	public synchronized void requestCS(){
 		wantCS=true;
-		while(!token);
-//		if(!token)
-//			myWait(this);
+		if(!token)
+			myWait(this);
 	}
 	
 	public synchronized void releaseCS(){
@@ -242,7 +241,7 @@ public class SetPeer {
 	}
 	
 	public synchronized void receiveToken(){
-		//this.notify();
+		this.notify();
 		debug("token was " + Boolean.toString(token) + " at the beginning of recieve token");
 		
 		token = true;
