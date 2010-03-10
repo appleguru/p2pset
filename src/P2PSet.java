@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.LinkedList;
@@ -18,7 +17,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
 
 
 
@@ -56,16 +54,12 @@ public class P2PSet {
 	protected String strAddr;
 
 	private void createAndShowGUI() {
-		//Make a new Game
-		//myGameData = new GameData();
-
 		//Create and set up the window.
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		bl = new ButtonListener(this);
 		username = new JTextField(10); //TODO: Make size a constant var
-		//username.addActionListener(ul);
 
 		startNewGame = new JButton("Start New Game"); //TODO: Get these from a constant var
 		joinExistingGame = new JButton ("Join Exisiting Game");
@@ -75,8 +69,13 @@ public class P2PSet {
 		reqMoreCards = new JToggleButton("Request More Cards");
 		reqMoreCards.addActionListener(bl);
 		
-		//Moving This here from GameData to fix a mac java bug
 		gameLog = new JTextArea(7, 60);
+		gameLog.setEditable(false);
+		chatPanel = new JPanel();
+		chatPanel.add(gameLog);
+		
+		chatScrollPane = new JScrollPane(chatPanel);
+		chatScrollPane.setPreferredSize(new Dimension(600,150));
 
 		masterPanel = new JPanel();
 		masterPanel.add(userNameLabel);
@@ -110,8 +109,6 @@ public class P2PSet {
 		rightPanel.setLayout (new BorderLayout());
 		scorePanel = new JPanel();
 		scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.Y_AXIS));
-		chatPanel = new JPanel();
-		//chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
 		rightBottomPanel = new JPanel();
 		rightBottomPanel.setLayout(new BoxLayout(rightBottomPanel, BoxLayout.Y_AXIS));
 
@@ -153,22 +150,6 @@ public class P2PSet {
 		
 		rightPanel.add(rightBottomPanel, BorderLayout.PAGE_END);
 
-		gameLog.setEditable(false);
-		chatPanel.add(gameLog);
-		
-		chatScrollPane = new JScrollPane(chatPanel);
-		chatScrollPane.setPreferredSize(new Dimension(600,150));
-		
-		//Keep us scrolled to the bottom of the log
-		//getMaximum always 100? huh..
-		/*gameLog.revalidate();
-		chatScrollPane.revalidate();
-		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
-		int currentScrollMax = mySB.getMaximum();
-		mySB.setValue(currentScrollMax);*/
-
-		//chatScrollPane.scrollRectToVisible(new Rectangle(0, gameLog.getHeight()-2, 1, 1));
-		
 		cardPanel = getCardPanel();
 		
 		//Disable the reqMoreCards button if we already have more cards, or if there are no more cards to deal
