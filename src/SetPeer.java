@@ -1,7 +1,11 @@
-import java.io.Serializable;
+import java.io.Serializable;	//Import necessary classes
 import java.util.ArrayList;
 
-
+/**
+ * This class contains control methods for what the peer is doing.  The very core of our program.
+ * @author Ari
+ *
+ */
 public class SetPeer {
 	private boolean debug = false;
 	public GameData myGameData;
@@ -11,13 +15,21 @@ public class SetPeer {
 	public boolean token;
 	public boolean wantCS;
 	private boolean tokenPassingStarted;
-	
+
+	/**
+	 * Constructor for SetPeer.
+	 * @param _gui Reference to the GUI object
+	 * @param playerName Name of this player
+	 */
 	public SetPeer(P2PSet _gui, String playerName){
 		gui = _gui;
 		me = new Player(playerName);
 		com = new Communicator(this);
 	}
 	
+	/**
+	 * Creates a new game of Set.
+	 */
 	public void createNewGame(){
 		myGameData = new GameData(me);
 		com.players = myGameData.playerList;
@@ -27,6 +39,9 @@ public class SetPeer {
 		gui.boardChanged();		
 	}
 	
+	/**
+	 * Joins an existing game on the network.  If no games are found after 6 seconds, start a new game.
+	 */
 	public void joinGame(){
 		com.sendLOOKING_FOR_GAMES();
 		try {
@@ -40,6 +55,10 @@ public class SetPeer {
 		}
 	}
 	
+	/**
+	 * Called when the peer receives a "LOOKING!" message.  Tries to start a conversation with the new player.
+	 * @param m
+	 */
 	public void receiveLooking(Message m){
 		if (myGameData.playerList.indexOf(me) == 0){
 			requestCS();
@@ -48,12 +67,20 @@ public class SetPeer {
 		}
 	}
 	
+	/**
+	 * Respond to a WhoAreYou message by sending information about this player.
+	 * @param m
+	 */
 	public void receiveWhoAreYou(Message m){
 		tokenPassingStarted = true;
 		Player liason = (Player)m.getObjects().get(0);
 		com.sendI_AM_ME(liason, me);
 	}
 	
+	/**
+	 * Respond to an IAmMe message.
+	 * @param m
+	 */
 	public void receiveIAmMe(Message m){
 		Player noob = (Player )m.getObjects().get(0);
 		com.sendNEW_PLAYER(noob, me);
@@ -63,7 +90,11 @@ public class SetPeer {
 		gui.boardChanged();
 		releaseCS();
 	}
-	
+
+	/**
+	 * Respond to a HereIsAGame message.
+	 * @param m
+	 */
 	public void receiveHereIsAGame(Message m){
 		myGameData = (GameData) m.getObjects().get(0);
 		com.players = myGameData.playerList;
@@ -71,7 +102,10 @@ public class SetPeer {
 		gui.boardChanged();
 	}//Here is a game!
 
-	
+	/**
+	 * Prints a line of debug text, but only if the debug flag is set to true.
+	 * @param string Debug text to print
+	 */
 	private void debug(String string) {
 		if (debug) System.out.println(string);
 		

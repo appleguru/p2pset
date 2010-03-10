@@ -1,15 +1,17 @@
-import java.io.Serializable;
+import java.io.Serializable;	//Import necessary classes
 import java.util.*;
 
-public class Deck implements Serializable{
-
-	/**
-	 * 
-	 */
+/**
+ * This class represents a full deck of Set cards.  It contains various methods for manipulating the cards in the deck.
+ * @author Ari
+ *
+ */
+public class Deck implements Serializable
+{
 	private static final long serialVersionUID = 4441183230181133146L;
-	LinkedList<Card> unusedCards;
-	LinkedList<Card> boardCards;
-	LinkedList<Card> usedCards;
+	LinkedList<Card> unusedCards;	//Stores cards that have not been dealt yet
+	LinkedList<Card> boardCards;	//Stores cards that are on the board
+	LinkedList<Card> usedCards;	//Stores cards that players have taken as sets
 	Random generator;
 	/**
 	 * Constructor; used to create a new random number generator for dealing cards
@@ -39,7 +41,6 @@ public class Deck implements Serializable{
 	 * Deals a random card from unusedCards, and moves that card into boardCards.
 	 * @return Returns a random card selected from unusedCards.
 	 */
-	
 	public Card dealCard()
 	{
 		int size = unusedCards.size();	//Get the number of undealt cards
@@ -53,6 +54,10 @@ public class Deck implements Serializable{
 		//boardCards.add(dealtCard);	//Add this card to the dealt cards list
 		return dealtCard;	//Return the card that was dealt
 	}
+
+	/**
+	 * Picks out a card from the deck and returns it to the user without removing it from the undealt cards list. 
+	 */
 	public Card dealCardNoRemove(){
 		int size = unusedCards.size();
 		if (size == 0){
@@ -62,7 +67,11 @@ public class Deck implements Serializable{
 		int cardNum = generator.nextInt(size);
 		return unusedCards.get(cardNum);
 	}
-	
+
+	/**
+	 * Returns an array of three distinct cards from the unused cards list.
+	 * @return An array of three distinct cards from the unused cards list.
+	 */
 	public Card[] dealThreeCardsNoRemove(){
 		Card[] result = new Card[3];
 		for (int i = 0 ; i < 3; i++){
@@ -74,6 +83,10 @@ public class Deck implements Serializable{
 		return result;
 	}
 	
+	/**
+	 * Deals the given card by moving it from undealt cards to the board.
+	 * @param c Card to deal
+	 */
 	public void dealCard(Card c){
 		if (unusedCards.contains(c)){
 			unusedCards.remove(c);
@@ -81,6 +94,11 @@ public class Deck implements Serializable{
 		}
 	}
 	
+	/**
+	 * Moves a card from the board to the used cards pile
+	 * @param c
+	 * @param i
+	 */
 	public void replaceCard(Card c, int i){
 		usedCards.add(boardCards.get(i));
 		unusedCards.remove(c);
@@ -163,12 +181,16 @@ public class Deck implements Serializable{
 			boardCards.remove(card3);
 		}//otherwise remove the cards without replacing them
 	}
-	
+
+	/**
+	 * Determines whether the game is over yet.
+	 * @return A boolean representing the state of the game
+	 */
 	public boolean gameFinished(){
-		if (unusedCards.size() > 0){
+		if (unusedCards.size() > 0){	//Game isn't over if there are undealt cards
 			return false;
 		}
-		else if (boardCards.size() == 15){
+		else if (boardCards.size() == 15){	//Game isn't over if there are 15 cards on the board (since there must be a set)
 			return false;
 		}
 		else{
@@ -184,7 +206,10 @@ public class Deck implements Serializable{
 			return true;
 		}
 	}
-	
+
+	/**
+	 * Removes all null cards from the board.
+	 */
 	public void removeNulls(){
 		for (int i = boardCards.size(); i >= 0; i--){
 			if (boardCards.get(i) == null){
@@ -193,12 +218,18 @@ public class Deck implements Serializable{
 		}
 	}//removes all the null Cards from the board
 	
+	/**
+	 * Compares this deck to another one.  Returns true if they are equivalent.
+	 */
 	public boolean equals (Object o){
 		Deck other = (Deck)o;
 		
 		return (unusedCards.equals(other.unusedCards) && boardCards.equals(other.boardCards) && usedCards.equals(other.usedCards));
 	}
 	
+	/**
+	 * Return a string representation of this deck.
+	 */
 	public String toString(){
 		return ("Unused Cards: " + unusedCards.toString() + ". Board Cards: " + boardCards.toString() + ". Used Cards: " + usedCards.toString());
 	}

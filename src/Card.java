@@ -2,12 +2,16 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-
+/**
+ * Represents a card in the Set deck.
+ * @author Ari
+ *
+ */
 public class Card implements Serializable{
 
 	private static final long serialVersionUID = -5724460739589821927L;
 
-	public static final int NUM_ATTRS = 4;
+	public static final int NUM_ATTRS = 4;	//Constants used to represent the attributes of the cards
 	public static final int NUM_ATTR_TYPES = 3;
 
 	public static final int COLOR = 0;
@@ -61,8 +65,12 @@ public class Card implements Serializable{
 	public String iconPath;
 	
 
-	/*
-	 * @param num the number of symbols on the card 
+	/**
+	 * Constructor for a Set card.
+	 * @param num Number of symbols on the card
+	 * @param col Color of the symbols
+	 * @param tex Texture of the symbols
+	 * @param sh Type of symbol
 	 */
 	public Card (int num, int col, int tex, int sh){
 		attributes = new int[NUM_ATTRS];
@@ -72,7 +80,7 @@ public class Card implements Serializable{
 		attributes[TEXTURE] = tex;
 		attributes[SHAPE] = sh;
 
-		String[] filename = new String[NUM_ATTRS];
+		String[] filename = new String[NUM_ATTRS];	//Used for finding the name of the image associated with this card.
 
 		switch (attributes[COLOR]) {
 		case 0:  filename[COLOR] = COLOR_NAME_RED; break;
@@ -106,16 +114,26 @@ public class Card implements Serializable{
 
 	}//Constructor
 	
+	/**
+	 * Determine if two cards are equivalent.
+	 */
 	public boolean equals(Object o){
 		Card other = (Card)o;
 		
 		return (attributes[COLOR] == other.attributes[COLOR] && attributes[TEXTURE] == other.attributes[TEXTURE] && attributes[SHAPE] == other.attributes[SHAPE] && attributes[NUMBER] == other.attributes[NUMBER]);
 	}
 	
+	/**
+	 * Return a string representation of this card.
+	 */
 	public String toString(){
 		return ( "(" + shapes[attributes[COLOR]] + "/" + textures[attributes[TEXTURE]] + "/" + colors[attributes[COLOR]] + "/" + (attributes[NUMBER] + 1) + ")");
 	}
 	
+	/**
+	 * Retrieve the icon associated with this card.
+	 * @return The icon associated with this card
+	 */
 	public ImageIcon getIcon (){
 		return new ImageIcon (this.getClass().getResource(iconPath));
 	}

@@ -1,19 +1,30 @@
 
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;	//Import necessary classes
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
-
+/**
+ * ActionListener which listens for GUI buttons that have been pressed.
+ * @author Ari
+ *
+ */
 public class ButtonListener implements ActionListener {
 
 	GameData gd;
-	P2PSet p;
+	P2PSet p;	//Keep a reference to the main class so we have access to its variables.
 
+	/**
+	 * Constructor for ButtonListener.
+	 * @param _p Passed-in reference to a P2PSet object
+	 */
 	public ButtonListener(P2PSet _p){
 		p = _p;
 	}
 
+	/**
+	 * Run when a button is clicked.
+	 */
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource().equals(p.reqMoreCards)){

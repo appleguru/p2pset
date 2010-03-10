@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+import java.awt.BorderLayout;	//Import necessary classes
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -19,18 +19,22 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 
 
-
+/**
+ * Main class which is run to start the peer and initialize the GUI and the threads. 
+ * @author Ari
+ *
+ */
 public class P2PSet {
-	protected GameData myGameData;
+	protected GameData myGameData;	//Stores this peer's local copy of all game information, such as where all of the cards are, who is winning, and everyone's name and IP
 
 	private int numCards;
-	private final int defaultWindowWidth = 860;
+	private final int defaultWindowWidth = 860;	//Set the window parameters
 	private final int defaultWindowHeight = 600;
 	private final int defaultIconScaleWidth = 128; //TODO: Get this from current window size on resize... 
 	private final int defaultIconScaleHeight = 96;
 
-	protected SetPeer sp;
-	private JPanel cardPanel, rightPanel, rightBottomPanel, chatPanel, scorePanel, masterPanel;
+	protected SetPeer sp;	//Stores a reference to a SetPeer
+	private JPanel cardPanel, rightPanel, rightBottomPanel, chatPanel, scorePanel, masterPanel;	//Various GUI elements
 	private JScrollPane rightScrollPane, chatScrollPane; 
 	protected JFrame frame;
 	private JLabel cardsLeft, moreCardReqs;
@@ -51,8 +55,10 @@ public class P2PSet {
 	protected InetAddress myAddress;
 	protected String strAddr;
 
+	/**
+	 * Creates and sets up the window.
+	 */
 	private void createAndShowGUI() {
-		//Create and set up the window.
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -85,6 +91,9 @@ public class P2PSet {
 
 	}
 
+	/**
+	 * Run when the board is first created and when cards are moved.  Updates the GUI to match changes to the game data.
+	 */
 	public void boardChanged()
 	{
 		if (wl == null){
@@ -160,11 +169,19 @@ public class P2PSet {
 		frame.validate();
 	}//boardChanged
 
+	/**
+	 * Accessor method for the GameData object.
+	 * @return GameData
+	 */
 	public GameData getGameData()
 	{
 		return myGameData;
 	}
 
+	/**
+	 * Generates the board layout of buttons based on the cards that are supposed to be on the board.
+	 * @return A JPanel containing the cards on the board
+	 */
 	private JPanel getCardPanel()
 	{
 		numCards = myGameData.deck.boardCards.size();
@@ -208,6 +225,10 @@ public class P2PSet {
 		return myCardPanel;
 	}//getCardPanel
 
+	/**
+	 * This method writes strings in a window below the game board.  All strings are appended to existing text.
+	 * @param s The string to write
+	 */
 	public void log(String s){
 		this.gameLog.append( "\n" + s);
 
@@ -216,6 +237,10 @@ public class P2PSet {
 		mySB.setValue(currentScrollMax);
 	}
 	
+	/**
+	 * Main method.
+	 * @param args Not used by this method
+	 */
 	public static void main(String[] args)
 	{
         SwingUtilities.invokeLater(new Runnable() {

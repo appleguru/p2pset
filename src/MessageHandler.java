@@ -1,16 +1,28 @@
-
+/**
+ * This class is a thread that can be spawned off a message listener to handle the incoming messages.
+ * @author Ari
+ *
+ */
 public class MessageHandler implements Runnable {
 
 	boolean debug = true;
 	private Message msg;
 	private SetPeer sp;
-	
+
+	/**
+	 * Constructor for MessageHandler.
+	 * @param _m Message to handle
+	 * @param _sp Reference to the SetPeer so we can access its variables
+	 */
 	public MessageHandler (Message _m, SetPeer _sp)
 	{
 		sp = _sp;
 		msg = _m;		
 	}//Constructor
-	
+
+	/**
+	 * This method is run when the thread is started.  It deterrmines the text of the message, and calls another method accordingly.
+	 */
 	public void run() {
 
 		
