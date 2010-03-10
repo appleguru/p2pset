@@ -212,18 +212,11 @@ public class SetPeer {
 		return com.receiveMsg();
 	}
 	
-	public synchronized void requestCS(){
-
+	public synchronized void requestCS()
+	{
 		wantCS=true;
 		if(!token)
 			myWait(this);
-		debug("Sleeping with the critical section.");
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public synchronized void releaseCS()
