@@ -66,6 +66,12 @@ public class SetPeer {
 	
 	public void claimSet(Card c1, Card c2, Card c3){
 		requestCS();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (myGameData.deck.verifySet(c1, c2, c3)){
 			debug(new Boolean(token).toString());
 			boolean shouldDealMore = (myGameData.deck.boardCards.size() != 15 && myGameData.deck.unusedCards.size() > 0);
@@ -211,13 +217,14 @@ public class SetPeer {
 		return com.receiveMsg();
 	}
 	
-	public void requestCS(){
+	public synchronized void requestCS(){
 		wantCS=true;
-		if(!token)
-			myWait(this);
+		while(!token);
+//		if(!token)
+//			myWait(this);
 	}
 	
-	public void releaseCS(){
+	public synchronized void releaseCS(){
 		if(myGameData.playerList.size()>1){
 			token = false;
 			int idx = myGameData.playerList.indexOf(me);
@@ -234,7 +241,7 @@ public class SetPeer {
 	}
 	
 	public synchronized void receiveToken(){
-		this.notify();
+		//this.notify();
 		token = true;
 		if(!wantCS){
 			releaseCS();
