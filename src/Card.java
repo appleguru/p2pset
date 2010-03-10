@@ -50,7 +50,7 @@ public class Card implements Serializable{
 	public static final String NUMBER_NAME_2 = "2";
 	public static final String NUMBER_NAME_3 = "3";
 
-	public static final String IMAGE_PATH = "images/";
+	public static final String IMAGE_PATH = "/images/";
 	public static final String FILENAME_DELIMITER = "_";
 	public static final String FILENAME_EXTENSION = ".png";
 
@@ -59,6 +59,7 @@ public class Card implements Serializable{
 
 	public ImageIcon icon;
 	public String iconPath;
+	
 
 	/*
 	 * @param num the number of symbols on the card 
@@ -116,7 +117,7 @@ public class Card implements Serializable{
 	}
 	
 	public ImageIcon getIcon (){
-		return new ImageIcon (iconPath);
+		return new ImageIcon (this.getClass().getResource(iconPath));
 	}
 
 }//class

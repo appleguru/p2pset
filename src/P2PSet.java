@@ -191,7 +191,7 @@ public class P2PSet {
 				iconScaleHeight = icon.getIconHeight() / iconScaler;
 				iconScaleWidth = defaultIconScaleWidth;
 			}
-
+			
 			else
 			{
 				iconScaler = (icon.getIconHeight() / defaultIconScaleHeight);
