@@ -67,12 +67,6 @@ public class SetPeer {
 	public void claimSet(Card c1, Card c2, Card c3){
 		debug(new Boolean(token).toString());
 		requestCS();
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		if (myGameData.deck.verifySet(c1, c2, c3)){
 			boolean shouldDealMore = (myGameData.deck.boardCards.size() != 15 && myGameData.deck.unusedCards.size() > 0);
 			//myGameData.deck.removeSet(c1, c2, c3);
@@ -218,9 +212,17 @@ public class SetPeer {
 	}
 	
 	public synchronized void requestCS(){
+
 		wantCS=true;
 		if(!token)
 			myWait(this);
+		debug("Sleeping with the critical section.");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public synchronized void releaseCS()
