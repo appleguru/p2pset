@@ -42,6 +42,7 @@ public class P2PSet {
 	protected JTextArea gameLog;
 	//private JTextArea scores;
 	private ButtonListener bl;
+	private SetWindowListener wl;
 	private CardButton[] cards;
 	protected LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
 	protected JToggleButton reqMoreCards;
@@ -61,7 +62,7 @@ public class P2PSet {
 		//Create and set up the window.
 		frame = new JFrame("P2P Set");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		bl = new ButtonListener(this);
 		username = new JTextField(10); //TODO: Make size a constant var
 		//username.addActionListener(ul);
@@ -92,6 +93,14 @@ public class P2PSet {
 
 	public void boardChanged()
 	{
+		if (wl == null){
+			wl = new SetWindowListener();
+			frame.addWindowListener(wl);
+		}
+		if (wl.sp == null){
+			wl.sp = sp;
+		}
+		
 		selectedCards.clear();
 		frame.getContentPane().removeAll();
 
