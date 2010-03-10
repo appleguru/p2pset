@@ -13,14 +13,14 @@ public class MessageHandler implements Runnable {
 	
 	public void run() {
 
-		debug ("processing a " + msg.getCommand() + " message");
 		
 		if (msg.getCommand().equals("PASS_TOKEN"))
 		{
 			sp.receiveToken();
 		}//if token
 		
-		else if (msg.getCommand().equals("I_CLAIM_SET"))
+		else 		debug ("processing a " + msg.getCommand() + " message");
+		if (msg.getCommand().equals("I_CLAIM_SET"))
 		{
 			sp.receiveClaimSet(msg);
 		}//else if I claim set
