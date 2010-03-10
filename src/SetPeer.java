@@ -214,8 +214,6 @@ public class SetPeer {
 		wantCS=true;
 		if(!token)
 			myWait(this);
-		wantCS=false;
-		releaseCS();
 	}
 	
 	public void releaseCS(){
