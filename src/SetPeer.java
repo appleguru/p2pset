@@ -165,6 +165,8 @@ public class SetPeer {
 	
 	public void receiveMoreCardsAdded(Message m){
 		Card[] cards = (Card[])m.getObjects().get(0);
+		
+		gui.log("At least half of players now want more cards.  ");
 		for (int i = 0; i < cards.length; i++){
 			myGameData.deck.dealCard((cards[i]));
 			gui.log("Adding card " + cards[i].toString());
