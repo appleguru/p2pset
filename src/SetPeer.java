@@ -55,10 +55,12 @@ public class SetPeer {
 	}
 
 	public GameData receiveGameToJoin(Message m){
-		myGameData = (GameData)m.getObjects().get(0);
-		com.players = myGameData.playerList;
-		com.sendNEW_PLAYER(me);
-		myGameData.playerList.add(me);
+		if (myGameData == null){
+			myGameData = (GameData)m.getObjects().get(0);
+			com.players = myGameData.playerList;
+			com.sendNEW_PLAYER(me);
+			myGameData.playerList.add(me);
+		}
 		return myGameData;
 	}
 	
