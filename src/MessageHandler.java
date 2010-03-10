@@ -1,7 +1,7 @@
 
 public class MessageHandler implements Runnable {
 
-	boolean debug = true;
+	boolean debug = false;
 	private Message msg;
 	private SetPeer sp;
 	
@@ -42,6 +42,9 @@ public class MessageHandler implements Runnable {
 		}
 		else if (msg.getCommand().equals("DEDUCTION")){
 			sp.receiveDeduction(msg);
+		}
+		else if (msg.getCommand().equals("WANT_MORE_CARDS")){
+			sp.receiveMoreCardsRequest(msg);
 		}
 		
 	}//run
