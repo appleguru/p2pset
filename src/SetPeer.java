@@ -21,6 +21,7 @@ public class SetPeer {
 	public void createNewGame(){
 		myGameData = new GameData(me);
 		com.players = myGameData.playerList;
+		gui.myGameData = myGameData;
 		token = true;
 		tokenPassingStarted = false;
 		gui.boardChanged();		
