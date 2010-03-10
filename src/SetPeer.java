@@ -59,6 +59,8 @@ public class SetPeer {
 		com.sendNEW_PLAYER(noob, me);
 		myGameData.playerList.add(noob);
 		com.sendHERE_IS_A_GAME(noob.ip.getHostAddress(), myGameData);
+		gui.log(noob.name + " has joined the game.");
+		gui.boardChanged();
 		releaseCS();
 	}
 	
