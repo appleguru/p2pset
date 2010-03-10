@@ -11,7 +11,7 @@ public class MessageHandler implements Runnable {
 		msg = _m;		
 	}//Constructor
 	
-	public void run() {
+	public synchronized void run() {
 
 		debug ("processing a " + msg.getCommand() + " message");
 		
