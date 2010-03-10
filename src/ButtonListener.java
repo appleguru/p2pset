@@ -1,6 +1,9 @@
-import java.awt.event.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JToggleButton;
+
 
 public class ButtonListener implements ActionListener {
 
@@ -27,8 +30,8 @@ public class ButtonListener implements ActionListener {
 		}//if
 
 		else if (e.getSource().equals(p.joinExistingGame)){
-			JToggleButton myTB = (JToggleButton) e.getSource();
-			myTB.setEnabled(false);
+			JButton myB = (JButton) e.getSource();
+			myB.setEnabled(false);
 			String username = p.username.getText();
 			p.sp = new SetPeer(p, username);
 			p.sp.joinGame();
