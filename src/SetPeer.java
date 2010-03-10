@@ -88,6 +88,9 @@ public class SetPeer {
 			cards[2] = c3;
 			com.sendI_CLAIM_SET(cards, me);
 		}//reverify the set
+		else {
+			gui.log("Someone else found that set first. ");
+		}
 		releaseCS();
 	}
 	
