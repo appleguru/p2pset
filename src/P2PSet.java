@@ -35,7 +35,7 @@ public class P2PSet {
 	private JFrame frame;
 	private JLabel cardsLeft, moreCardReqs;
 	private JLabel[] scores;
-	protected JButton startNewGame, joinExistingGame;
+	protected JButton joinExistingGame;
 	protected JTextField username;
 	protected JTextArea gameLog;
 	private ButtonListener bl;
@@ -59,9 +59,9 @@ public class P2PSet {
 		bl = new ButtonListener(this);
 		username = new JTextField(10); //TODO: Make size a constant var
 
-		startNewGame = new JButton("Start New Game"); //TODO: Get these from a constant var
-		joinExistingGame = new JButton ("Join Exisiting Game");
-		startNewGame.addActionListener(bl);
+		//startNewGame = new JButton("Start New Game"); //TODO: Get these from a constant var
+		joinExistingGame = new JButton ("Play SET¨!");
+		//startNewGame.addActionListener(bl);
 		joinExistingGame.addActionListener(bl);
 		
 		reqMoreCards = new JToggleButton("Request More Cards");
@@ -78,7 +78,7 @@ public class P2PSet {
 		masterPanel = new JPanel();
 		masterPanel.add(userNameLabel);
 		masterPanel.add(username);
-		masterPanel.add(startNewGame);
+		//masterPanel.add(startNewGame);
 		masterPanel.add(joinExistingGame);
 		frame.add(masterPanel);
 
