@@ -179,12 +179,18 @@ public class SetPeer {
 	public void Quit(){
 		requestCS();
 		
-		//TODO
+		com.sendQUIT(me);
+		
 		releaseCS();
+		System.exit(0);
 	}
 	
 	public void recieveQuit(Message m){
+		Player quitter = (Player)m.getObjects().get(0);
 		
+		myGameData.playerList.remove(quitter);
+		gui.log(quitter.name + " has left the game.");
+		gui.boardChanged();
 	}
 	
 	public void receiveNewPlayer(Message m){

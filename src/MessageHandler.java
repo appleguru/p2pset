@@ -46,6 +46,9 @@ public class MessageHandler implements Runnable {
 		else if (msg.getCommand().equals("WANT_MORE_CARDS")){
 			sp.receiveMoreCardsRequest(msg);
 		}
+		else if (msg.getCommand().equals("QUIT"));{
+			sp.recieveQuit(msg);
+		}
 		
 	}//run
 	

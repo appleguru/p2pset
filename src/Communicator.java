@@ -110,6 +110,20 @@ public class Communicator
 		}
 	}
 	
+	public void sendQUIT(Player p){
+		ArrayList<Serializable> data = new ArrayList<Serializable>();
+		data.add(p);
+		Message m = new Message("QUIT", data);
+		String destination = "";
+		for(Serializable player: players)
+		{
+			if (!p.equals(player)){
+				destination = ((Player)player).ip.getHostAddress();
+				sendTCPMessage(m, destination);
+			}
+		}
+	}
+	
 	public void sendSYNCHRONIZE_TO_ME()
 	{
 		Message m = new Message("SYNCHRONIZE_TO_ME", null);
