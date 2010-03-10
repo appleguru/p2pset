@@ -32,7 +32,7 @@ public class P2PSet {
 	protected SetPeer sp;
 	private JPanel cardPanel, rightPanel, rightBottomPanel, chatPanel, scorePanel, masterPanel;
 	private JScrollPane rightScrollPane, chatScrollPane; 
-	private JFrame frame;
+	protected JFrame frame;
 	private JLabel cardsLeft, moreCardReqs;
 	private JLabel[] scores;
 	protected JButton joinExistingGame;
@@ -211,9 +211,9 @@ public class P2PSet {
 	public void log(String s){
 		this.gameLog.append( "\n" + s);
 
-		//JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
-		//int currentScrollMax = mySB.getMaximum();
-		//mySB.setValue(currentScrollMax);
+		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
+		int currentScrollMax = mySB.getMaximum();
+		mySB.setValue(currentScrollMax);
 	}
 	
 	public static void main(String[] args)
