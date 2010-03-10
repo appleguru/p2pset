@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class SetPeer {
-	private boolean debug = true;
+	private boolean debug = false;
 	public GameData myGameData;
 	public Player me;
 	public P2PSet gui;
