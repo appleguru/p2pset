@@ -140,6 +140,7 @@ public class SetPeer {
 		requestCS();
 		if (myGameData.deck.boardCards.size() == 12 && myGameData.deck.unusedCards.size() > 0){
 			myGameData.numPlayersWantCards ++;
+			debug (myGameData.numPlayersWantCards + "players now want more cards, out of " + myGameData.playerList.size());
 			if (myGameData.numPlayersWantCards >= (myGameData.playerList.size() / 2)){
 				ArrayList<Serializable> data = new ArrayList<Serializable>();
 				Card[] cards = new Card[3];
@@ -159,6 +160,7 @@ public class SetPeer {
 	public void receiveMoreCardsRequest(Message m){
 		myGameData.numPlayersWantCards = (Integer)m.getObjects().get(0);
 		gui.log(myGameData.numPlayersWantCards + " players now want to add more cards.");
+		gui.boardChanged();
 	}
 	
 	public void receiveMoreCardsAdded(Message m){
