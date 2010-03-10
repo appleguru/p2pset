@@ -36,7 +36,8 @@ public class Communicator
 	{
 		try
 		{
-			debug ("sending a " + m.getCommand() + " message");
+			if (!m.getCommand().equals("PASS_TOKEN"))
+				debug ("sending a " + m.getCommand() + " message");
 			Socket sock = new Socket(recipient, TCP_PORT);
 			ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 			oos.writeObject(m);
