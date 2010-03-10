@@ -38,10 +38,8 @@ public class P2PSet {
 	protected JButton startNewGame, joinExistingGame;
 	protected JTextField username;
 	protected JTextArea gameLog;
-	//private JTextArea scores;
 	private ButtonListener bl;
 	private SetWindowListener wl;
-	private CardButton[] cards;
 	protected LinkedList<CardButton> selectedCards = new LinkedList<CardButton>();
 	protected JToggleButton reqMoreCards;
 	private final JLabel userNameLabel = new JLabel("Username: ");
@@ -112,8 +110,6 @@ public class P2PSet {
 		rightBottomPanel = new JPanel();
 		rightBottomPanel.setLayout(new BoxLayout(rightBottomPanel, BoxLayout.Y_AXIS));
 
-
-		JLabel[] scores;
 		rightPanel.add(scoreLabel, BorderLayout.PAGE_START);
 
 		int numPlayers = myGameData.playerList.size();
@@ -184,7 +180,6 @@ public class P2PSet {
 
 		JPanel myCardPanel = new JPanel(new GridLayout(numRows,numCols));
 
-		cards = new CardButton[numCards];
 		//Add card buttons to boardPanel
 		for (int i = 0; i < numCards; i++)
 		{
