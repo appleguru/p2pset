@@ -223,14 +223,17 @@ public class SetPeer {
 			myWait(this);
 	}
 	
-	public synchronized void releaseCS(){
-		if(myGameData.playerList.size()>1){
+	public synchronized void releaseCS()
+	{
+		wantCS = false;
+		if(myGameData.playerList.size() > 1)
+		{
 			token = false;
 			int idx = myGameData.playerList.indexOf(me);
 			int i = (idx+1)%myGameData.playerList.size();
 			debug ("passing the token to " + myGameData.playerList.get(i).name);
 			com.sendPASS_TOKEN(myGameData.playerList.get(i));
-			}
+		}
 	}
 	
 	public synchronized void myWait(Object o){
