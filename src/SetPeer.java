@@ -221,6 +221,15 @@ public class SetPeer {
 	
 	public synchronized void releaseCS()
 	{
+		try
+		{
+			Thread.sleep(1000);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		wantCS = false;
 		if(myGameData.playerList.size() > 1)
 		{
