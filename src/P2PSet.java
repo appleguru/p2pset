@@ -59,9 +59,7 @@ public class P2PSet {
 		bl = new ButtonListener(this);
 		username = new JTextField(10); //TODO: Make size a constant var
 
-		//startNewGame = new JButton("Start New Game"); //TODO: Get these from a constant var
-		joinExistingGame = new JButton ("Play SET¨!");
-		//startNewGame.addActionListener(bl);
+		joinExistingGame = new JButton ("Play SET!");
 		joinExistingGame.addActionListener(bl);
 		
 		reqMoreCards = new JToggleButton("Request More Cards");
@@ -78,7 +76,6 @@ public class P2PSet {
 		masterPanel = new JPanel();
 		masterPanel.add(userNameLabel);
 		masterPanel.add(username);
-		//masterPanel.add(startNewGame);
 		masterPanel.add(joinExistingGame);
 		frame.add(masterPanel);
 
@@ -214,9 +211,9 @@ public class P2PSet {
 	public void log(String s){
 		this.gameLog.append( "\n" + s);
 
-		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
-		int currentScrollMax = mySB.getMaximum();
-		mySB.setValue(currentScrollMax);
+		//JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
+		//int currentScrollMax = mySB.getMaximum();
+		//mySB.setValue(currentScrollMax);
 	}
 	
 	public static void main(String[] args)
