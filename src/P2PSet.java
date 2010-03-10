@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.LinkedList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -49,7 +51,8 @@ public class P2PSet {
 	private final String REQ_CARDS_STR = "Players desiring more cards: ";
 	private final String HEX_RED = "ff0000";
 	private final String HEX_BLACK = "000000";
-	protected String myUsername;
+	protected InetAddress myAddress;
+	protected String strAddr;
 
 	private void createAndShowGUI() {
 		//Make a new Game
@@ -114,8 +117,11 @@ public class P2PSet {
 			String myColor;
 			String tempName = myGameData.playerList.get(i).name;
 			String tempScore = myGameData.playerList.get(i).score + "";
+			
+			InetAddress tempAddr = myGameData.playerList.get(i).ip;
+			String tempAddrStr = tempAddr.getHostAddress();
 
-			if (tempName.equals(myUsername))
+			if ((tempAddrStr.equals(strAddr)))
 			{ myColor = HEX_RED; }
 			else
 			{ myColor = HEX_BLACK; }
@@ -146,9 +152,11 @@ public class P2PSet {
 		
 		//Keep us scrolled to the bottom of the log
 		//getMaximum always 100? huh..
+		/*gameLog.revalidate();
+		chatScrollPane.revalidate();
 		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
 		int currentScrollMax = mySB.getMaximum();
-		mySB.setValue(currentScrollMax);
+		mySB.setValue(currentScrollMax);*/
 
 		//chatScrollPane.scrollRectToVisible(new Rectangle(0, gameLog.getHeight()-2, 1, 1));
 		
@@ -220,6 +228,7 @@ public class P2PSet {
 
 	public void log(String s){
 		this.gameLog.append(s + "\n");
+
 		JScrollBar mySB = chatScrollPane.getVerticalScrollBar();
 		int currentScrollMax = mySB.getMaximum();
 		mySB.setValue(currentScrollMax);
@@ -230,6 +239,13 @@ public class P2PSet {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	P2PSet myP2PSet = new P2PSet();
+            	
+				try {
+					myP2PSet.myAddress = InetAddress.getLocalHost();
+					myP2PSet.strAddr = myP2PSet.myAddress.getHostAddress();
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				}
                 
             	myP2PSet.createAndShowGUI();
             }
